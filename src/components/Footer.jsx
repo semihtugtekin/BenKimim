@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-1">
             <a href="#" className="flex items-center gap-2 text-primary font-bold text-2xl mb-4">
               <Code2 className="h-8 w-8" />
-              <span>TUGTech</span>
+              <span>TUGCore</span>
             </a>
             <p className="text-gray-400 text-sm">
               Yazılım dünyasında yenilikçi çözümlerle geleceği bugünden kodluyoruz.
@@ -53,10 +53,10 @@ const Footer = () => {
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm text-center md:text-left">
-            &copy; {new Date().getFullYear()} TUGTech Yazılım. Tüm hakları saklıdır.
+            &copy; {new Date().getFullYear()} TUGCore Yazılım. Tüm hakları saklıdır.
           </p>
           <p className="text-gray-500 text-sm flex items-center gap-1">
-            Designed by <span className="text-primary">TUGTech Team</span>
+            Designed by <span className="text-primary">TUGCore Team</span>
           </p>
         </div>
       </div>

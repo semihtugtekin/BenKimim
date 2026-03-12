@@ -26,7 +26,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-            TUGTech olarak, modern teknolojileri kullanarak işletmenizi dijital dünyada öne çıkarıyoruz. Web, mobil ve özel yazılım çözümleri.
+            TUGCore olarak, modern teknolojileri kullanarak işletmenizi dijital dünyada öne çıkarıyoruz. Web, mobil ve özel yazılım çözümleri.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

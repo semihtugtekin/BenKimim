@@ -1,11 +1,38 @@
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+
+// Initialize EmailJS
+emailjs.init("qHEjnc04CyvVULi3B");
 
 const Contact = () => {
+  const form = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Form submission logic would go here
-    alert('Mesajınız için teşekkürler! Size en kısa sürede dönüş yapacağız.');
+    setIsSubmitting(true);
+
+    // KANKA: EmailJS sendForm yöntemi formdaki tüm alanları otomatik alır.
+    emailjs.sendForm(
+      'service_9v8jft6', // Service ID
+      'template_4ceoioz', // Template ID
+      form.current,
+      'qHEjnc04CyvVULi3B' // Public Key
+    )
+    .then((result) => {
+        setIsSuccess(true);
+        form.current.reset();
+        setTimeout(() => setIsSuccess(false), 5000);
+    }, (error) => {
+        console.error('EmailJS Error:', error);
+        alert(`Hata oluştu kanka: ${error.text || error.message || 'Bilinmeyen hata'}. EmailJS Dashboard'dan 'To Email' (Alıcı E-postası) kısmını kontrol etmelisin.`);
+    })
+    .finally(() => {
+        setIsSubmitting(false);
+    });
   };
 
   return (
@@ -39,26 +66,26 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-white">E-posta</h4>
-                  <p className="text-gray-400">info@tugtech.com</p>
+                  <p className="text-gray-400">info@tugcore.com.tr</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
+              {/* <div className="flex items-start gap-4">
                 <div className="p-3 bg-slate-900 rounded-lg text-primary">
                   <Phone size={24} />
                 </div>
-                <div>
+                 <div>
                   <h4 className="font-semibold text-white">Telefon</h4>
                   <p className="text-gray-400">+90 (506) 710 07 17</p>
-                </div>
-              </div>
+                </div> 
+              </div> */}
 
-              <div className="flex items-start gap-4">
+              {/* <div className="flex items-start gap-4">
                 <div className="p-3 bg-slate-900 rounded-lg text-primary">
                   <MapPin size={24} />
                 </div>
              
-              </div>
+              </div> */}
             </div>
           </motion.div>
 
@@ -70,13 +97,17 @@ const Contact = () => {
             viewport={{ once: true }}
             className="bg-slate-900 p-8 rounded-xl border border-slate-800"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+              {/* EmailJS recipient address */}
+              <input type="hidden" name="to_email" value="info@tugcore.com.tr" />
+              
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Ad Soyad</label>
                   <input 
                     type="text" 
                     id="name" 
+                    name="from_name" // EmailJS template field
                     className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
                     placeholder="Adınız"
                     required
@@ -87,6 +118,7 @@ const Contact = () => {
                   <input 
                     type="email" 
                     id="email" 
+                    name="reply_to" // EmailJS template field
                     className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
                     placeholder="ornek@email.com"
                     required
@@ -99,6 +131,7 @@ const Contact = () => {
                 <input 
                   type="text" 
                   id="subject" 
+                  name="subject" 
                   className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
                   placeholder="Proje Hakkında"
                   required
@@ -109,6 +142,7 @@ const Contact = () => {
                 <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Mesajınız</label>
                 <textarea 
                   id="message" 
+                  name="message" 
                   rows="4" 
                   className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors resize-none"
                   placeholder="Mesajınızı buraya yazın..."
@@ -118,11 +152,36 @@ const Contact = () => {
 
               <button 
                 type="submit" 
-                className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                disabled={isSubmitting || isSuccess}
+                className={`w-full font-bold py-4 rounded-lg transition-all flex items-center justify-center gap-2 ${
+                  isSuccess 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-primary hover:bg-primary/90 text-white'
+                } ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
-                Gönder
-                <Send size={20} />
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="animate-spin" size={20} />
+                    Gönderiliyor...
+                  </>
+                ) : isSuccess ? (
+                  <>
+                    <CheckCircle2 size={20} />
+                    Gönderildi!
+                  </>
+                ) : (
+                  <>
+                    Gönder
+                    <Send size={20} />
+                  </>
+                )}
               </button>
+              
+              {isSuccess && (
+                <p className="text-green-400 text-sm text-center animate-pulse">
+                  Mesajın bize ulaştı kanka, en kısa sürede döneceğiz!
+                </p>
+              )}
             </form>
           </motion.div>
         </div>

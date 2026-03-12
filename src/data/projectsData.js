@@ -3,7 +3,7 @@ export const projects = [
     id: 1,
     title: 'Nergiz Güzellik Salonu Randevu Sistemi',
     category: 'Web Geliştirme',
-    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    image: 'public/img/NergizGuzellikSAlonu.png',
     tags: ['React', 'Firebase', 'Tailwind CSS', 'Appointment System'],
     demoUrl: 'https://www.xn--nergizgzelliksalonu-cbc.com/',
     repoUrl: '#',

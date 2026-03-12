@@ -27,11 +27,11 @@ const services = [
     title: 'UI/UX Tasarım',
     description: 'Kullanıcı deneyimini ön planda tutan, modern ve estetik arayüz tasarımları.'
   },
-  {
-    icon: <ShieldCheck className="w-8 h-8 text-secondary" />,
-    title: 'Siber Güvenlik',
-    description: 'Sistemlerinizi olası tehditlere karşı koruyor, güvenlik testleri yapıyoruz.'
-  }
+  // {
+  //   icon: <ShieldCheck className="w-8 h-8 text-secondary" />,
+  //   title: 'Siber Güvenlik',
+  //   description: 'Sistemlerinizi olası tehditlere karşı koruyor, güvenlik testleri yapıyoruz.'
+  // }
 ];
 
 const Services = () => {

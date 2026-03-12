@@ -19,7 +19,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <a href="#" className="flex items-center gap-2 text-primary font-bold text-2xl">
               <Code2 className="h-8 w-8" />
-              <span>TUGTech</span>
+              <span>TUGCore</span>
             </a>
           </div>
           
