@@ -4,26 +4,23 @@ import { Star, Quote } from 'lucide-react';
 const testimonials = [
   {
     id: 1,
-    name: "Ahmet Yılmaz",
+    name: "A***** Y****",
     role: "E-Ticaret Yöneticisi",
     content: "TUGCore ile çalışmak projemizin kaderini değiştirdi. Beklediğimizden çok daha hızlı ve modern bir çözüm sundular.",
-    avatar: "https://i.pravatar.cc/150?u=ahmet",
     rating: 5
   },
   {
     id: 2,
-    name: "Ayşe Kaya",
+    name: "A*** K***",
     role: "Pazarlama Müdürü",
     content: "Tasarım süreçlerindeki titizlikleri ve kullanıcı deneyimine verdikleri önem gerçekten takdire şayan.",
-    avatar: "https://i.pravatar.cc/150?u=ayse",
     rating: 5
   },
   {
     id: 3,
-    name: "Mehmet Demir",
+    name: "M**** D****",
     role: "CEO, Tech Solutions",
-    content: "Teknik yetkinlikleri ve iletişim becerileri çok yüksek. Karmaşık bir projeyi tereyağından kıl çeker gibi hallettiler.",
-    avatar: "https://i.pravatar.cc/150?u=mehmet",
+    content: "Teknik yetkinlikleri ve iletişim becerileri çok yüksek. Hızlı ve güven veren bir hizmet sundular",
     rating: 5
   }
 ];
@@ -63,7 +60,7 @@ const Testimonials = () => {
 
               <div className="flex items-center gap-4">
                 <img 
-                  src={t.avatar} 
+                
                   alt={t.name} 
                   className="w-12 h-12 rounded-full object-cover border-2 border-primary/20"
                 />
