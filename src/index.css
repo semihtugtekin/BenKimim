@@ -1,17 +1,47 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0ea5e9;
-  --color-secondary: #6366f1;
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-dark: #0f172a;
+  
+  /* Theme Variables */
+  --color-bg-main: var(--bg-main);
+  --color-bg-sec: var(--bg-sec);
+  --color-bg-card: var(--bg-card);
+  --color-text-main: var(--text-main);
+  --color-text-sec: var(--text-sec);
+  --color-border-main: var(--border-main);
 }
 
 :root {
+  /* Clean Tech Theme (Light & Professional) */
+  --primary: #8B5E34;   /* Bakır/Bronze Logo Color */
+  --secondary: #A37E36; 
+  --bg-main: #FDFDFD;   
+  --bg-sec: #F1F5F9;    
+  --bg-card: #FFFFFF;   
+  --text-main: #1A202C; 
+  --text-sec: #4A5568;  
+  --border-main: #E2E8F0; 
+  color-scheme: light;
+}
+
+.dark {
+  /* The Midnight Architect Theme (Dark & Premium) */
+  --primary: #9CA3AF;   /* Gümüş/Silver Logo Color */
+  --secondary: #6B7280; 
+  --bg-main: #0F172A;   
+  --bg-sec: #1E293B;    
+  --bg-card: #1E293B;   
+  --text-main: #F8FAFC; 
+  --text-sec: #94A3B8;  
+  --border-main: rgba(156, 163, 175, 0.15); 
   color-scheme: dark;
 }
 
 body {
-  @apply bg-slate-900 text-white overflow-x-hidden;
+  @apply bg-bg-main text-text-main transition-colors duration-300 overflow-x-hidden;
 }
 
 html {
@@ -24,11 +54,11 @@ html {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  @apply bg-slate-900;
+  @apply bg-bg-main;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded-full hover:bg-slate-600 transition-colors;
+  @apply bg-bg-card rounded-full hover:bg-bg-sec transition-colors;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

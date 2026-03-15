@@ -36,11 +36,11 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-20 bg-slate-800/50">
+    <section id="services" className="py-20 bg-bg-sec/50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Hizmetlerimiz</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">Hizmetlerimiz</h2>
+          <p className="text-text-sec max-w-2xl mx-auto transition-colors duration-300">
             İşletmenizi bir üst seviyeye taşıyacak teknolojik çözümler sunuyoruz.
           </p>
         </div>
@@ -53,13 +53,13 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-slate-900 p-8 rounded-xl border border-slate-800 hover:border-primary/50 transition-colors group"
+              className="bg-bg-card p-8 rounded-xl border border-border-main hover:border-primary/50 transition-all group shadow-lg"
             >
-              <div className="mb-6 bg-slate-800 w-16 h-16 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div className="mb-6 bg-bg-sec w-16 h-16 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-              <p className="text-gray-400">{service.description}</p>
+              <h3 className="text-xl font-bold text-text-main mb-3">{service.title}</h3>
+              <p className="text-text-sec">{service.description}</p>
             </motion.div>
           ))}
         </div>

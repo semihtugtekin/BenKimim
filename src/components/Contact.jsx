@@ -36,11 +36,11 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-slate-800/50">
+    <section id="contact" className="py-20 bg-bg-sec/50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">İletişime Geçin</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">İletişime Geçin</h2>
+          <p className="text-text-sec max-w-2xl mx-auto transition-colors duration-300">
             Projenizi hayata geçirmek için bizimle konuşun.
           </p>
         </div>
@@ -54,38 +54,21 @@ const Contact = () => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <h3 className="text-2xl font-bold text-white">Bize Ulaşın</h3>
-            <p className="text-gray-400">
+            <h3 className="text-2xl font-bold text-text-main">Bize Ulaşın</h3>
+            <p className="text-text-sec">
               Aşağıdaki iletişim kanallarından veya formu doldurarak bize ulaşabilirsiniz. 7/24 destek ekibimizle yanınızdayız.
             </p>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-slate-900 rounded-lg text-primary">
+                <div className="p-3 bg-bg-card rounded-lg text-primary shadow-sm">
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">E-posta</h4>
-                  <p className="text-gray-400">info@tugcore.com.tr</p>
+                  <h4 className="font-semibold text-text-main">E-posta</h4>
+                  <p className="text-text-sec">info@tugcore.com.tr</p>
                 </div>
               </div>
-
-              {/* <div className="flex items-start gap-4">
-                <div className="p-3 bg-slate-900 rounded-lg text-primary">
-                  <Phone size={24} />
-                </div>
-                 <div>
-                  <h4 className="font-semibold text-white">Telefon</h4>
-                  <p className="text-gray-400">+90 (506) 710 07 17</p>
-                </div> 
-              </div> */}
-
-              {/* <div className="flex items-start gap-4">
-                <div className="p-3 bg-slate-900 rounded-lg text-primary">
-                  <MapPin size={24} />
-                </div>
-             
-              </div> */}
             </div>
           </motion.div>
 
@@ -95,7 +78,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="bg-slate-900 p-8 rounded-xl border border-slate-800"
+            className="bg-bg-card p-8 rounded-xl border border-border-main shadow-xl"
           >
             <form ref={form} onSubmit={handleSubmit} className="space-y-6">
               {/* EmailJS recipient address */}
@@ -103,23 +86,23 @@ const Contact = () => {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Ad Soyad</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-text-sec mb-2">Ad Soyad</label>
                   <input 
                     type="text" 
                     id="name" 
                     name="from_name" // EmailJS template field
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
+                    className="w-full bg-bg-main border border-border-main rounded-lg px-4 py-3 text-text-main focus:outline-none focus:border-primary transition-colors"
                     placeholder="Adınız"
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">E-posta</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-text-sec mb-2">E-posta</label>
                   <input 
                     type="email" 
                     id="email" 
                     name="reply_to" // EmailJS template field
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
+                    className="w-full bg-bg-main border border-border-main rounded-lg px-4 py-3 text-text-main focus:outline-none focus:border-primary transition-colors"
                     placeholder="ornek@email.com"
                     required
                   />
@@ -127,24 +110,24 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-400 mb-2">Konu</label>
+                <label htmlFor="subject" className="block text-sm font-medium text-text-sec mb-2">Konu</label>
                 <input 
                   type="text" 
                   id="subject" 
                   name="subject" 
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
+                  className="w-full bg-bg-main border border-border-main rounded-lg px-4 py-3 text-text-main focus:outline-none focus:border-primary transition-colors"
                   placeholder="Proje Hakkında"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Mesajınız</label>
+                <label htmlFor="message" className="block text-sm font-medium text-text-sec mb-2">Mesajınız</label>
                 <textarea 
                   id="message" 
                   name="message" 
                   rows="4" 
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors resize-none"
+                  className="w-full bg-bg-main border border-border-main rounded-lg px-4 py-3 text-text-main focus:outline-none focus:border-primary transition-colors resize-none"
                   placeholder="Mesajınızı buraya yazın..."
                   required
                 ></textarea>
