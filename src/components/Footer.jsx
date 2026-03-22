@@ -1,4 +1,4 @@
-import { Code2, Github, Linkedin, Twitter } from 'lucide-react';
+import { Code2, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -31,14 +31,14 @@ const Footer = () => {
               <li><a href="#" className="text-text-sec hover:text-primary text-sm transition-colors">Web Geliştirme</a></li>
               <li><a href="#" className="text-text-sec hover:text-primary text-sm transition-colors">Mobil Uygulama</a></li>
               <li><a href="#" className="text-text-sec hover:text-primary text-sm transition-colors">UI/UX Tasarım</a></li>
-              <li><a href="#" className="text-text-sec hover:text-primary text-sm transition-colors">Danışmanlık</a></li>
+              <li><a href="#" className="text-text-sec hover:text-primary text-sm transition-colors">Dijital Dönüşüm Danışmanlığı</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-text-main font-bold mb-4">Takip Edin</h4>
             <div className="flex space-x-4">
-              <a href="#" className="text-text-sec hover:text-primary transition-colors">
+              {/* <a href="#" className="text-text-sec hover:text-primary transition-colors">
                 <Github size={20} />
               </a>
               <a href="#" className="text-text-sec hover:text-primary transition-colors">
@@ -46,6 +46,9 @@ const Footer = () => {
               </a>
               <a href="#" className="text-text-sec hover:text-primary transition-colors">
                 <Twitter size={20} />
+              </a> */}
+              <a href="#" className="text-text-sec hover:text-primary transition-colors">
+                <Instagram size={20} />
               </a>
             </div>
           </div>
@@ -53,7 +56,7 @@ const Footer = () => {
 
         <div className="border-t border-border-main pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-text-sec text-sm text-center md:text-left transition-colors duration-300">
-            &copy; {new Date().getFullYear()} TUGCore Yazılım. Tüm hakları saklıdır.
+            &copy; {new Date().getFullYear()} TUGCore . Tüm hakları saklıdır.
           </p>
           <p className="text-text-sec text-sm flex items-center gap-1 transition-colors duration-300">
             Designed by <span className="text-primary">TUGCore Team</span>

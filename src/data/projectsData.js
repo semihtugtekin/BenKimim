@@ -7,7 +7,7 @@ export const projects = [
     tags: ['React', 'Firebase', 'Tailwind CSS', 'Appointment System'],
     demoUrl: 'https://www.xn--nergizgzelliksalonu-cbc.com/',
     repoUrl: '#',
-    description: 'Nevşehir\'in en köklü güzellik salonu için geliştirilmiş, modern ve kullanıcı dostu randevu yönetim platformudur. 21 yılı aşkın tecrübe ile 10.000\'den fazla mutlu müşteriye hizmet vermektedir.',
+    description: 'Nevşehir\'in en köklü salonu için %40 verimlilik artışı sağlayan randevu mimarisi ,21 yılı aşkın tecrübe ile 10.000\'den fazla mutlu müşteriye hizmet vermektedir.',
     problem: 'Müşterilerin telefonla randevu alırken yaşadığı bekleme süreleri ve salonun randevu trafiğini manuel yönetme zorluğu.',
     solution: 'Hızlı, kolay ve her cihazdan erişilebilir, anlık müsaitlik takibi sunan dijital bir randevu yönetim sistemi kurgulandı.',
     features: [

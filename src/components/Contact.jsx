@@ -68,13 +68,15 @@ const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 className="flex items-center gap-6 group cursor-pointer"
               >
-                <div className="w-16 h-16 rounded-2xl bg-bg-sec border border-border-main flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/30">
-                  <Mail size={28} />
-                </div>
-                <div>
-                  <h4 className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-1">E-POSTA GÖNDER</h4>
-                  <p className="text-lg font-bold text-text-main group-hover:text-primary transition-colors">info@tugcore.com.tr</p>
-                </div>
+                <a href="mailto:info@tugcore.com.tr" className="flex items-center gap-6 w-full">
+                  <div className="w-16 h-16 rounded-2xl bg-bg-sec border border-border-main flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/30">
+                    <Mail size={28} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-1">E-POSTA GÖNDER</h4>
+                    <p className="text-lg font-bold text-text-main group-hover:text-primary transition-colors">info@tugcore.com.tr</p>
+                  </div>
+                </a>
               </motion.div>
 
               <motion.div 
@@ -83,13 +85,15 @@ const Contact = () => {
                 transition={{ delay: 0.1 }}
                 className="flex items-center gap-6 group cursor-pointer"
               >
-                <div className="w-16 h-16 rounded-2xl bg-bg-sec border border-border-main flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/30">
-                  <Phone size={28} />
-                </div>
-                <div>
-                  <h4 className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-1">BİZİ ARAYIN</h4>
-                  <p className="text-lg font-bold text-text-main group-hover:text-primary transition-colors">+90 555 555 55 55</p>
-                </div>
+                <a href="tel:+905067100717" className="flex items-center gap-6 w-full">
+                  <div className="w-16 h-16 rounded-2xl bg-bg-sec border border-border-main flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/30">
+                    <Phone size={28} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-1">BİZİ ARAYIN</h4>
+                    <p className="text-lg font-bold text-text-main group-hover:text-primary transition-colors">+90 506 710 0717 </p>
+                  </div>
+                </a>
               </motion.div>
             </div>
           </div>

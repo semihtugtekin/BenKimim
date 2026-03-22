@@ -3,12 +3,12 @@ import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Terminal, ChevronLeft, ChevronRight, Cpu, Zap, Globe, Sparkles } from 'lucide-react';
 import Particles from './Particles';
 import Magnetic from './Magnetic';
-
+// Modern Yazılımla Yarının İşletmesini Bugün İnşa Edin
 const slides = [
   {
     id: 1,
     badge: "Geleceğin Yazılımları",
-    title: "Hayallerinizi <span class='text-primary'>Koda</span> Dönüştürüyoruz",
+    title: " Modern Yazılımla <span class='text-primary'>Yarının İşletmesini</span> Bugün İnşa Edin",
     description: "TUGCore olarak, modern teknolojileri kullanarak işletmenizi dijital dünyada öne çıkarıyoruz.",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000",
     cta: "Bizimle Tanışın",

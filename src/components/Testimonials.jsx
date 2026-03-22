@@ -4,23 +4,23 @@ import { Star, Quote } from 'lucide-react';
 const testimonials = [
   {
     id: 1,
-    name: "A***** Y****",
-    role: "E-Ticaret Yöneticisi",
-    content: "TUGCore ile çalışmak projemizin kaderini değiştirdi. Beklediğimizden çok daha hızlı ve modern bir çözüm sundular.",
+    name: "Nergiz K*****",
+    role: "Nergiz Güzellik Salonu",
+    content: "TUGCore ile çalışmak alışkınlıklarımızı ve hızımızı büyük ölçüde değiştirdi. Beklediğimizden çok daha hızlı ve modern bir çözüm sundular. Aynı zaman da sorunlarımıza çok kısa sürelerde çözümler ürettiler. bir sorun olduğundaysa en hızlı şekilde çözümler ürettiler.",
     rating: 5
   },
   {
     id: 2,
-    name: "A*** K***",
-    role: "Pazarlama Müdürü",
-    content: "Tasarım süreçlerindeki titizlikleri ve kullanıcı deneyimine verdikleri önem gerçekten takdire şayan.",
+    name: "Dilan V***",
+    role: "Kişisel uygulama  ",
+    content: "Tasarım süreçlerindeki titizlikleri ve kullanıcı deneyimine verdikleri önem gerçekten takdire şayan. Aklıma gelmeyecek fikirler de verdiler ve ekleme -çıkartma yaparak hayata geçirdiler . Açıkcası ben bu kadarını beklemiyordum",
     rating: 5
   },
   {
     id: 3,
-    name: "M**** D****",
-    role: "CEO, Tech Solutions",
-    content: "Teknik yetkinlikleri ve iletişim becerileri çok yüksek. Hızlı ve güven veren bir hizmet sundular",
+    name: "Erkan T****",
+    role: "Ecem diş kliniği",
+    content: "Teknik yetkinlikleri ve iletişim becerileri çok yüksek. Hızlı ve güven veren bir hizmet sundular. Geliştirme aşamasında istediğim her zaman ulaşım sağladım ve iyi bir tempoyla çalıştık, aklımdaki diğer fikirleri de kesinlikle TUGCORE ile hayata geçireceğim.",
     rating: 5
   }
 ];
