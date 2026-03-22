@@ -1,7 +1,8 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { ArrowRight, Terminal, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Terminal, ChevronLeft, ChevronRight, Cpu, Zap, Globe, Sparkles } from 'lucide-react';
 import Particles from './Particles';
+import Magnetic from './Magnetic';
 
 const slides = [
   {
@@ -33,106 +34,139 @@ const slides = [
   }
 ];
 
+const FloatingIcon = ({ icon: Icon, delay, className }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0 }}
+    animate={{ 
+      opacity: 0.4, 
+      scale: 1,
+      y: [0, -20, 0],
+      rotate: [0, 10, -10, 0]
+    }}
+    transition={{ 
+      duration: 5, 
+      delay, 
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+    className={`absolute pointer-events-none ${className}`}
+  >
+    <Icon size={40} className="text-primary/40" />
+  </motion.div>
+);
+
 const Hero = ({ isDarkMode }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 8000);
     return () => clearInterval(timer);
   }, []);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-
-  return (    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Slider */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0 z-0"
-        >
-          <div className="absolute inset-0 bg-bg-main/80 z-10 backdrop-blur-[2px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-main/40 to-bg-main z-10" />
-          <img
-            src={slides[currentSlide].image}
-            alt="Slider Background"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </AnimatePresence>
+  return (
+    <section ref={containerRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg-main">
+      {/* Parallax Background */}
+      <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0"
+          >
+            <div className="absolute inset-0 bg-bg-main/70 z-10 backdrop-blur-[2px]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-main/50 to-bg-main z-10" />
+            <img
+              src={slides[currentSlide].image}
+              alt="Slider Background"
+              className="w-full h-full object-cover grayscale opacity-40"
+            />
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
 
       <Particles isDarkMode={isDarkMode} />
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
+        <FloatingIcon icon={Cpu} delay={0} className="top-1/4 left-1/10" />
+        <FloatingIcon icon={Zap} delay={1} className="top-1/3 right-1/10" />
+        <FloatingIcon icon={Globe} delay={2} className="bottom-1/4 left-1/5" />
+        <FloatingIcon icon={Sparkles} delay={3} className="bottom-1/3 right-1/4" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center pt-24">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -40 }}
-            transition={{ duration: 0.8, ease: "backOut" }}
+            exit={{ opacity: 0, y: -100 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-8 backdrop-blur-sm">
-              <Terminal size={16} />
-              <span className="text-sm font-bold uppercase tracking-widest">{slides[currentSlide].badge}</span>
-            </div>
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-12 backdrop-blur-md shadow-lg shadow-primary/5"
+            >
+              <Terminal size={18} className="animate-pulse" />
+              <span className="text-sm font-black uppercase tracking-[0.4em]">{slides[currentSlide].badge}</span>
+            </motion.div>
             
             <h1 
-              className="text-5xl md:text-8xl font-black mb-8 tracking-tight text-text-main leading-none"
+              className="text-6xl md:text-9xl font-black mb-10 tracking-tighter text-text-main leading-[0.9] select-none"
               dangerouslySetInnerHTML={{ __html: slides[currentSlide].title }}
             />
             
-            <p className="text-xl md:text-2xl text-text-sec mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
+            <p className="text-xl md:text-3xl text-text-sec mb-16 max-w-4xl mx-auto font-medium leading-relaxed opacity-80">
               {slides[currentSlide].description}
             </p>
             
-            <div className="flex justify-center">
-              <a 
-                href={slides[currentSlide].link}
-                className="inline-flex items-center justify-center gap-3 bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-full font-black text-lg transition-all transform hover:scale-105 shadow-2xl shadow-primary/30 active:scale-95"
-              >
-                {slides[currentSlide].cta}
-                <ArrowRight size={22} />
-              </a>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+              <Magnetic>
+                <a 
+                  href={slides[currentSlide].link}
+                  className="group relative inline-flex items-center justify-center gap-4 bg-primary text-white px-12 py-6 rounded-2xl font-black text-xl transition-all shadow-2xl shadow-primary/40 overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center gap-3">
+                    {slides[currentSlide].cta}
+                    <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </a>
+              </Magnetic>
+
+              <button className="text-text-sec font-bold text-lg hover:text-primary transition-colors flex items-center gap-2 group">
+                Nasıl Çalışıyoruz?
+                <span className="w-12 h-[2px] bg-text-sec/20 group-hover:bg-primary/50 group-hover:w-16 transition-all duration-300" />
+              </button>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Slider Navigation Dots */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 flex gap-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`h-2.5 transition-all duration-500 rounded-full ${
-              currentSlide === index ? "w-12 bg-primary" : "w-2.5 bg-text-sec/30 hover:bg-text-sec/50"
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* Side Navigation Buttons */}
-      <div className="hidden lg:flex absolute inset-x-8 top-1/2 -translate-y-1/2 justify-between z-30 pointer-events-none">
-        <button 
-          onClick={prevSlide}
-          className="p-4 rounded-full bg-bg-card/20 hover:bg-bg-card/50 text-text-main border border-white/10 backdrop-blur-md transition-all pointer-events-auto hover:scale-110 active:scale-90"
-        >
-          <ChevronLeft size={30} />
-        </button>
-        <button 
-          onClick={nextSlide}
-          className="p-4 rounded-full bg-bg-card/20 hover:bg-bg-card/50 text-text-main border border-white/10 backdrop-blur-md transition-all pointer-events-auto hover:scale-110 active:scale-90"
-        >
-          <ChevronRight size={30} />
-        </button>
-      </div>
+      {/* Scroll Indicator */}
+      <motion.div 
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 hidden md:block"
+      >
+        <div className="w-6 h-10 rounded-full border-2 border-text-sec/30 flex justify-center p-2">
+          <div className="w-1 h-2 bg-primary rounded-full" />
+        </div>
+      </motion.div>
     </section>
   );};
 

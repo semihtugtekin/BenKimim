@@ -7,9 +7,13 @@ const CustomCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
-  const springConfig = { damping: 25, stiffness: 200 };
+  const springConfig = { damping: 30, stiffness: 300, mass: 0.5 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
+
+  const outerSpringConfig = { damping: 20, stiffness: 150, mass: 0.8 };
+  const outerXSpring = useSpring(cursorX, outerSpringConfig);
+  const outerYSpring = useSpring(cursorY, outerSpringConfig);
 
   useEffect(() => {
     const moveCursor = (e) => {
@@ -18,17 +22,13 @@ const CustomCursor = () => {
     };
 
     const handleHover = (e) => {
-      if (
-        e.target.tagName === 'A' ||
-        e.target.tagName === 'BUTTON' ||
-        e.target.closest('button') ||
-        e.target.closest('a') ||
-        e.target.style.cursor === 'pointer'
-      ) {
-        setIsHovered(true);
-      } else {
-        setIsHovered(false);
-      }
+      const target = e.target;
+      const isPointer = window.getComputedStyle(target).cursor === 'pointer' || 
+                        target.tagName === 'A' || 
+                        target.tagName === 'BUTTON' ||
+                        target.closest('button') ||
+                        target.closest('a');
+      setIsHovered(isPointer);
     };
 
     const handleMouseDown = () => setIsClicking(true);
@@ -51,7 +51,7 @@ const CustomCursor = () => {
     <>
       {/* Primary Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-primary rounded-full z-[9999] pointer-events-none mix-blend-difference hidden lg:block"
+        className="fixed top-0 left-0 w-2 h-2 bg-primary rounded-full z-[9999] pointer-events-none mix-blend-difference hidden lg:block"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -62,18 +62,18 @@ const CustomCursor = () => {
       
       {/* Outer Ring */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border border-primary rounded-full z-[9998] pointer-events-none hidden lg:block"
+        className="fixed top-0 left-0 w-10 h-10 border border-primary/30 rounded-full z-[9998] pointer-events-none hidden lg:block"
         style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
+          x: outerXSpring,
+          y: outerYSpring,
           translateX: '-50%',
           translateY: '-50%',
         }}
         animate={{
-          scale: isHovered ? 2.5 : isClicking ? 0.8 : 1,
-          backgroundColor: isHovered ? 'rgba(var(--primary-rgb), 0.1)' : 'transparent',
-          borderColor: isHovered ? 'var(--primary)' : 'var(--primary)',
-          opacity: 0.6,
+          scale: isHovered ? 2 : isClicking ? 0.5 : 1,
+          backgroundColor: isHovered ? 'rgba(var(--primary-rgb), 0.05)' : 'transparent',
+          borderWidth: isHovered ? '2px' : '1px',
+          opacity: isHovered ? 1 : 0.5,
         }}
       />
     </>

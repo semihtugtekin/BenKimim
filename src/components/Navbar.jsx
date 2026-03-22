@@ -1,9 +1,17 @@
-import { useState } from 'react';
-import { Menu, X, Code2, Sun, Moon } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { Menu, X, Code2, Sun, Moon, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Magnetic from './Magnetic';
 
 const Navbar = ({ isDarkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems = [
     { title: 'Ana Sayfa', href: '#home' },
@@ -13,55 +21,75 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
   ];
 
   return (
-    <div className="fixed w-full z-50 px-4 sm:px-6 lg:px-8 top-6">
-      <div className="max-w-7xl mx-auto rgb-border-container rounded-[2rem] shadow-2xl">
-        {/* Animated Gradient Background */}
-        <div className="rgb-border-bg" />
+    <div className={`fixed w-full z-50 px-4 sm:px-6 lg:px-8 transition-all duration-500 ${scrolled ? 'top-2 scale-95' : 'top-6'}`}>
+      <div className="max-w-7xl mx-auto rgb-border-container rounded-[2.5rem] shadow-2xl overflow-hidden">
+        <div className="rgb-border-bg opacity-30" />
         
-        {/* Inner Content */}
-        <nav className="navbar-inner transition-all duration-300">
-          <div className="px-6 sm:px-8">
+        <nav className="navbar-inner transition-all duration-300 backdrop-blur-xl bg-bg-card/80 border border-white/10">
+          <div className="px-6 sm:px-12">
             <div className="flex items-center justify-between h-20">
               {/* Left: Menu Items (Desktop) */}
-              <div className="hidden md:flex items-center space-x-6">
+              <div className="hidden md:flex items-center space-x-10">
                 {menuItems.map((item) => (
-                  <a
-                    key={item.title}
-                    href={item.href}
-                    className="text-text-sec hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider"
-                  >
-                    {item.title}
-                  </a>
+                  <Magnetic key={item.title}>
+                    <a
+                      href={item.href}
+                      className="group relative text-text-sec hover:text-primary text-xs font-black transition-colors uppercase tracking-[0.3em] py-2"
+                    >
+                      {item.title}
+                      <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
+                    </a>
+                  </Magnetic>
                 ))}
               </div>
 
               {/* Center: Logo */}
               <div className="flex-shrink-0 flex items-center absolute left-1/2 transform -translate-x-1/2">
-                <a href="#" className="flex items-center">
-                  <img 
-                    src={isDarkMode ? "/img/Logo/TUGcore2.png" : "/img/Logo/TUGcore3.png"} 
-                    alt="TUGCore Logo" 
-                    className="h-14 w-auto object-contain transition-all duration-500 hover:scale-105"
-                  />
-                </a>
+                <Magnetic>
+                  <a href="#" className="flex items-center p-2">
+                    <img 
+                      src={isDarkMode ? "/img/Logo/TUGcore2.png" : "/img/Logo/TUGcore3.png"} 
+                      alt="TUGCore Logo" 
+                      className="h-12 w-auto object-contain transition-all duration-500 hover:scale-110"
+                    />
+                  </a>
+                </Magnetic>
               </div>
               
-              {/* Right: Theme Toggle & Mobile Menu Button */}
-              <div className="flex items-center gap-4 ml-auto">
-                <button
-                  onClick={toggleTheme}
-                  className="p-2.5 rounded-full bg-bg-sec hover:bg-primary/10 text-text-main transition-all duration-300 border border-border-main"
-                  aria-label="Toggle Theme"
-                >
-                  {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-                </button>
+              {/* Right: Theme Toggle & Contact Button */}
+              <div className="flex items-center gap-6 ml-auto">
+                <Magnetic>
+                  <button
+                    onClick={toggleTheme}
+                    className="p-3 rounded-full bg-bg-sec/50 hover:bg-primary/20 text-text-main transition-all duration-300 border border-border-main group"
+                    aria-label="Toggle Theme"
+                  >
+                    <motion.div
+                      animate={{ rotate: isDarkMode ? 180 : 0 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                    >
+                      {isDarkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-primary" />}
+                    </motion.div>
+                  </button>
+                </Magnetic>
+
+                <div className="hidden md:block">
+                  <Magnetic>
+                    <a 
+                      href="#contact" 
+                      className="flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-full text-sm font-black uppercase tracking-wider hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+                    >
+                      Hadi Başlayalım <ArrowRight size={14} />
+                    </a>
+                  </Magnetic>
+                </div>
 
                 <div className="md:hidden">
                   <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="p-2.5 rounded-full text-text-sec hover:text-primary focus:outline-none transition-colors"
+                    className="p-2 text-text-sec hover:text-primary focus:outline-none transition-colors"
                   >
-                    {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                    {isOpen ? <X size={28} /> : <Menu size={28} />}
                   </button>
                 </div>
               </div>
@@ -69,26 +97,36 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           </div>
 
           {/* Mobile menu */}
-          {isOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="md:hidden bg-bg-card rounded-b-[2rem] border-t border-border-main overflow-hidden"
-            >
-              <div className="px-4 pt-2 pb-6 space-y-1">
-                {menuItems.map((item) => (
-                  <a
-                    key={item.title}
-                    href={item.href}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="md:hidden bg-bg-card/95 border-t border-border-main overflow-hidden backdrop-blur-2xl"
+              >
+                <div className="px-6 py-10 space-y-6 flex flex-col items-center">
+                  {menuItems.map((item) => (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className="text-text-sec hover:text-primary text-2xl font-black transition-colors uppercase tracking-[0.2em]"
+                    >
+                      {item.title}
+                    </a>
+                  ))}
+                  <a 
+                    href="#contact" 
                     onClick={() => setIsOpen(false)}
-                    className="text-text-sec hover:text-primary block px-4 py-3 rounded-xl text-base font-medium transition-colors"
+                    className="w-full text-center bg-primary text-white py-4 rounded-2xl text-lg font-black uppercase tracking-widest"
                   >
-                    {item.title}
+                    İletişime Geç
                   </a>
-                ))}
-              </div>
-            </motion.div>
-          )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </nav>
       </div>
     </div>
