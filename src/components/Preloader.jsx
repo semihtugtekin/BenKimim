@@ -22,7 +22,7 @@ const Preloader = ({ isDarkMode }) => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, y: -100 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-bg-main"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-bg-main-solid"
     >
       <div className="relative flex flex-col items-center">
         {/* Animated Logo Placeholder (since we use images, we'll use a stylized TUGCore text or a generic icon for loading) */}

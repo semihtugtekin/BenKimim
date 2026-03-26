@@ -148,10 +148,10 @@ const Hero = ({ isDarkMode }) => {
                 </a>
               </Magnetic>
 
-              <button className="text-text-sec font-bold text-lg hover:text-primary transition-colors flex items-center gap-2 group">
+              {/* <button className="text-text-sec font-bold text-lg hover:text-primary transition-colors flex items-center gap-2 group">
                 Nasıl Çalışıyoruz?
                 <span className="w-12 h-[2px] bg-text-sec/20 group-hover:bg-primary/50 group-hover:w-16 transition-all duration-300" />
-              </button>
+              </button> */}
             </div>
           </motion.div>
         </AnimatePresence>

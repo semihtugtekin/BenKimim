@@ -6,7 +6,7 @@ const testimonials = [
     id: 1,
     name: "Nergiz K*****",
     role: "Nergiz Güzellik Salonu",
-    content: "TUGCore ile çalışmak alışkınlıklarımızı ve hızımızı büyük ölçüde değiştirdi. Beklediğimizden çok daha hızlı ve modern bir çözüm sundular. Aynı zaman da sorunlarımıza çok kısa sürelerde çözümler ürettiler. bir sorun olduğundaysa en hızlı şekilde çözümler ürettiler.",
+    content: "TUGCore ile çalışmak alışkınlıklarımızı ve hızımızı büyük ölçüde değiştirdi. Beklediğimizden çok daha hızlı ve modern bir çözüm sundular. Aynı zaman da sorunlarımıza çok kısa sürelerde çözümler ürettiler.",
     rating: 5
   },
   {

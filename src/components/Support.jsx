@@ -1,0 +1,254 @@
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  HelpCircle, 
+  LifeBuoy, 
+  ShieldCheck, 
+  Cpu, 
+  Globe, 
+  Headphones, 
+  ChevronDown, 
+  MessageSquare,
+  Sparkles,
+  Send,
+  Loader2,
+  CheckCircle2
+} from 'lucide-react';
+import Reveal from './Reveal';
+import Magnetic from './Magnetic';
+
+const Support = () => {
+  const [activeFaq, setActiveFaq] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const faqs = [
+    {
+      question: "Nasıl destek alabilirim?",
+      answer: "Destek almak için aşağıdaki formu doldurabilir, info@tugcore.com.tr adresine e-posta gönderebilir veya +90 506 710 0717 numaralı telefondan bize ulaşabilirsiniz."
+    },
+    {
+      question: "Çalışma saatleriniz nedir?",
+      answer: "Hafta içi 09:00 - 18:00 saatleri arasında aktif destek sağlıyoruz. Acil durumlar için e-posta yoluyla 7/24 bize ulaşabilirsiniz."
+    },
+    {
+      question: "Teknik destek kapsamınız nedir?",
+      answer: "Yazılım geliştirme, web tasarımı, bulut bilişimi ,yapay zeka destekli sistemler vb. alanlarda kapsamlı teknik destek sunuyoruz."
+    },
+    {
+      question: "Projeler ne kadar sürede tamamlanıyor?",
+      answer: "Proje süresi, projenin kapsamına ve karmaşıklığına bağlı olarak değişmektedir. İlk görüşmemizde size özel bir zaman çizelgesi sunuyoruz."
+    }
+  ];
+
+  const categories = [
+    {
+      icon: <Cpu className="w-8 h-8" />,
+      title: "Teknik Destek",
+      desc: "Yazılım ve altyapı sorunlarınız için uzman ekibimiz yanınızda."
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: "Dijital Çözümler",
+      desc: "Web siteniz ve dijital varlıklarınız için destek alın."
+    },
+    // {
+    //   icon: <ShieldCheck className="w-8 h-8" />,
+    //   title: "Güvenlik",
+    //   desc: "Siber güvenlik ve veri koruma konularında danışmanlık."
+    // },
+    {
+      icon: <Headphones className="w-8 h-8" />,
+      title: "Müşteri İlişkileri",
+      desc: "Genel sorularınız ve önerileriniz için buradayız."
+    }
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    // Simulating form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      setTimeout(() => setIsSuccess(false), 5000);
+    }, 1500);
+  };
+
+  return (
+    <section id="support" className="relative py-32 bg-bg-main transition-colors duration-300 overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-1/3 h-full bg-primary/5 skew-x-12 transform -translate-x-1/4 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-20">
+          <Reveal>
+            <h2 className="text-sm font-bold uppercase tracking-[0.4em] text-primary mb-6 flex items-center justify-center gap-2">
+              <LifeBuoy size={16} /> DESTEK MERKEZİ
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <h3 className="text-5xl md:text-7xl font-black text-text-main leading-none tracking-tighter mb-6">
+              Size Nasıl <span className="text-primary">Yardımcı</span> Olabiliriz?
+            </h3>
+          </Reveal>
+          <Reveal delay={0.4}>
+            <p className="text-text-sec text-xl font-medium max-w-2xl mx-auto opacity-80">
+              Sorularınız, teknik problemleriniz veya yeni projeleriniz için buradayız. 
+              En kısa sürede size geri dönüş yapacağız.
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Support Categories */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
+          {categories.map((cat, idx) => (
+            <Reveal key={idx} delay={0.1 * idx}>
+              <div className="p-8 rounded-3xl bg-bg-sec border border-border-main hover:border-primary/50 transition-all duration-500 group">
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                  {cat.icon}
+                </div>
+                <h4 className="text-xl font-bold text-text-main mb-3">{cat.title}</h4>
+                <p className="text-text-sec opacity-70 leading-relaxed">{cat.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-20">
+          {/* FAQ Section */}
+          <div className="lg:w-1/2">
+            <Reveal>
+              <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3">
+                <HelpCircle className="text-primary" /> Sıkça Sorulan Sorular
+              </h4>
+            </Reveal>
+            <div className="space-y-4">
+              {faqs.map((faq, idx) => (
+                <Reveal key={idx} delay={0.2 + (0.1 * idx)}>
+                  <div className="rounded-2xl bg-bg-sec border border-border-main overflow-hidden">
+                    <button
+                      onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                      className="w-full p-6 text-left flex items-center justify-between hover:bg-primary/5 transition-colors"
+                    >
+                      <span className="font-bold text-text-main pr-4">{faq.question}</span>
+                      <ChevronDown 
+                        className={`text-primary transition-transform duration-300 ${activeFaq === idx ? 'rotate-180' : ''}`} 
+                        size={20} 
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {activeFaq === idx && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="p-6 pt-0 text-text-sec border-t border-border-main/50 leading-relaxed">
+                            {faq.answer}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact/Support Form */}
+          <div className="lg:w-1/2">
+            <Reveal>
+              <div className="p-10 rounded-[2.5rem] bg-bg-sec border border-border-main relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 -mr-16 -mt-16 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors" />
+                
+                <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3">
+                  <MessageSquare className="text-primary" /> Destek Talebi Oluştur
+                </h4>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">İSİM SOYİSİM</label>
+                      <input 
+                        required
+                        type="text" 
+                        placeholder="Adınız?" 
+                        className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">E-POSTA</label>
+                      <input 
+                        required
+                        type="email" 
+                        placeholder="E-posta adresiniz" 
+                        className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">KONU</label>
+                    <select className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none">
+                      <option>Teknik Destek</option>
+                      <option>Satış / Yeni Proje</option>
+                      <option>Ödeme İşlemleri</option>
+                      <option>Diğer</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">MESAJINIZ</label>
+                    <textarea 
+                      required
+                      rows="4" 
+                      placeholder="Size nasıl yardımcı olabiliriz?" 
+                      className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main resize-none"
+                    ></textarea>
+                  </div>
+
+                  <Magnetic>
+                    <button 
+                      disabled={isSubmitting || isSuccess}
+                      className={`w-full py-5 rounded-2xl font-black text-lg tracking-widest uppercase flex items-center justify-center gap-3 transition-all duration-500 ${
+                        isSuccess 
+                          ? 'bg-green-500 text-white' 
+                          : 'bg-primary text-white hover:bg-primary-dark shadow-xl shadow-primary/20 hover:shadow-primary/40'
+                      }`}
+                    >
+                      {isSubmitting ? (
+                        <Loader2 className="animate-spin" size={24} />
+                      ) : isSuccess ? (
+                        <>TAMAMDIR! <CheckCircle2 size={24} /></>
+                      ) : (
+                        <>GÖNDER <Send size={20} /></>
+                      )}
+                    </button>
+                  </Magnetic>
+                </form>
+
+                {/* Status Message */}
+                <AnimatePresence>
+                  {isSuccess && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="mt-6 flex items-center gap-3 text-green-500 font-bold justify-center"
+                    >
+                      <Sparkles size={20} /> Mesajın ulaştı kanka, hemen dönüyoruz!
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Support;

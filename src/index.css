@@ -7,6 +7,7 @@
   
   /* Theme Variables */
   --color-bg-main: var(--bg-main);
+  --color-bg-main-solid: var(--bg-main-solid);
   --color-bg-sec: var(--bg-sec);
   --color-bg-card: var(--bg-card);
   --color-text-main: var(--text-main);
@@ -19,6 +20,7 @@
   --primary: #8B5E34;   /* Bakır/Bronze Logo Color */
   --secondary: #A37E36; 
   --bg-main: #FDFDFD;   
+  --bg-main-solid: #FDFDFD;
   --bg-sec: #F1F5F9;    
   --bg-card: #FFFFFF;   
   --text-main: #1A202C; 
@@ -28,16 +30,23 @@
 }
 
 .dark {
-  /* The Midnight Architect Theme (Dark & Premium) */
-  --primary: #9CA3AF;   /* Gümüş/Silver Logo Color */
-  --secondary: #6B7280; 
-  --bg-main: #0F172A;   
-  --bg-sec: #1E293B;    
-  --bg-card: #1E293B;   
+  /* The Midnight Architect Theme (Dark & Premium - Inspired by Image) */
+  --primary: #A855F7;   /* More vibrant Purple */
+  --secondary: #22D3EE; /* More vibrant Turquoise */
+  --bg-main-solid: #030712; 
+  --bg-main: transparent;
+  --bg-sec: rgba(15, 23, 42, 0.4);    
+  --bg-card: rgba(30, 41, 59, 0.5);   
   --text-main: #F8FAFC; 
   --text-sec: #94A3B8;  
-  --border-main: rgba(156, 163, 175, 0.15); 
+  --border-main: rgba(168, 85, 247, 0.2); 
   color-scheme: dark;
+}
+
+/* Dark mode gradient background - Linear Gradient as requested */
+.dark body {
+  background: linear-gradient(135deg, #1E1B4B 0%, #030712 50%, #064E3B 100%) fixed;
+  background-attachment: fixed;
 }
 
 /* RGB Border Animation */

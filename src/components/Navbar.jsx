@@ -16,7 +16,9 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
   const menuItems = [
     { title: 'Ana Sayfa', href: '#home' },
     { title: 'Hizmetler', href: '#services' },
+    // { title: 'Yolculuğumuz', href: '#milestones' },
     { title: 'Projeler', href: '#portfolio' },
+    // { title: 'Destek', href: '#support' },
     { title: 'İletişim', href: '#contact' },
   ];
 
@@ -48,7 +50,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 <Magnetic>
                   <a href="#" className="flex items-center p-2">
                     <img 
-                      src={isDarkMode ? "/img/Logo/TUGcore2.png" : "/img/Logo/TUGcore3.png"} 
+                      src={isDarkMode ? "img/Logo/TUGcore3.png" : "img/Logo/TUGcore2.png"} 
                       alt="TUGCore Logo" 
                       className="h-12 w-auto object-contain transition-all duration-500 hover:scale-110"
                     />

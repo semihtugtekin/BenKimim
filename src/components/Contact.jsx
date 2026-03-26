@@ -19,7 +19,7 @@ const Contact = () => {
 
     emailjs.sendForm(
       'service_9v8jft6',
-      'template_4ceoioz',
+      'template_ogiqw8j',
       form.current,
       'qHEjnc04CyvVULi3B'
     )
@@ -29,7 +29,7 @@ const Contact = () => {
         setTimeout(() => setIsSuccess(false), 5000);
     }, (error) => {
         console.error('EmailJS Error:', error);
-        alert(`Hata oluştu kanka: ${error.text || error.message || 'Bilinmeyen hata'}`);
+        alert(`Hata oluştu : ${error.text || error.message || 'Bilinmeyen hata'}`);
     })
     .finally(() => {
         setIsSubmitting(false);

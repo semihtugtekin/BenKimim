@@ -9,6 +9,8 @@ import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
 import Testimonials from './components/Testimonials';
+import Support from './components/Support';
+// import Milestones from './components/Milestones';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -43,8 +45,10 @@ function App() {
         <main>
           <Hero isDarkMode={isDarkMode} />
           <Services />
+          {/* <Milestones /> */}
           <Portfolio />
           <Testimonials />
+          <Support />
           <Contact />
         </main>
         <Footer />

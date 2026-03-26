@@ -50,7 +50,7 @@ const Portfolio = () => {
               <Layers size={16} /> PORTFOLYO
             </h2>
             <h3 className="text-5xl md:text-7xl font-black text-text-main leading-none tracking-tighter">
-              Seçkin <span className="text-primary">Projelerimiz</span>
+              Seçkin Ve Devam Eden <span className="text-primary">Projelerimiz</span>
             </h3>
           </motion.div>
 
