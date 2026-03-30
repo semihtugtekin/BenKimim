@@ -59,11 +59,11 @@ const Testimonials = () => {
               </p>
 
               <div className="flex items-center gap-4">
-                <img 
+                {/* <img 
                 
                   alt={t.name} 
                   className="w-12 h-12 rounded-full object-cover border-2 border-primary/20"
-                />
+                /> */}
                 <div>
                   <h4 className="font-bold text-text-main">{t.name}</h4>
                   <p className="text-xs text-text-sec">{t.role}</p>

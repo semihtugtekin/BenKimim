@@ -56,8 +56,8 @@ export const projects = [
       'İç Mesajlaşma Sistemi'
     ]
   },
-    {
-    id: 3,
+  {
+    id: 4,
     title: 'BeautyCore: SaaS Business Management ',
     category: 'SaaS projesi ',
     image: 'img/gelistiriliyor.png',
@@ -73,6 +73,24 @@ export const projects = [
       'Otomatik Raporlama ve Analiz',
       'Rol Bazlı Erişim Kontrolü',
       'İç Mesajlaşma Sistemi'
+    ]
+  },
+  {
+    id: 5,
+    title: 'QR menü',
+    category: 'Web Geliştirme',
+    image: 'img/KaleburgerOrtam.png',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    demoUrl: 'https://kaleburgerdemo.netlify.app/',
+    repoUrl: '#',
+    description: 'KaleBurger için hazırlanan tanıtım/landing sayfası projesi. Canlı önizleme butonuyla proje sayfasına yönlendirir.',
+    problem: 'Ürün/hizmetlerin hızlı ve etkileyici şekilde sergilenmesi gerekiyordu.',
+    solution: 'Hızlı açılan, mobil uyumlu ve modern animasyonlara sahip tek sayfalık bir web arayüzü tasarlandı.',
+    features: [
+      'Mobil Uyumlu Tasarım',
+      'Hızlı Açılış (Statik Build)',
+      'SEO Dostu Yapı',
+      'Modern UI Bileşenleri'
     ]
   }
 ];
