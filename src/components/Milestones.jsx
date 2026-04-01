@@ -6,7 +6,7 @@ const milestones = [
   {
     year: "2020",
     title: "Kuruluş",
-    description: "Kurucumuz Ömer Faruk Kocaman'ın yazılım dünyasındaki tecrübelerini paylaşma isteğiyle yola çıktık.",
+    description: "Kurucumuz yazılım dünyasındaki tecrübelerini paylaşma isteğiyle yola çıktık.",
     icon: <Rocket size={24} />,
   },
   {

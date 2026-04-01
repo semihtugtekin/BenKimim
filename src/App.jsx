@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
@@ -49,7 +48,6 @@ function App() {
           <Portfolio />
           <Testimonials />
           <Support />
-          <Contact />
         </main>
         <Footer />
       </div>

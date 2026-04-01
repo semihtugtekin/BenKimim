@@ -12,7 +12,7 @@ const slides = [
     description: "TUGCore olarak, modern teknolojileri kullanarak işletmenizi dijital dünyada öne çıkarıyoruz.",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000",
     cta: "Bizimle Tanışın",
-    link: "#contact"
+    link: "#support"
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const slides = [
     description: "En son teknolojileri kullanarak ölçeklenebilir ve yüksek performanslı sistemler inşa ediyoruz.",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000",
     cta: "İletişime Geçin",
-    link: "#contact"
+    link: "#support"
   }
 ];
 

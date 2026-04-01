@@ -18,8 +18,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
     { title: 'Hizmetler', href: '#services' },
     // { title: 'Yolculuğumuz', href: '#milestones' },
     { title: 'Projeler', href: '#portfolio' },
-    // { title: 'Destek', href: '#support' },
-    { title: 'İletişim', href: '#contact' },
+    { title: 'İletişim', href: '#support' },
   ];
 
   return (
@@ -78,7 +77,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 <div className="hidden md:block">
                   <Magnetic>
                     <a 
-                      href="#contact" 
+                      href="#support" 
                       className="flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-full text-sm font-black uppercase tracking-wider hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
                     >
                       Hadi Başlayalım <ArrowRight size={14} />
@@ -119,11 +118,11 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                     </a>
                   ))}
                   <a 
-                    href="#contact" 
+                    href="#support" 
                     onClick={() => setIsOpen(false)}
                     className="w-full text-center bg-primary text-white py-4 rounded-2xl text-lg font-black uppercase tracking-widest"
                   >
-                    İletişime Geç
+                    Support
                   </a>
                 </div>
               </motion.div>

@@ -1,23 +1,28 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   HelpCircle, 
   LifeBuoy, 
-  ShieldCheck, 
   Cpu, 
   Globe, 
   Headphones, 
   ChevronDown, 
   MessageSquare,
+  Mail,
+  Phone,
   Sparkles,
   Send,
   Loader2,
   CheckCircle2
 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import Reveal from './Reveal';
 import Magnetic from './Magnetic';
 
+emailjs.init("qHEjnc04CyvVULi3B");
+
 const Support = () => {
+  const form = useRef();
   const [activeFaq, setActiveFaq] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -67,12 +72,24 @@ const Support = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulating form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    emailjs.sendForm(
+      'service_9v8jft6',
+      'template_ogiqw8j',
+      form.current,
+      'qHEjnc04CyvVULi3B'
+    )
+    .then(() => {
       setIsSuccess(true);
+      form.current?.reset?.();
       setTimeout(() => setIsSuccess(false), 5000);
-    }, 1500);
+    }, (error) => {
+      console.error('EmailJS Error:', error);
+      alert(`Hata oluştu : ${error.text || error.message || 'Bilinmeyen hata'}`);
+    })
+    .finally(() => {
+      setIsSubmitting(false);
+    });
   };
 
   return (
@@ -84,12 +101,12 @@ const Support = () => {
         <div className="text-center mb-20">
           <Reveal>
             <h2 className="text-sm font-bold uppercase tracking-[0.4em] text-primary mb-6 flex items-center justify-center gap-2">
-              <LifeBuoy size={16} /> DESTEK MERKEZİ
+              <LifeBuoy size={16} /> SUPPORT
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
             <h3 className="text-5xl md:text-7xl font-black text-text-main leading-none tracking-tighter mb-6">
-              Size Nasıl <span className="text-primary">Yardımcı</span> Olabiliriz?
+              Size Nasıl <span className="text-primary">Destek</span> Olabiliriz?
             </h3>
           </Reveal>
           <Reveal delay={0.4}>
@@ -97,6 +114,31 @@ const Support = () => {
               Sorularınız, teknik problemleriniz veya yeni projeleriniz için buradayız. 
               En kısa sürede size geri dönüş yapacağız.
             </p>
+          </Reveal>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+          <Reveal>
+            <a href="mailto:info@tugcore.com.tr" className="group flex items-center gap-6 p-8 rounded-3xl bg-bg-sec border border-border-main hover:border-primary/50 transition-all duration-500">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/30">
+                <Mail size={28} />
+              </div>
+              <div>
+                <div className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-2">E-POSTA</div>
+                <div className="text-lg font-black text-text-main group-hover:text-primary transition-colors">info@tugcore.com.tr</div>
+              </div>
+            </a>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <a href="tel:+905067100717" className="group flex items-center gap-6 p-8 rounded-3xl bg-bg-sec border border-border-main hover:border-primary/50 transition-all duration-500">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/30">
+                <Phone size={28} />
+              </div>
+              <div>
+                <div className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-2">TELEFON</div>
+                <div className="text-lg font-black text-text-main group-hover:text-primary transition-colors">+90 506 710 0717</div>
+              </div>
+            </a>
           </Reveal>
         </div>
 
@@ -111,8 +153,11 @@ const Support = () => {
                 <h4 className="text-xl font-bold text-text-main mb-3">{cat.title}</h4>
                 <p className="text-text-sec opacity-70 leading-relaxed">{cat.desc}</p>
               </div>
+              
             </Reveal>
+            
           ))}
+         
         </div>
 
         <div className="flex flex-col lg:flex-row gap-20">
@@ -154,7 +199,9 @@ const Support = () => {
                   </div>
                 </Reveal>
               ))}
+              
             </div>
+            
           </div>
 
           {/* Contact/Support Form */}
@@ -167,7 +214,8 @@ const Support = () => {
                   <MessageSquare className="text-primary" /> Destek Talebi Oluştur
                 </h4>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+                  <input type="hidden" name="to_email" value="info@tugcore.com.tr" />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">İSİM SOYİSİM</label>
@@ -175,6 +223,7 @@ const Support = () => {
                         required
                         type="text" 
                         placeholder="Adınız?" 
+                        name="from_name"
                         className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main"
                       />
                     </div>
@@ -184,6 +233,7 @@ const Support = () => {
                         required
                         type="email" 
                         placeholder="E-posta adresiniz" 
+                        name="from_email"
                         className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main"
                       />
                     </div>
@@ -191,7 +241,7 @@ const Support = () => {
 
                   <div className="space-y-2">
                     <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">KONU</label>
-                    <select className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none">
+                    <select name="subject" className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none">
                       <option>Teknik Destek</option>
                       <option>Satış / Yeni Proje</option>
                       <option>Ödeme İşlemleri</option>
@@ -205,6 +255,7 @@ const Support = () => {
                       required
                       rows="4" 
                       placeholder="Size nasıl yardımcı olabiliriz?" 
+                      name="message"
                       className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main resize-none"
                     ></textarea>
                   </div>
@@ -238,7 +289,7 @@ const Support = () => {
                       exit={{ opacity: 0, y: -10 }}
                       className="mt-6 flex items-center gap-3 text-green-500 font-bold justify-center"
                     >
-                      <Sparkles size={20} /> Mesajın ulaştı kanka, hemen dönüyoruz!
+                      <Sparkles size={20} /> Mesajın ulaştı , hemen dönüyoruz!
                     </motion.div>
                   )}
                 </AnimatePresence>
