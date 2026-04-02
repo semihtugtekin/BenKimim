@@ -92,5 +92,23 @@ export const projects = [
       'SEO Dostu Yapı',
       'Modern UI Bileşenleri'
     ]
+  },
+  {
+    id: 6,
+    title: 'QR menü & Masa takip sistemi ',
+    category: 'Web Geliştirme',
+    image: 'img/gelistiriliyor.png',
+    tags: ['HTML', 'CSS', 'JavaScript' ,'next.js'],
+    demoUrl: '#',
+    repoUrl: '#',
+    description: '  ',
+    problem: '  ',
+    solution: ' .',
+    features: [
+      'Mobil Uyumlu Tasarım',
+      'Hızlı Açılış (Statik Build)',
+      'Modern UI Bileşenleri'
+    ]
   }
+
 ];
