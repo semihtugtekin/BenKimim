@@ -77,20 +77,21 @@ export const projects = [
   },
   {
     id: 5,
-    title: 'QR menü',
+    title: 'QR menü ve online sipariş sistemi',
     category: 'Web Geliştirme',
     image: 'img/KaleburgerOrtam.png',
     tags: ['HTML', 'CSS', 'JavaScript' ,'next.js'],
-    demoUrl: 'https://kaleburgerdemo.netlify.app/',
+    demoUrl: 'https://magical-paletas-4e0ef3.netlify.app/',
     repoUrl: '#',
-    description: 'KaleBurger için hazırlanan tanıtım/landing sayfası projesi. Canlı önizleme butonuyla proje sayfasına yönlendirir.',
-    problem: 'Ürün/hizmetlerin hızlı ve etkileyici şekilde sergilenmesi gerekiyordu.',
-    solution: 'Hızlı açılan, mobil uyumlu ve modern animasyonlara sahip tek sayfalık bir web arayüzü tasarlandı.Her yıl menüler için ayrılan bütçe %50 azaldı.',
+    description: 'KaleBurger için hazırlanan tanıtım ve işletme sayfası projesi. Canlı önizleme butonuyla proje sayfasına yönlendirir.',
+    problem: 'Ürün/hizmetlerin hızlı ve etkileyici şekilde sergilenmesi gerekiyordu.Ek olarak siparişlerin daha kontrollü ve profesyonel olarak tekip-gönderiminin izlenmesi adına kullanıcı dostu bir arayüzle desteklendi .',
+    solution: 'Hızlı açılan, mobil uyumlu ve modern animasyonlara sahip online sipariş sistemi tasarlandı.Her yıl menülere ve online sipariş platformları için ayrılan bütçe %50 azaldı.',
     features: [
       'Mobil Uyumlu Tasarım',
       'Hızlı Açılış (Statik Build)',
       'SEO Dostu Yapı',
-      'Modern UI Bileşenleri'
+      'Modern UI Bileşenleri',
+      'Test Ve Deneme Aşamasında'
     ]
   },
   {
