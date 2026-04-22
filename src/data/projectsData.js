@@ -80,7 +80,7 @@ export const projects = [
     title: 'QR menü ve online sipariş sistemi',
     category: 'Web Geliştirme',
     image: 'img/KaleburgerOrtam.png',
-    tags: ['HTML', 'CSS', 'JavaScript' ,'next.js'],
+    tags: ['HTML', 'CSS', 'JavaScript', 'next.js'],
     demoUrl: 'https://magical-paletas-4e0ef3.netlify.app/',
     repoUrl: '#',
     description: 'KaleBurger için hazırlanan tanıtım ve işletme sayfası projesi. Canlı önizleme butonuyla proje sayfasına yönlendirir.',
@@ -88,7 +88,6 @@ export const projects = [
     solution: 'Hızlı açılan, mobil uyumlu ve modern animasyonlara sahip online sipariş sistemi tasarlandı.Her yıl menülere ve online sipariş platformları için ayrılan bütçe %50 azaldı.',
     features: [
       'Mobil Uyumlu Tasarım',
-      'Hızlı Açılış (Statik Build)',
       'SEO Dostu Yapı',
       'Modern UI Bileşenleri',
       'Test Ve Deneme Aşamasında'
@@ -98,17 +97,19 @@ export const projects = [
     id: 6,
     title: 'QR menü & Masa takip sistemi ',
     category: 'Web Geliştirme',
-    image: 'img/gelistiriliyor.png',
-    tags: ['HTML', 'CSS', 'JavaScript' ,'next.js'],
-    demoUrl: '#',
+    image: 'img/KafeTakipSis.png',
+    tags: ['HTML', 'CSS', 'JavaScript', 'next.js'],
+    demoUrl: 'https://masatakipdemo.netlify.app/admin',
     repoUrl: '#',
-    description: '  ',
-    problem: '  ',
-    solution: ' .',
+    description: 'İşletmeler için masa takip sistemi. Yönetici paneli üzerinden masaların durumunu görebilir, siparişleri takip edebilir ve menüleri güncelleyebilirsiniz.Bar ,Mutfak ,Garson,Admin ve Ödeme sayfaları mevcuttur .\n Giriş bilgileri ; \n E-Mail : admin@kafe.com \n Şifre : admin123',
+    problem: 'İşletmelerin sipariş ve masa takibinde yaşadığı zorluklar ve bu sorunların müşteri memnuniyetine olan etkisi.',
+    solution: 'QR menü ve masa takip sistemi ile işletmelerin sipariş ve masa takibinde yaşadığı zorluklar ve bu sorunların müşteri memnuniyetine olan etkisi.',
     features: [
       'Mobil Uyumlu Tasarım',
-      'Hızlı Açılış (Statik Build)',
-      'Modern UI Bileşenleri'
+      'Modern UI Bileşenleri',
+      'Masa Takip Sistemi',
+      'Sipariş Takip Sistemi',
+      'Menü Yönetimi'
     ]
   }
 
