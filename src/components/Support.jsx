@@ -100,86 +100,82 @@ const Support = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
           <Reveal>
-            <h2 className="text-sm font-bold uppercase tracking-[0.4em] text-primary mb-6 flex items-center justify-center gap-2">
-              <LifeBuoy size={16} /> SUPPORT
+            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6 flex items-center justify-center gap-2 font-heading">
+              <LifeBuoy size={14} /> SUPPORT
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <h3 className="text-5xl md:text-7xl font-black text-text-main leading-none tracking-tighter mb-6">
+            <h3 className="text-5xl md:text-7xl font-black text-text-main leading-none tracking-tight mb-6 font-heading">
               Size Nasıl <span className="text-primary">Destek</span> Olabiliriz?
             </h3>
           </Reveal>
           <Reveal delay={0.4}>
-            <p className="text-text-sec text-xl font-medium max-w-2xl mx-auto opacity-80">
+            <p className="text-text-sec text-lg font-medium max-w-2xl mx-auto opacity-70 font-body">
               Sorularınız, teknik problemleriniz veya yeni projeleriniz için buradayız. 
-              En kısa sürede size geri dönüş yapacağız.
             </p>
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
           <Reveal>
-            <a href="mailto:info@tugcore.com.tr" className="group flex items-center gap-6 p-8 rounded-3xl bg-bg-sec border border-border-main hover:border-primary/50 transition-all duration-500">
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/30">
-                <Mail size={28} />
+            <a href="mailto:info@tugcore.com.tr" className="group flex items-center gap-6 p-8 rounded-3xl glass border border-border-main hover:border-primary/30 transition-all duration-700">
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/20">
+                <Mail size={24} />
               </div>
               <div>
-                <div className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-2">E-POSTA</div>
-                <div className="text-lg font-black text-text-main group-hover:text-primary transition-colors">info@tugcore.com.tr</div>
+                <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 mb-1 font-heading">E-POSTA</div>
+                <div className="text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight">info@tugcore.com.tr</div>
               </div>
             </a>
           </Reveal>
           <Reveal delay={0.1}>
-            <a href="tel:+905067100717" className="group flex items-center gap-6 p-8 rounded-3xl bg-bg-sec border border-border-main hover:border-primary/50 transition-all duration-500">
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/30">
-                <Phone size={28} />
+            <a href="tel:+905067100717" className="group flex items-center gap-6 p-8 rounded-3xl glass border border-border-main hover:border-primary/30 transition-all duration-700">
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/20">
+                <Phone size={24} />
               </div>
               <div>
-                <div className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-2">TELEFON</div>
-                <div className="text-lg font-black text-text-main group-hover:text-primary transition-colors">+90 506 710 0717</div>
+                <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 mb-1 font-heading">TELEFON</div>
+                <div className="text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight">+90 506 710 0717</div>
               </div>
             </a>
           </Reveal>
         </div>
 
         {/* Support Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32">
           {categories.map((cat, idx) => (
             <Reveal key={idx} delay={0.1 * idx}>
-              <div className="p-8 rounded-3xl bg-bg-sec border border-border-main hover:border-primary/50 transition-all duration-500 group">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+              <div className="p-8 rounded-3xl glass border border-border-main hover:border-primary/20 transition-all duration-700 group h-full flex flex-col items-center text-center">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500">
                   {cat.icon}
                 </div>
-                <h4 className="text-xl font-bold text-text-main mb-3">{cat.title}</h4>
-                <p className="text-text-sec opacity-70 leading-relaxed">{cat.desc}</p>
+                <h4 className="text-xl font-bold text-text-main mb-3 font-heading tracking-tight">{cat.title}</h4>
+                <p className="text-text-sec text-sm opacity-70 leading-relaxed font-body">{cat.desc}</p>
               </div>
-              
             </Reveal>
-            
           ))}
-         
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-20">
+        <div className="flex flex-col lg:flex-row gap-16">
           {/* FAQ Section */}
           <div className="lg:w-1/2">
             <Reveal>
-              <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3">
-                <HelpCircle className="text-primary" /> Sıkça Sorulan Sorular
+              <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3 font-heading tracking-tight">
+                <HelpCircle className="text-primary" size={24} /> Sıkça Sorulan Sorular
               </h4>
             </Reveal>
             <div className="space-y-4">
               {faqs.map((faq, idx) => (
                 <Reveal key={idx} delay={0.2 + (0.1 * idx)}>
-                  <div className="rounded-2xl bg-bg-sec border border-border-main overflow-hidden">
+                  <div className="rounded-2xl glass border border-border-main overflow-hidden">
                     <button
                       onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-primary/5 transition-colors"
+                      className="w-full p-6 text-left flex items-center justify-between hover:bg-primary/5 transition-colors font-heading"
                     >
-                      <span className="font-bold text-text-main pr-4">{faq.question}</span>
+                      <span className="font-bold text-text-main pr-4 text-sm">{faq.question}</span>
                       <ChevronDown 
                         className={`text-primary transition-transform duration-300 ${activeFaq === idx ? 'rotate-180' : ''}`} 
-                        size={20} 
+                        size={18} 
                       />
                     </button>
                     <AnimatePresence>
@@ -190,7 +186,7 @@ const Support = () => {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <div className="p-6 pt-0 text-text-sec border-t border-border-main/50 leading-relaxed">
+                          <div className="p-6 pt-0 text-text-sec text-sm border-t border-border-main/20 leading-relaxed font-body">
                             {faq.answer}
                           </div>
                         </motion.div>
@@ -199,49 +195,45 @@ const Support = () => {
                   </div>
                 </Reveal>
               ))}
-              
             </div>
-            
           </div>
 
           {/* Contact/Support Form */}
           <div className="lg:w-1/2">
             <Reveal>
-              <div className="p-10 rounded-[2.5rem] bg-bg-sec border border-border-main relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 -mr-16 -mt-16 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors" />
-                
-                <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3">
-                  <MessageSquare className="text-primary" /> Destek Talebi Oluştur
+              <div className="p-8 md:p-12 rounded-[2.5rem] glass border border-border-main relative overflow-hidden group shadow-2xl">
+                <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3 font-heading tracking-tight">
+                  <MessageSquare className="text-primary" size={24} /> Destek Talebi
                 </h4>
 
-                <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+                <form ref={form} onSubmit={handleSubmit} className="space-y-5 font-body">
                   <input type="hidden" name="to_email" value="info@tugcore.com.tr" />
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="space-y-2">
-                      <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">İSİM SOYİSİM</label>
+                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">İSİM SOYİSİM</label>
                       <input 
                         required
                         type="text" 
                         placeholder="Adınız?" 
                         name="from_name"
-                        className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main"
+                        className="w-full px-6 py-4 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-sm"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">E-POSTA</label>
+                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">E-POSTA</label>
                       <input 
                         required
                         type="email" 
                         placeholder="E-posta adresiniz" 
                         name="from_email"
-                        className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main"
+                        className="w-full px-6 py-4 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-sm"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">KONU</label>
-                    <select name="subject" className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none">
+                    <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">KONU</label>
+                    <select name="subject" className="w-full px-6 py-4 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none text-sm">
                       <option>Teknik Destek</option>
                       <option>Satış / Yeni Proje</option>
                       <option>Ödeme İşlemleri</option>
@@ -250,31 +242,31 @@ const Support = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-black uppercase tracking-widest text-text-sec/50 ml-2">MESAJINIZ</label>
+                    <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">MESAJINIZ</label>
                     <textarea 
                       required
                       rows="4" 
                       placeholder="Size nasıl yardımcı olabiliriz?" 
                       name="message"
-                      className="w-full px-6 py-4 rounded-2xl bg-bg-sec border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main resize-none"
+                      className="w-full px-6 py-4 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main resize-none text-sm"
                     ></textarea>
                   </div>
 
                   <Magnetic>
                     <button 
                       disabled={isSubmitting || isSuccess}
-                      className={`w-full py-5 rounded-2xl font-black text-lg tracking-widest uppercase flex items-center justify-center gap-3 transition-all duration-500 ${
+                      className={`w-full py-4 rounded-2xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-3 transition-all duration-500 font-heading ${
                         isSuccess 
                           ? 'bg-green-500 text-white' 
-                          : 'bg-primary text-white hover:bg-primary-dark shadow-xl shadow-primary/20 hover:shadow-primary/40'
+                          : 'bg-primary text-white hover:opacity-90 shadow-xl shadow-primary/20'
                       }`}
                     >
                       {isSubmitting ? (
-                        <Loader2 className="animate-spin" size={24} />
+                        <Loader2 className="animate-spin" size={20} />
                       ) : isSuccess ? (
-                        <>TAMAMDIR! <CheckCircle2 size={24} /></>
+                        <>TAMAMDIR! <CheckCircle2 size={20} /></>
                       ) : (
-                        <>GÖNDER <Send size={20} /></>
+                        <>GÖNDER <Send size={16} /></>
                       )}
                     </button>
                   </Magnetic>

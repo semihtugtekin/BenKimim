@@ -44,56 +44,49 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-32 bg-bg-main transition-colors duration-300 relative overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 blur-[120px] rounded-full animate-pulse delay-700" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="mb-20">
+    <section id="services" className="py-24 bg-bg-main transition-colors duration-300 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mb-16">
           <Reveal>
-            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-primary mb-4">NELER YAPIYORUZ?</h2>
+            <h2 className="text-[0.6rem] font-bold uppercase tracking-[0.4em] text-primary mb-3 font-heading">NELER YAPIYORUZ?</h2>
           </Reveal>
           <Reveal delay={0.4}>
-            <h3 className="text-5xl md:text-7xl font-black text-text-main leading-tight">
+            <h3 className="text-4xl md:text-5xl font-black text-text-main leading-none tracking-tight font-heading">
               Dijital <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Sınırları</span> Zorluyoruz
             </h3>
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[200px]">
+        <div className="bento-grid !gap-4">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ y: -5 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`${service.size} group relative rounded-3xl overflow-hidden border border-border-main bg-bg-card p-8 flex flex-col justify-between hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500`}
+              className={`bento-item ${service.size} !p-6 group flex flex-col justify-between`}
             >
               {/* Card Background Image (if exists) */}
               {service.image && (
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-700">
                   <img src={service.image} alt="" className="w-full h-full object-cover grayscale" />
                 </div>
               )}
               
-              {/* Card Glow Effect */}
-              <div className="absolute -inset-px bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
               <div className="relative z-10">
-                <div className={`mb-6 p-4 rounded-2xl w-fit ${service.color} group-hover:scale-110 transition-transform duration-500`}>
-                  {service.icon}
+                <div className={`mb-6 p-3 rounded-xl w-fit ${service.color} group-hover:scale-110 transition-transform duration-500 border border-border-main/20`}>
+                  {/* Scaling the icon slightly */}
+                  <div className="scale-90">
+                    {service.icon}
+                  </div>
                 </div>
-                <h3 className="text-2xl font-black text-text-main mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
-                <p className="text-text-sec text-lg leading-relaxed">{service.description}</p>
+                <h3 className="text-lg font-bold text-text-main mb-3 group-hover:text-primary transition-colors font-heading tracking-tight">{service.title}</h3>
+                <p className="text-sm text-text-sec leading-relaxed font-body opacity-80">{service.description}</p>
               </div>
 
-              <div className="relative z-10 mt-4 flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                Detayları Gör <Globe size={14} />
+              <div className="relative z-10 mt-6 flex items-center gap-2 text-[0.6rem] font-bold text-primary opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 font-heading tracking-widest uppercase">
+                Keşfet <Globe size={10} />
               </div>
             </motion.div>
           ))}

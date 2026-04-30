@@ -121,16 +121,16 @@ const Hero = ({ isDarkMode }) => {
               animate={{ scale: 1, opacity: 1 }}
               className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-12 backdrop-blur-md shadow-lg shadow-primary/5"
             >
-              <Terminal size={18} className="animate-pulse" />
-              <span className="text-sm font-black uppercase tracking-[0.4em]">{slides[currentSlide].badge}</span>
+              <Sparkles size={16} className="animate-pulse" />
+              <span className="text-[0.6rem] font-bold uppercase tracking-[0.4em] font-heading">{slides[currentSlide].badge}</span>
             </motion.div>
             
             <h1 
-              className="text-6xl md:text-9xl font-black mb-10 tracking-tighter text-text-main leading-[0.9] select-none"
+              className="text-5xl md:text-8xl font-black mb-10 tracking-tight text-text-main leading-[1] select-none font-heading"
               dangerouslySetInnerHTML={{ __html: slides[currentSlide].title }}
             />
             
-            <p className="text-xl md:text-3xl text-text-sec mb-16 max-w-4xl mx-auto font-medium leading-relaxed opacity-80">
+            <p className="text-lg md:text-2xl text-text-sec mb-16 max-w-3xl mx-auto font-medium leading-relaxed opacity-80 font-body">
               {slides[currentSlide].description}
             </p>
             
@@ -138,7 +138,7 @@ const Hero = ({ isDarkMode }) => {
               <Magnetic>
                 <a 
                   href={slides[currentSlide].link}
-                  className="group relative inline-flex items-center justify-center gap-4 bg-primary text-white px-12 py-6 rounded-2xl font-black text-xl transition-all shadow-2xl shadow-primary/40 overflow-hidden"
+                  className="group relative inline-flex items-center justify-center gap-4 bg-primary text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all shadow-2xl shadow-primary/40 overflow-hidden font-heading"
                 >
                   <span className="relative z-10 flex items-center gap-3">
                     {slides[currentSlide].cta}
@@ -147,11 +147,6 @@ const Hero = ({ isDarkMode }) => {
                   <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </a>
               </Magnetic>
-
-              {/* <button className="text-text-sec font-bold text-lg hover:text-primary transition-colors flex items-center gap-2 group">
-                Nasıl Çalışıyoruz?
-                <span className="w-12 h-[2px] bg-text-sec/20 group-hover:bg-primary/50 group-hover:w-16 transition-all duration-300" />
-              </button> */}
             </div>
           </motion.div>
         </AnimatePresence>

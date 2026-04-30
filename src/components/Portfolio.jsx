@@ -32,38 +32,38 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="relative py-32 bg-bg-main transition-colors duration-300 overflow-hidden">
+    <section id="portfolio" className="relative py-24 bg-bg-main transition-colors duration-300 overflow-hidden">
       {/* Background Text */}
-      <div className="absolute top-20 left-10 text-[15rem] font-black text-text-sec/5 select-none pointer-events-none uppercase tracking-tighter leading-none">
+      <div className="absolute top-20 left-10 text-[7rem] font-black text-text-sec/5 select-none pointer-events-none uppercase tracking-tighter leading-none font-heading">
         Works
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-sm font-bold uppercase tracking-[0.4em] text-primary mb-4 flex items-center gap-2">
-              <Layers size={16} /> PORTFOLYO
+            <h2 className="text-[0.6rem] font-bold uppercase tracking-[0.4em] text-primary mb-3 flex items-center gap-2 font-heading">
+              <Layers size={12} /> PORTFOLYO
             </h2>
-            <h3 className="text-5xl md:text-7xl font-black text-text-main leading-none tracking-tighter">
-              Seçkin Ve Devam Eden <span className="text-primary">Projelerimiz</span>
+            <h3 className="text-4xl md:text-5xl font-black text-text-main leading-none tracking-tight font-heading">
+              Seçkin <span className="text-primary">Projelerimiz</span>
             </h3>
           </motion.div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-3 bg-bg-sec/50 p-2 rounded-2xl backdrop-blur-md border border-border-main">
+          <div className="flex flex-wrap gap-2 glass p-1 rounded-2xl border border-border-main">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2.5 rounded-xl text-xs font-black transition-all uppercase tracking-widest ${
+                className={`px-5 py-2 rounded-xl text-[0.55rem] font-bold transition-all uppercase tracking-widest font-heading ${
                   activeCategory === cat 
-                    ? 'bg-primary text-white shadow-xl shadow-primary/20 scale-105' 
-                    : 'text-text-sec hover:text-primary hover:bg-bg-main'
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105' 
+                    : 'text-text-sec hover:text-primary hover:bg-bg-main/50'
                 }`}
               >
                 {cat}
@@ -75,66 +75,66 @@ const Portfolio = () => {
         {/* Projects Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 onClick={() => openModal(project)}
                 className="group relative cursor-pointer"
               >
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[2.5rem] bg-bg-sec border border-border-main group-hover:border-primary/30 transition-all duration-500">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-bg-sec border border-border-main group-hover:border-primary/20 transition-all duration-700">
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
                   
                   {/* Glass Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg-main/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg-main/95 via-bg-main/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   {/* Project Info Floating */}
-                  <div className="absolute bottom-8 left-8 right-8 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <div className="flex items-center gap-3 mb-4">
+                  <div className="absolute bottom-5 left-5 right-5 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <div className="flex items-center gap-2 mb-2">
                       {project.tags.slice(0, 2).map(tag => (
-                        <span key={tag} className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-[10px] font-bold text-white uppercase tracking-widest">
+                        <span key={tag} className="px-2 py-0.5 glass border border-white/10 rounded-full text-[8px] font-bold text-text-main uppercase tracking-widest font-heading">
                           {tag}
                         </span>
                       ))}
                     </div>
                     <div className="flex items-center justify-between">
-                      <h4 className="text-2xl font-black text-white">{project.title}</h4>
-                      <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-xl shadow-primary/40 transform -rotate-45 group-hover:rotate-0 transition-transform duration-500">
-                        <ArrowUpRight size={24} />
+                      <h4 className="text-lg font-bold text-text-main font-heading">{project.title}</h4>
+                      <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-xl shadow-primary/30 transform group-hover:rotate-45 transition-transform duration-500">
+                        <ArrowUpRight size={16} />
                       </div>
                     </div>
                   </div>
 
                   {/* Category Badge */}
-                  <div className="absolute top-6 right-6 px-4 py-2 bg-bg-main/80 backdrop-blur-md border border-border-main rounded-full text-[10px] font-black text-primary uppercase tracking-[0.2em]">
+                  <div className="absolute top-4 right-4 px-2 py-1 glass border border-border-main rounded-full text-[7px] font-bold text-primary uppercase tracking-[0.2em] font-heading">
                     {project.category}
                   </div>
                 </div>
 
                 {/* Visible Info Below */}
-                <div className="mt-6 flex justify-between items-start">
-                  <div>
-                    <h3 className="text-xl font-black text-text-main group-hover:text-primary transition-colors duration-300">
+                <div className="mt-4 flex justify-between items-start">
+                  <div className="max-w-[80%]">
+                    <h3 className="text-lg font-bold text-text-main group-hover:text-primary transition-colors duration-300 font-heading tracking-tight">
                       {project.title}
                     </h3>
-                    <p className="text-text-sec text-sm font-medium mt-1 line-clamp-1 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <p className="text-text-sec text-[0.65rem] font-medium mt-1 line-clamp-1 opacity-60 font-body">
                       {project.description}
                     </p>
                   </div>
-                  <span className="text-text-sec/20 font-black text-4xl select-none group-hover:text-primary/10 transition-colors">
-                    0{index + 1}
+                  <span className="text-text-sec/10 font-black text-2xl select-none group-hover:text-primary/5 transition-colors font-heading">
+                    {index + 1 < 10 ? `0${index + 1}` : index + 1}
                   </span>
                 </div>
               </motion.div>

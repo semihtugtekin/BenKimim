@@ -30,39 +30,32 @@ const Preloader = ({ isDarkMode }) => {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="mb-8"
+          className="mb-12"
         >
           <img 
-            src={isDarkMode ? "/img/Logo/TUGcore2.png" : "/img/Logo/TUGcore3.png"} 
+            src={isDarkMode ? "/img/Logo/TUGcore3.png" : "/img/Logo/TUGcore2.png"} 
             alt="TUGCore Logo" 
-            className="h-24 w-auto object-contain"
+            className="h-20 w-auto object-contain filter drop-shadow-2xl"
           />
         </motion.div>
 
         {/* Progress Bar Container */}
-        <div className="w-64 h-1 bg-bg-sec rounded-full overflow-hidden relative">
+        <div className="w-48 h-[2px] bg-bg-sec rounded-full overflow-hidden relative">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
-            className="absolute inset-y-0 left-0 bg-primary"
+            className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary to-secondary"
           />
         </div>
         
         {/* Progress Text */}
-        <motion.span 
-          className="mt-4 text-primary font-bold tracking-[0.2em] text-sm"
-        >
-          {progress}%
-        </motion.span>
-        
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-2 text-text-sec text-xs uppercase tracking-widest font-medium"
-        >
-          Yükleniyor...
-        </motion.div>
+        <div className="flex flex-col items-center mt-6">
+          <motion.span 
+            className="text-text-main font-bold tracking-[0.3em] text-[0.6rem] uppercase font-heading"
+          >
+            Sistem Hazırlanıyor {progress}%
+          </motion.span>
+        </div>
       </div>
     </motion.div>
   );
