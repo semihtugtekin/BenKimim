@@ -85,8 +85,13 @@ const Services = () => {
                 <p className="text-sm text-text-sec leading-relaxed font-body opacity-80">{service.description}</p>
               </div>
 
-              <div className="relative z-10 mt-6 flex items-center gap-2 text-[0.6rem] font-bold text-primary opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 font-heading tracking-widest uppercase">
-                Keşfet <Globe size={10} />
+              <div className="relative z-10 mt-6 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-[0.6rem] font-bold text-primary transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 font-heading tracking-widest uppercase">
+                  Keşfet <Globe size={10} />
+                </div>
+                <button className="px-3 py-1.5 bg-primary text-white text-[0.6rem] font-bold rounded-lg opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 hover:bg-primary/90 font-heading tracking-widest uppercase cursor-pointer">
+                  Demo Talep Et
+                </button>
               </div>
             </motion.div>
           ))}

@@ -34,42 +34,48 @@
 }
 
 .dark {
-  /* Obsidian Tech Theme (Deep & Premium) */
+  /* Obsidian Tech Theme (Deep & Premium - Refined for readability) */
   --primary: #818cf8;   
   --secondary: #c084fc; 
-  --bg-main-solid: #030712; 
-  --bg-main: #030712;
-  --bg-sec: rgba(15, 23, 42, 0.5);    
-  --bg-card: rgba(17, 24, 39, 0.7);   
-  --text-main: #f8fafc; 
-  --text-sec: #94a3b8;  
-  --border-main: rgba(255, 255, 255, 0.1); 
-  --beam-color: #e2e8f0; /* Silver for dark mode */
+  --bg-main-solid: #0d1117; 
+  --bg-main: #0d1117;
+  --bg-sec: rgba(22, 27, 34, 0.6);    
+  --bg-card: rgba(33, 38, 45, 0.7);   
+  --text-main: #e6edf3; 
+  --text-sec: #8b949e;  
+  --border-main: rgba(240, 246, 252, 0.1); 
+  --beam-color: #8b949e; /* Muted silver */
   color-scheme: dark;
 }
 
-/* 25% Smaller on Mobile */
+/* Responsive Scaling */
 @media (max-width: 768px) {
   html {
-    font-size: 75%; /* Reduces all REM based units by 25% */
+    font-size: 80%; /* Slightly larger base than before for better readability */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 70%; /* Further reduction for very small devices */
   }
 }
 
 body {
-  @apply bg-bg-main text-text-main transition-colors duration-300 overflow-x-hidden font-body;
+  @apply bg-bg-main text-text-main transition-colors duration-300 overflow-x-hidden font-body leading-relaxed tracking-normal;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-heading tracking-tight;
+  @apply font-heading tracking-tight leading-tight;
 }
 
-/* Mesh Gradient Background for Dark Mode */
+/* Mesh Gradient Background for Dark Mode - Refined */
 .dark body {
-  background-color: #030712;
+  background-color: #0d1117;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
-    radial-gradient(at 50% 100%, rgba(6, 78, 59, 0.1) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(6, 78, 59, 0.05) 0px, transparent 50%);
   background-attachment: fixed;
 }
 
@@ -119,17 +125,25 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 1024px) {
   .bento-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 
 @media (max-width: 640px) {
   .bento-grid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 }
 
 .bento-item {
-  @apply rounded-3xl p-8 glass transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/10;
+  @apply rounded-[2rem] p-8 md:p-10 glass transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/10;
+}
+
+@media (max-width: 640px) {
+  .bento-item {
+    @apply p-6 rounded-[1.5rem];
+  }
 }
 
 /* Grainy Texture Overlay (Subtle) */
@@ -159,7 +173,25 @@ body::before {
   @apply bg-primary/20 rounded-full hover:bg-primary/40 transition-colors;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+@media (max-width: 640px) {
+  section {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
 }
 

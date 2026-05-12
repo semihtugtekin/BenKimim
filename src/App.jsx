@@ -1,15 +1,30 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Portfolio from './components/Portfolio';
 import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
-import Testimonials from './components/Testimonials';
-import Support from './components/Support';
-// import Milestones from './components/Milestones';
+import Home from './pages/Home';
+import ServicesPage from './pages/ServicesPage';
+
+const ScrollToHash = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    }
+  }, [hash]);
+
+  return null;
+};
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -25,14 +40,15 @@ function App() {
     // Preloader timer
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 1800);
     return () => clearTimeout(timer);
   }, [isDarkMode]);
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   return (
-    <>
+    <Router>
+      <ScrollToHash />
       <AnimatePresence>
         {loading && <Preloader isDarkMode={isDarkMode} />}
       </AnimatePresence>
@@ -41,17 +57,13 @@ function App() {
 
       <div className={`min-h-screen bg-bg-main text-text-main transition-colors duration-300 selection:bg-primary selection:text-white ${loading ? 'overflow-hidden max-h-screen' : ''}`}>
         <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-        <main>
-          <Hero isDarkMode={isDarkMode} />
-          <Services />
-          {/* <Milestones /> */}
-          <Portfolio />
-          <Testimonials />
-          <Support />
-        </main>
+        <Routes>
+          <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
+          <Route path="/hizmetler" element={<ServicesPage />} />
+        </Routes>
         <Footer />
       </div>
-    </>
+    </Router>
   );
 }
 

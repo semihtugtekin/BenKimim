@@ -10,14 +10,14 @@ const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('Tümü');
-  
+
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
 
-  const filteredProjects = activeCategory === 'Tümü' 
-    ? projects 
+  const filteredProjects = activeCategory === 'Tümü'
+    ? projects
     : projects.filter(p => p.category === activeCategory);
 
   const openModal = (project) => {
@@ -50,21 +50,20 @@ const Portfolio = () => {
               <Layers size={12} /> PORTFOLYO
             </h2>
             <h3 className="text-4xl md:text-5xl font-black text-text-main leading-none tracking-tight font-heading">
-              Seçkin <span className="text-primary">Projelerimiz</span>
+              <span className="text-primary">Projelerimiz</span>
             </h3>
           </motion.div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 glass p-1 rounded-2xl border border-border-main">
+          <div className="flex items-center gap-2 overflow-x-auto pb-4 md:pb-0 no-scrollbar glass p-2 rounded-3xl border border-border-main scroll-smooth">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-xl text-[0.55rem] font-bold transition-all uppercase tracking-widest font-heading ${
-                  activeCategory === cat 
-                    ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105' 
+                className={`whitespace-nowrap px-6 py-2.5 rounded-2xl text-[0.6rem] font-bold transition-all uppercase tracking-widest font-heading ${activeCategory === cat
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
                     : 'text-text-sec hover:text-primary hover:bg-bg-main/50'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -73,7 +72,7 @@ const Portfolio = () => {
         </div>
 
         {/* Projects Grid */}
-        <motion.div 
+        <motion.div
           layout
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
@@ -91,15 +90,15 @@ const Portfolio = () => {
                 className="group relative cursor-pointer"
               >
                 <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-bg-sec border border-border-main group-hover:border-primary/20 transition-all duration-700">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
+                  <img
+                    src={project.image}
+                    alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
-                  
+
                   {/* Glass Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-main/95 via-bg-main/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+
                   {/* Project Info Floating */}
                   <div className="absolute bottom-5 left-5 right-5 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                     <div className="flex items-center gap-2 mb-2">
@@ -143,10 +142,10 @@ const Portfolio = () => {
         </motion.div>
       </div>
 
-      <ProjectDetailModal 
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
-        project={selectedProject} 
+      <ProjectDetailModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        project={selectedProject}
       />
     </section>
   );

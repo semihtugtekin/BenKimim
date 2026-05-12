@@ -56,16 +56,16 @@ const Milestones = () => {
           {/* Vertical Line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-primary/50 via-secondary/50 to-primary/50 hidden md:block" />
 
-          <div className="space-y-24">
+          <div className="space-y-16 md:space-y-24">
             {milestones.map((milestone, idx) => (
-              <div key={idx} className={`flex flex-col md:flex-row items-center gap-8 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+              <div key={idx} className={`flex flex-col md:flex-row items-center gap-6 md:gap-8 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Year Badge */}
                 <div className="flex-1 flex justify-center md:justify-start">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className={`text-2xl font-black text-primary ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right w-full'}`}
+                    className={`text-3xl md:text-2xl font-black text-primary ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right w-full'} text-center md:text-left`}
                   >
                     {milestone.year}
                   </motion.div>
@@ -77,7 +77,7 @@ const Milestones = () => {
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                    className="w-12 h-12 rounded-full bg-bg-card border-2 border-primary flex items-center justify-center text-primary shadow-xl shadow-primary/20"
+                    className="w-14 h-14 md:w-12 md:h-12 rounded-full bg-bg-card border-2 border-primary flex items-center justify-center text-primary shadow-xl shadow-primary/20"
                   >
                     {milestone.icon}
                   </motion.div>
@@ -86,15 +86,15 @@ const Milestones = () => {
                 {/* Content Card */}
                 <div className="flex-1 w-full">
                   <motion.div
-                    initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
+                    initial={{ opacity: 0, x: idx % 2 === 0 ? -30 : 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="p-8 rounded-[2rem] bg-bg-card/50 backdrop-blur-xl border border-border-main hover:border-primary/50 transition-all group"
+                    className="p-6 md:p-8 rounded-[2rem] bg-bg-card/50 backdrop-blur-xl border border-border-main hover:border-primary/50 transition-all group"
                   >
-                    <h4 className="text-2xl font-bold text-text-main mb-4 group-hover:text-primary transition-colors">
+                    <h4 className="text-xl md:text-2xl font-bold text-text-main mb-3 md:mb-4 group-hover:text-primary transition-colors font-heading tracking-tight">
                       {milestone.title}
                     </h4>
-                    <p className="text-text-sec text-lg leading-relaxed opacity-80">
+                    <p className="text-sm md:text-lg text-text-sec leading-relaxed opacity-80 font-body">
                       {milestone.description}
                     </p>
                   </motion.div>

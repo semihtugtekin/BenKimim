@@ -107,7 +107,7 @@ const Hero = ({ isDarkMode }) => {
         <FloatingIcon icon={Sparkles} delay={3} className="bottom-1/3 right-1/4" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center pt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center pt-32 pb-20 md:pt-24">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -119,18 +119,18 @@ const Hero = ({ isDarkMode }) => {
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-12 backdrop-blur-md shadow-lg shadow-primary/5"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-8 md:mb-12 backdrop-blur-md shadow-lg shadow-primary/5"
             >
               <Sparkles size={16} className="animate-pulse" />
               <span className="text-[0.6rem] font-bold uppercase tracking-[0.4em] font-heading">{slides[currentSlide].badge}</span>
             </motion.div>
             
             <h1 
-              className="text-5xl md:text-8xl font-black mb-10 tracking-tight text-text-main leading-[1] select-none font-heading"
+              className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 md:mb-10 tracking-tight text-text-main leading-[1.1] md:leading-[1] select-none font-heading"
               dangerouslySetInnerHTML={{ __html: slides[currentSlide].title }}
             />
             
-            <p className="text-lg md:text-2xl text-text-sec mb-16 max-w-3xl mx-auto font-medium leading-relaxed opacity-80 font-body">
+            <p className="text-base sm:text-lg md:text-2xl text-text-sec mb-12 md:mb-16 max-w-3xl mx-auto font-medium leading-relaxed opacity-80 font-body">
               {slides[currentSlide].description}
             </p>
             

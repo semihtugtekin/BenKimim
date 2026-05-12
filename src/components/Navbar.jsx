@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Code2, Sun, Moon, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Magnetic from './Magnetic';
 
 const Navbar = ({ isDarkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -13,12 +16,28 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e, href) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const id = href.substring(2);
+      if (location.pathname === '/') {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        navigate('/#' + id);
+        // The scroll will be handled by a global effect or we can just rely on the browser
+      }
+    }
+    setIsOpen(false);
+  };
+
   const menuItems = [
-    { title: 'Ana Sayfa', href: '#home' },
-    { title: 'Hizmetler', href: '#services' },
-    // { title: 'Yolculuğumuz', href: '#milestones' },
-    { title: 'Projeler', href: '#portfolio' },
-    { title: 'İletişim', href: '#support' },
+    { title: 'Ana Sayfa', href: '/' },
+    { title: 'Hizmetler', href: '/hizmetler' },
+    { title: 'Projeler', href: '/#portfolio' },
+    { title: 'İletişim', href: '/#support' },
   ];
 
   return (
@@ -33,13 +52,14 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               <div className="hidden md:flex items-center space-x-10">
                 {menuItems.map((item) => (
                   <Magnetic key={item.title}>
-                    <a
-                      href={item.href}
+                    <Link
+                      to={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
                       className="group relative text-text-sec hover:text-primary text-[0.7rem] font-bold transition-colors uppercase tracking-[0.3em] py-2 font-heading"
                     >
                       {item.title}
                       <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
-                    </a>
+                    </Link>
                   </Magnetic>
                 ))}
               </div>
@@ -47,13 +67,13 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               {/* Center: Logo */}
               <div className="flex-shrink-0 flex items-center absolute left-1/2 transform -translate-x-1/2">
                 <Magnetic>
-                  <a href="#" className="flex items-center p-2">
+                  <Link to="/" className="flex items-center p-2">
                     <img 
                       src={isDarkMode ? "img/Logo/TUGcore3.png" : "img/Logo/TUGcore2.png"} 
                       alt="TUGCore Logo" 
                       className="h-12 w-auto object-contain transition-all duration-500 hover:scale-110 drop-shadow-2xl"
                     />
-                  </a>
+                  </Link>
                 </Magnetic>
               </div>
               
@@ -76,12 +96,13 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 
                 <div className="hidden md:block">
                   <Magnetic>
-                    <a 
-                      href="#support" 
+                    <Link 
+                      to="/#support" 
+                      onClick={(e) => handleNavClick(e, '/#support')}
                       className="flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 font-heading"
                     >
                       Hadi Başlayalım <ArrowRight size={14} />
-                    </a>
+                    </Link>
                   </Magnetic>
                 </div>
 
@@ -106,24 +127,24 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 exit={{ height: 0, opacity: 0 }}
                 className="md:hidden glass border-t border-border-main overflow-hidden"
               >
-                <div className="px-6 py-10 space-y-6 flex flex-col items-center">
+                <div className="px-8 py-12 space-y-8 flex flex-col items-center">
                   {menuItems.map((item) => (
-                    <a
+                    <Link
                       key={item.title}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-text-sec hover:text-primary text-2xl font-black transition-colors uppercase tracking-[0.2em] font-heading"
+                      to={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className="text-text-sec hover:text-primary text-3xl font-black transition-all uppercase tracking-[0.2em] font-heading hover:scale-110 active:scale-95"
                     >
                       {item.title}
-                    </a>
+                    </Link>
                   ))}
-                  <a 
-                    href="#support" 
-                    onClick={() => setIsOpen(false)}
-                    className="w-full text-center bg-primary text-white py-4 rounded-2xl text-lg font-black uppercase tracking-widest font-heading"
+                  <Link 
+                    to="/#support" 
+                    onClick={(e) => handleNavClick(e, '/#support')}
+                    className="w-full text-center bg-primary text-white py-5 rounded-3xl text-xl font-black uppercase tracking-widest font-heading shadow-xl shadow-primary/20"
                   >
-                    Support
-                  </a>
+                    Bize Ulaşın
+                  </Link>
                 </div>
               </motion.div>
             )}

@@ -18,25 +18,25 @@ export const projects = [
       'Gelişmiş Hizmet Kategorileri'
     ]
   },
-  {
-    id: 2,
-    title: 'Finansal Takip Uygulaması',
-    category: 'Mobil Uygulama',
-    image: 'img/gelistiriliyor.png',
-    tags: ['React Native', 'Firebase'],
-    demoUrl: '#',
-    repoUrl: '#',
-    description: 'Kişisel finans yönetimini kolaylaştıran, harcamaları kategorize eden ve bütçe planlaması yapmanıza olanak tanıyan bir mobil uygulamadır.',
-    problem: 'İnsanların günlük harcamalarını takip etmekte zorlanması ve ay sonu bütçe açıklarını yönetememesi.',
-    solution: 'Kullanıcı dostu arayüzü ile harcamaları saniyeler içinde kaydeden ve görsel grafiklerle bütçe analizi sunan bir mobil uygulama geliştirildi.',
-    features: [
-      'Anlık Harcama Girişi',
-      'Aylık ve Yıllık Bütçe Planlama',
-      'Görsel Harcama Grafikleri',
-      'Firebase ile Bulut Senkronizasyonu',
-      'Özelleştirilebilir Kategoriler'
-    ]
-  },
+  // {
+  //   id: 2,
+  //   title: 'Finansal Takip Uygulaması',
+  //   category: 'Mobil Uygulama',
+  //   image: 'img/gelistiriliyor.png',
+  //   tags: ['React Native', 'Firebase'],
+  //   demoUrl: '#',
+  //   repoUrl: '#',
+  //   description: 'Kişisel finans yönetimini kolaylaştıran, harcamaları kategorize eden ve bütçe planlaması yapmanıza olanak tanıyan bir mobil uygulamadır.',
+  //   problem: 'İnsanların günlük harcamalarını takip etmekte zorlanması ve ay sonu bütçe açıklarını yönetememesi.',
+  //   solution: 'Kullanıcı dostu arayüzü ile harcamaları saniyeler içinde kaydeden ve görsel grafiklerle bütçe analizi sunan bir mobil uygulama geliştirildi.',
+  //   features: [
+  //     'Anlık Harcama Girişi',
+  //     'Aylık ve Yıllık Bütçe Planlama',
+  //     'Görsel Harcama Grafikleri',
+  //     'Firebase ile Bulut Senkronizasyonu',
+  //     'Özelleştirilebilir Kategoriler'
+  //   ]
+  // },
   {
     id: 3,
     title: 'Kurumsal Yönetim Paneli',
@@ -56,25 +56,25 @@ export const projects = [
       'İç Mesajlaşma Sistemi'
     ]
   },
-  {
-    id: 4,
-    title: 'BeautyCore: SaaS Business Management ',
-    category: 'SaaS projesi ',
-    image: 'img/gelistiriliyor.png',
-    tags: ['next.js', 'PostgreSQL', 'Tailwind'],
-    demoUrl: '#',
-    repoUrl: '#',
-    description: 'Güzellik salonları ve kuaförler için geliştirilen, randevu yönetiminden stok takibine, personel performans analizinden müşteri sadakat programlarına kadar uçtan uca çözüm sunan bulut tabanlı (SaaS) ekosistem.',
-    problem: '  ',
-    solution: 'Artan maliyetler & karışıklıkları daha optimize ve kolay yönetmek amacıya müşteri memnuniyetini artırmak. Tüm departmanların ortak bir platformda buluştuğu ve performans takibinin yapılabildiği bir yönetim paneli hazırlandı.',
-    features: [
-      'Personel ve İzin Yönetimi',
-      'Kanban Board ile Proje Takibi',
-      'Otomatik Raporlama ve Analiz',
-      'Rol Bazlı Erişim Kontrolü',
-      'İç Mesajlaşma Sistemi'
-    ]
-  },
+  // {
+  //   id: 4,
+  //   title: 'BeautyCore: SaaS Business Management ',
+  //   category: 'SaaS projesi ',
+  //   image: 'img/gelistiriliyor.png',
+  //   tags: ['next.js', 'PostgreSQL', 'Tailwind'],
+  //   demoUrl: '#',
+  //   repoUrl: '#',
+  //   description: 'Güzellik salonları ve kuaförler için geliştirilen, randevu yönetiminden stok takibine, personel performans analizinden müşteri sadakat programlarına kadar uçtan uca çözüm sunan bulut tabanlı (SaaS) ekosistem.',
+  //   problem: '  ',
+  //   solution: 'Artan maliyetler & karışıklıkları daha optimize ve kolay yönetmek amacıya müşteri memnuniyetini artırmak. Tüm departmanların ortak bir platformda buluştuğu ve performans takibinin yapılabildiği bir yönetim paneli hazırlandı.',
+  //   features: [
+  //     'Personel ve İzin Yönetimi',
+  //     'Kanban Board ile Proje Takibi',
+  //     'Otomatik Raporlama ve Analiz',
+  //     'Rol Bazlı Erişim Kontrolü',
+  //     'İç Mesajlaşma Sistemi'
+  //   ]
+  // },
   {
     id: 5,
     title: 'QR menü ve online sipariş sistemi',
@@ -111,6 +111,28 @@ export const projects = [
       'Sipariş Takip Sistemi',
       'Menü Yönetimi'
     ]
+  },
+  {
+    id: 7,
+    title: 'Taksi Çağırma ve araç takip sistemi',
+    category: 'Web Geliştirme',
+    image: 'img/TaksiTakip.png',
+    tags: ['HTML', 'CSS', 'JavaScript', 'next.js'],
+    demoUrl: 'https://masatakipdemo.netlify.app/admin',
+    repoUrl: '#',
+    description: '  ',
+    problem: '  ',
+    solution: '  ',
+    features: [
+      'Mobil Uyumlu Tasarım',
+      'Modern UI Bileşenleri',
+      'Araç Takip Sistemi',
+      'Taksi Çağırma Sistemi',
+      'Yolcu Arama Sistemi',
+      'Harita Entegrasyonu',
+      'Durak Yönetimi'
+    ]
   }
+
 
 ];
