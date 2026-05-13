@@ -37,25 +37,25 @@ export const projects = [
   //     'Özelleştirilebilir Kategoriler'
   //   ]
   // },
-  {
-    id: 3,
-    title: 'Kurumsal Yönetim Paneli',
-    category: 'Özel Yazılım',
-    image: 'img/gelistiriliyor.png',
-    tags: ['Next.js', 'PostgreSQL', 'Tailwind'],
-    demoUrl: '#',
-    repoUrl: '#',
-    description: 'İşletme içi süreçlerin dijitalleşmesini sağlayan, personel yönetimi, proje takibi ve raporlama özelliklerini barındıran kapsamlı bir ERP çözümüdür.',
-    problem: 'Şirket içi iletişimin kopuk olması ve projelerin takibinin Excel üzerinden manuel yapılmasının getirdiği verimlilik kaybı.',
-    solution: 'Tüm departmanların ortak bir platformda buluştuğu, görev atamalarının ve performans takibinin yapılabildiği bir yönetim paneli hazırlandı.',
-    features: [
-      'Personel ve İzin Yönetimi',
-      'Kanban Board ile Proje Takibi',
-      'Otomatik Raporlama ve Analiz',
-      'Rol Bazlı Erişim Kontrolü',
-      'İç Mesajlaşma Sistemi'
-    ]
-  },
+  // {
+  //   id: 3,
+  //   title: 'Kurumsal Yönetim Paneli',
+  //   category: 'Özel Yazılım',
+  //   image: 'img/gelistiriliyor.png',
+  //   tags: ['Next.js', 'PostgreSQL', 'Tailwind'],
+  //   demoUrl: '#',
+  //   repoUrl: '#',
+  //   description: 'İşletme içi süreçlerin dijitalleşmesini sağlayan, personel yönetimi, proje takibi ve raporlama özelliklerini barındıran kapsamlı bir ERP çözümüdür.',
+  //   problem: 'Şirket içi iletişimin kopuk olması ve projelerin takibinin Excel üzerinden manuel yapılmasının getirdiği verimlilik kaybı.',
+  //   solution: 'Tüm departmanların ortak bir platformda buluştuğu, görev atamalarının ve performans takibinin yapılabildiği bir yönetim paneli hazırlandı.',
+  //   features: [
+  //     'Personel ve İzin Yönetimi',
+  //     'Kanban Board ile Proje Takibi',
+  //     'Otomatik Raporlama ve Analiz',
+  //     'Rol Bazlı Erişim Kontrolü',
+  //     'İç Mesajlaşma Sistemi'
+  //   ]
+  // },
   // {
   //   id: 4,
   //   title: 'BeautyCore: SaaS Business Management ',
@@ -118,7 +118,7 @@ export const projects = [
     category: 'Web Geliştirme',
     image: 'img/TaksiTakip.png',
     tags: ['HTML', 'CSS', 'JavaScript', 'next.js'],
-    demoUrl: 'https://masatakipdemo.netlify.app/admin',
+    demoUrl: 'https://hastahanetaksi.netlify.app/',
     repoUrl: '#',
     description: '  ',
     problem: '  ',
