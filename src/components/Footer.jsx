@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Code2, Github, Instagram, Linkedin, Twitter, Mail, Phone } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
+  const { t, language } = useLanguage();
+  
   return (
     <footer className="bg-bg-main border-t border-border-main pt-20 pb-10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,32 +15,38 @@ const Footer = () => {
               <span>TUGCore</span>
             </Link>
             <p className="text-lg sm:text-2xl leading-relaxed font-body opacity-70 max-w-md">
-              Yazılım dünyasında yenilikçi çözümlerle geleceği bugünden kodluyoruz. Dijital dönüşüm ortağınız.
+              {t.footer.description}
             </p>
           </div>
 
           <div>
-            <h4 className="text-text-main font-black mb-8 sm:mb-10 font-heading uppercase tracking-[0.2em] text-xl sm:text-3xl">Hızlı Erişim</h4>
+            <h4 className="text-text-main font-black mb-8 sm:mb-10 font-heading uppercase tracking-[0.2em] text-xl sm:text-3xl">
+              {language === 'tr' ? 'Hızlı Erişim' : 'Quick Links'}
+            </h4>
             <ul className="space-y-4 sm:space-y-6 font-body">
-              <li><Link to="/" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">Ana Sayfa</Link></li>
-              <li><Link to="/hizmetler" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">Hizmetler</Link></li>
-              <li><Link to="/#portfolio" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">Projeler</Link></li>
-              <li><Link to="/#support" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">İletişim</Link></li>
+              <li><Link to="/" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">{t.nav.home}</Link></li>
+              <li><Link to="/hizmetler" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">{t.nav.services}</Link></li>
+              <li><Link to="/#portfolio" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">{t.nav.portfolio}</Link></li>
+              <li><Link to="/#support" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">{t.nav.contact}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-text-main font-black mb-8 sm:mb-10 font-heading uppercase tracking-[0.2em] text-xl sm:text-3xl">Hizmetler</h4>
+            <h4 className="text-text-main font-black mb-8 sm:mb-10 font-heading uppercase tracking-[0.2em] text-xl sm:text-3xl">
+              {t.nav.services}
+            </h4>
             <ul className="space-y-4 sm:space-y-6 font-body">
-              <li><Link to="/hizmetler" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">Web Geliştirme</Link></li>
-              <li><Link to="/hizmetler" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">Mobil Uygulama</Link></li>
-              <li><Link to="/hizmetler" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">UI/UX Tasarım</Link></li>
+              <li><Link to="/hizmetler" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">{language === 'tr' ? 'Web Geliştirme' : 'Web Development'}</Link></li>
+              <li><Link to="/hizmetler" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">{language === 'tr' ? 'Mobil Uygulama' : 'Mobile App'}</Link></li>
+              <li><Link to="/hizmetler" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">{language === 'tr' ? 'UI/UX Tasarım' : 'UI/UX Design'}</Link></li>
               <li><Link to="/hizmetler" className="text-text-sec hover:text-primary text-lg sm:text-2xl transition-colors">SaaS Çözümleri</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-text-main font-black mb-8 sm:mb-10 font-heading uppercase tracking-[0.2em] text-xl sm:text-3xl">İletişim</h4>
+            <h4 className="text-text-main font-black mb-8 sm:mb-10 font-heading uppercase tracking-[0.2em] text-xl sm:text-3xl">
+              {t.nav.contact}
+            </h4>
             <ul className="space-y-4 sm:space-y-6 font-body text-lg sm:text-2xl text-text-sec">
               <li className="flex items-center gap-4 hover:text-primary transition-colors">
                 <Mail size={24} className="sm:w-7 sm:h-7" />
@@ -61,7 +70,7 @@ const Footer = () => {
 
         <div className="border-t border-border-main pt-10 sm:pt-12 flex flex-col md:flex-row justify-between items-center gap-8 sm:gap-10">
           <p className="text-base sm:text-xl font-body opacity-50">
-            &copy; {new Date().getFullYear()} TUGCore. Tüm hakları saklıdır.
+            &copy; {new Date().getFullYear()} TUGCore. {t.footer.rights}
           </p>
           <div className="flex items-center gap-2 text-base sm:text-xl font-body text-text-sec opacity-50">
             Crafted with <span className="text-primary mx-2">❤</span> by <span className="text-text-main font-bold">TUGCore Team</span>

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
+import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
 import ServicesPage from './pages/ServicesPage';
 
@@ -26,9 +27,39 @@ const ScrollToHash = () => {
   return null;
 };
 
+const AnimatedRoutes = ({ isDarkMode, toggleTheme }) => {
+  const location = useLocation();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <>
+      <AnimatePresence mode="wait">
+        {loading && <Preloader key="loader" isDarkMode={isDarkMode} />}
+      </AnimatePresence>
+      
+      {!loading && <CustomCursor />}
+
+      <div className={`min-h-screen bg-bg-main text-text-main transition-colors duration-300 selection:bg-primary selection:text-white ${loading ? 'overflow-hidden max-h-screen' : ''}`}>
+        <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PageTransition><Home isDarkMode={isDarkMode} /></PageTransition>} />
+            <Route path="/hizmetler" element={<PageTransition><ServicesPage /></PageTransition>} />
+          </Routes>
+        </AnimatePresence>
+        <Footer />
+      </div>
+    </>
+  );
+};
+
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -36,12 +67,6 @@ function App() {
     } else {
       document.documentElement.classList.remove('dark');
     }
-    
-    // Preloader timer
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1800);
-    return () => clearTimeout(timer);
   }, [isDarkMode]);
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
@@ -49,20 +74,7 @@ function App() {
   return (
     <Router>
       <ScrollToHash />
-      <AnimatePresence>
-        {loading && <Preloader isDarkMode={isDarkMode} />}
-      </AnimatePresence>
-      
-      {!loading && <CustomCursor />}
-
-      <div className={`min-h-screen bg-bg-main text-text-main transition-colors duration-300 selection:bg-primary selection:text-white ${loading ? 'overflow-hidden max-h-screen' : ''}`}>
-        <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-        <Routes>
-          <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
-          <Route path="/hizmetler" element={<ServicesPage />} />
-        </Routes>
-        <Footer />
-      </div>
+      <AnimatedRoutes isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
     </Router>
   );
 }

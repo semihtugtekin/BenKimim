@@ -1,38 +1,9 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Terminal, ChevronLeft, ChevronRight, Cpu, Zap, Globe, Sparkles } from 'lucide-react';
+import { ArrowRight, Cpu, Zap, Globe, Sparkles } from 'lucide-react';
 import Particles from './Particles';
 import Magnetic from './Magnetic';
-// Modern Yazılımla Yarının İşletmesini Bugün İnşa Edin
-const slides = [
-  {
-    id: 1,
-    badge: "Geleceğin Yazılımları",
-    title: " Modern Yazılımla <span class='text-primary'>Yarının İşletmesini</span> Bugün İnşa Edin",
-    description: "TUGCore olarak, modern teknolojileri kullanarak işletmenizi dijital dünyada öne çıkarıyoruz.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000",
-    cta: "Bizimle Tanışın",
-    link: "#support"
-  },
-  {
-    id: 2,
-    badge: "Modern Tasarımlar",
-    title: "Kullanıcı Dostu <span class='text-primary'>Deneyimler</span> Tasarlıyoruz",
-    description: "UI/UX odaklı yaklaşımımızla markanızın dijital yüzünü en profesyonel şekilde kurguluyoruz.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000",
-    cta: "Projelerimiz",
-    link: "#portfolio"
-  },
-  {
-    id: 3,
-    badge: "Hızlı Çözümler",
-    title: "Hız ve <span class='text-primary'>Performans</span> Odaklı Yaklaşım",
-    description: "En son teknolojileri kullanarak ölçeklenebilir ve yüksek performanslı sistemler inşa ediyoruz.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000",
-    cta: "İletişime Geçin",
-    link: "#support"
-  }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 const FloatingIcon = ({ icon: Icon, delay, className }) => (
   <motion.div
@@ -56,8 +27,40 @@ const FloatingIcon = ({ icon: Icon, delay, className }) => (
 );
 
 const Hero = ({ isDarkMode }) => {
+  const { t, language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const containerRef = useRef(null);
+  
+  const slides = [
+    {
+      id: 1,
+      badge: language === 'tr' ? "Geleceğin Yazılımları" : "Software of the Future",
+      title: language === 'tr' ? " Modern Yazılımla <span class='text-primary'>Yarının İşletmesini</span> Bugün İnşa Edin" : "Build <span class='text-primary'>Tomorrow's Business</span> Today with Modern Software",
+      description: language === 'tr' ? "TUGCore olarak, modern teknolojileri kullanarak işletmenizi dijital dünyada öne çıkarıyoruz." : "As TUGCore, we use modern technologies to make your business stand out in the digital world.",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000",
+      cta: language === 'tr' ? "Hemen Teklif Al" : "Get a Quote Now",
+      link: "#support"
+    },
+    {
+      id: 2,
+      badge: language === 'tr' ? "Modern Tasarımlar" : "Modern Designs",
+      title: language === 'tr' ? "Kullanıcı Dostu <span class='text-primary'>Deneyimler</span> Tasarlıyoruz" : "Designing <span class='text-primary'>User-Friendly</span> Experiences",
+      description: language === 'tr' ? "UI/UX odaklı yaklaşımımızla markanızın dijital yüzünü en profesyonel şekilde kurguluyoruz." : "With our UI/UX focused approach, we construct your brand's digital face in the most professional way.",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000",
+      cta: language === 'tr' ? "Projelerimizi Gör" : "See Our Projects",
+      link: "#portfolio"
+    },
+    {
+      id: 3,
+      badge: language === 'tr' ? "Hızlı Çözümler" : "Fast Solutions",
+      title: language === 'tr' ? "Hız ve <span class='text-primary'>Performans</span> Odaklı Yaklaşım" : "Speed and <span class='text-primary'>Performance</span> Oriented Approach",
+      description: language === 'tr' ? "En son teknolojileri kullanarak ölçeklenebilir ve yüksek performanslı sistemler inşa ediyoruz." : "We build scalable and high-performance systems using the latest technologies.",
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000",
+      cta: language === 'tr' ? "Bizimle Başlayın" : "Start With Us",
+      link: "#pricing"
+    }
+  ];
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -71,11 +74,10 @@ const Hero = ({ isDarkMode }) => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 8000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   return (
     <section ref={containerRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg-main">
-      {/* Parallax Background */}
       <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -99,7 +101,6 @@ const Hero = ({ isDarkMode }) => {
 
       <Particles isDarkMode={isDarkMode} />
 
-      {/* Floating Elements */}
       <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
         <FloatingIcon icon={Cpu} delay={0} className="top-1/4 left-1/10" />
         <FloatingIcon icon={Zap} delay={1} className="top-1/3 right-1/10" />
@@ -152,8 +153,7 @@ const Hero = ({ isDarkMode }) => {
         </AnimatePresence>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
+    <motion.div 
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 hidden md:block"
@@ -163,6 +163,7 @@ const Hero = ({ isDarkMode }) => {
         </div>
       </motion.div>
     </section>
-  );};
+  );
+};
 
 export default Hero;

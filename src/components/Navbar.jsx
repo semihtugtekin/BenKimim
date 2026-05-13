@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Code2, Sun, Moon, ArrowRight } from 'lucide-react';
+import { Menu, X, Code2, Sun, Moon, ArrowRight, Languages } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Magnetic from './Magnetic';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = ({ isDarkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -27,17 +29,17 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
         }
       } else {
         navigate('/#' + id);
-        // The scroll will be handled by a global effect or we can just rely on the browser
       }
     }
     setIsOpen(false);
   };
 
   const menuItems = [
-    { title: 'Ana Sayfa', href: '/' },
-    { title: 'Hizmetler', href: '/hizmetler' },
-    { title: 'Projeler', href: '/#portfolio' },
-    { title: 'İletişim', href: '/#support' },
+    { title: t.nav.home, href: '/' },
+    { title: t.nav.services, href: '/hizmetler' },
+    { title: t.nav.portfolio, href: '/#portfolio' },
+    { title: t.pricing.badge, href: '/#pricing' },
+    { title: t.nav.contact, href: '/#support' },
   ];
 
   return (
@@ -49,7 +51,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           <div className="px-6 sm:px-12">
             <div className="flex items-center justify-between h-20">
               {/* Left: Menu Items (Desktop) */}
-              <div className="hidden md:flex items-center space-x-10">
+              <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
                 {menuItems.map((item) => (
                   <Magnetic key={item.title}>
                     <Link
@@ -77,31 +79,43 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 </Magnetic>
               </div>
               
-              {/* Right: Theme Toggle & Contact Button */}
-              <div className="flex items-center gap-6 ml-auto">
-                <Magnetic>
-                  <button
-                    onClick={toggleTheme}
-                    className="p-3 rounded-full bg-bg-sec/50 hover:bg-primary/20 text-text-main transition-all duration-300 border border-border-main group glass"
-                    aria-label="Toggle Theme"
-                  >
-                    <motion.div
-                      animate={{ rotate: isDarkMode ? 180 : 0 }}
-                      transition={{ type: "spring", stiffness: 200, damping: 10 }}
+              {/* Right: Language, Theme Toggle & Contact Button */}
+              <div className="flex items-center gap-3 sm:gap-6 ml-auto">
+                <div className="hidden sm:flex items-center gap-4">
+                  <Magnetic>
+                    <button
+                      onClick={toggleLanguage}
+                      className="flex items-center gap-2 px-3 py-2 rounded-full bg-bg-sec/50 hover:bg-primary/20 text-text-main transition-all duration-300 border border-border-main glass text-[0.6rem] font-bold uppercase tracking-widest font-heading"
                     >
-                      {isDarkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-primary" />}
-                    </motion.div>
-                  </button>
-                </Magnetic>
+                      <Languages size={14} className="text-primary" />
+                      {language === 'tr' ? 'EN' : 'TR'}
+                    </button>
+                  </Magnetic>
 
-                <div className="hidden md:block">
+                  <Magnetic>
+                    <button
+                      onClick={toggleTheme}
+                      className="p-3 rounded-full bg-bg-sec/50 hover:bg-primary/20 text-text-main transition-all duration-300 border border-border-main group glass"
+                      aria-label="Toggle Theme"
+                    >
+                      <motion.div
+                        animate={{ rotate: isDarkMode ? 180 : 0 }}
+                        transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                      >
+                        {isDarkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-primary" />}
+                      </motion.div>
+                    </button>
+                  </Magnetic>
+                </div>
+
+                <div className="hidden lg:block">
                   <Magnetic>
                     <Link 
                       to="/#support" 
                       onClick={(e) => handleNavClick(e, '/#support')}
                       className="flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 font-heading"
                     >
-                      Hadi Başlayalım <ArrowRight size={14} />
+                      {language === 'tr' ? 'Hadi Başlayalım' : "Let's Start"} <ArrowRight size={14} />
                     </Link>
                   </Magnetic>
                 </div>
@@ -128,6 +142,21 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 className="md:hidden glass border-t border-border-main overflow-hidden"
               >
                 <div className="px-8 py-12 space-y-8 flex flex-col items-center">
+                  <div className="flex gap-4 mb-4">
+                    <button
+                      onClick={toggleLanguage}
+                      className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary/10 text-primary border border-primary/20 font-bold uppercase tracking-widest text-xs"
+                    >
+                      <Languages size={16} /> {language === 'tr' ? 'English' : 'Türkçe'}
+                    </button>
+                    <button
+                      onClick={toggleTheme}
+                      className="p-3 rounded-2xl bg-bg-sec/50 border border-border-main"
+                    >
+                      {isDarkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-primary" />}
+                    </button>
+                  </div>
+
                   {menuItems.map((item) => (
                     <Link
                       key={item.title}
@@ -143,7 +172,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                     onClick={(e) => handleNavClick(e, '/#support')}
                     className="w-full text-center bg-primary text-white py-5 rounded-3xl text-xl font-black uppercase tracking-widest font-heading shadow-xl shadow-primary/20"
                   >
-                    Bize Ulaşın
+                    {language === 'tr' ? 'Bize Ulaşın' : 'Contact Us'}
                   </Link>
                 </div>
               </motion.div>

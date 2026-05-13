@@ -1,0 +1,140 @@
+export const translations = {
+  tr: {
+    nav: {
+      home: "Anasayfa",
+      services: "Hizmetler",
+      portfolio: "Portfolyo",
+      testimonials: "Referanslar",
+      contact: "İletişim",
+    },
+    hero: {
+      badge: "DİJİTAL DÖNÜŞÜM ORTAĞINIZ",
+      title: "Geleceği ",
+      titleAccent: "Kodluyoruz",
+      description: "TUGCore olarak, işinizi dijital dünyaya taşıyor, modern ve ölçeklenebilir çözümler üretiyoruz. Fikirlerinizi gerçeğe dönüştürmek için buradayız.",
+      cta_primary: "Projeleri İncele",
+      cta_secondary: "İletişime Geç",
+    },
+    portfolio: {
+      badge: "PORTFOLYO",
+      title: "Projelerimiz",
+      categories: {
+        all: "Tümü",
+        web: "Web Geliştirme",
+        mobile: "Mobil Uygulama",
+        design: "UI/UX Tasarım",
+      },
+      demo_request: "Demo İste",
+      view_details: "Detayları Gör",
+    },
+    support: {
+      badge: "DESTEK",
+      title: "Size Nasıl Destek Olabiliriz?",
+      desc: "Sorularınız, teknik problemleriniz veya yeni projeleriniz için buradayız.",
+      form_title: "Destek Talebi",
+      form_name: "İSİM SOYİSİM",
+      form_email: "E-POSTA",
+      form_subject: "KONU",
+      form_message: "MESAJINIZ",
+      form_submit: "GÖNDER",
+      form_success: "TAMAMDIR!",
+      form_submitting: "GÖNDERİLİYOR...",
+      faq_title: "Sıkça Sorulan Sorular",
+    },
+    pricing: {
+      badge: "PAKETLER",
+      title: "Size Özel Çözümler ve Paketler",
+      desc: "İhtiyacınıza en uygun paketi seçin, işletmenizi dijital dünyada büyütelim.",
+      starter: "Başlangıç",
+      pro: "Profesyonel",
+      enterprise: "Kurumsal",
+      button: "Hemen Başlayın",
+      contact: "Detaylar için ulaşın"
+    },
+    process: {
+      badge: "SÜREÇ",
+      title: "Nasıl Çalışıyoruz?",
+      step1: "Keşif ve Analiz",
+      step1Desc: "İhtiyaçlarınızı dinliyor ve en doğru stratejiyi belirliyoruz.",
+      step2: "Tasarım ve UX",
+      step2Desc: "Kullanıcı dostu ve modern arayüzler tasarlıyoruz.",
+      step3: "Geliştirme",
+      step3Desc: "En son teknolojilerle güvenli ve hızlı kodluyoruz.",
+      step4: "Yayın ve Destek",
+      step4Desc: "Projenizi hayata geçiriyor ve her zaman yanınızda oluyoruz."
+    },
+    footer: {
+      description: "Dijital dünyada iz bırakmak için yanınızdayız. Modern teknolojiler ve kullanıcı odaklı tasarımlarla geleceği inşa ediyoruz. Bir kez öde ömür boyu kullan",
+      rights: "Tüm hakları saklıdır.",
+    }
+  },
+  en: {
+    nav: {
+      home: "Home",
+      services: "Services",
+      portfolio: "Portfolio",
+      testimonials: "Testimonials",
+      contact: "Contact",
+    },
+    hero: {
+      badge: "YOUR DIGITAL TRANSFORMATION PARTNER",
+      title: "Coding the ",
+      titleAccent: "Future",
+      description: "As TUGCore, we take your business to the digital world, producing modern and scalable solutions. We are here to turn your ideas into reality.",
+      cta_primary: "View Projects",
+      cta_secondary: "Contact Us",
+    },
+    portfolio: {
+      badge: "PORTFOLIO",
+      title: "Our Projects",
+      categories: {
+        all: "All",
+        web: "Web Development",
+        mobile: "Mobile App",
+        design: "UI/UX Design",
+      },
+      demo_request: "Request Demo",
+      view_details: "View Details",
+    },
+    pricing: {
+      badge: "PRICING",
+      title: "Tailored Solutions & Packages",
+      desc: "Choose the package that best fits your needs and let's grow your business digitally.",
+      starter: "Starter",
+      pro: "Professional",
+      enterprise: "Enterprise",
+      button: "Get Started Now",
+      contact: "Contact for details"
+    },
+    process: {
+      badge: "PROCESS",
+      title: "How We Work?",
+      step1: "Discovery & Analysis",
+      step1Desc: "We listen to your needs and determine the right strategy.",
+      step2: "Design & UX",
+      step2Desc: "We design user-friendly and modern interfaces.",
+      step3: "Development",
+      step3Desc: "We code securely and fast with the latest technologies.",
+      step4: "Launch & Support",
+      step4Desc: "We bring your project to life and always stand by you."
+    },
+    support: {
+      badge: "SUPPORT",
+      title: "How Can We Help?",
+      desc: "We are here for your questions, technical problems or new projects.",
+      form_title: "Support Request",
+      form_name: "FULL NAME",
+      form_email: "EMAIL",
+      form_subject: "SUBJECT",
+      form_message: "YOUR MESSAGE",
+      form_submit: "SEND",
+      form_success: "DONE!",
+      form_submitting: "SENDING...",
+      faq_title: "Frequently Asked Questions",
+    },
+    footer: {
+      description: "We are with you to leave a mark in the digital world. We build the future with modern technologies and user-oriented designs.",
+      rights: "All rights reserved.",
+    }
+  }
+};

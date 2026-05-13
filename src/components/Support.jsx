@@ -18,10 +18,12 @@ import {
 import emailjs from '@emailjs/browser';
 import Reveal from './Reveal';
 import Magnetic from './Magnetic';
+import { useLanguage } from '../context/LanguageContext';
 
 emailjs.init("qHEjnc04CyvVULi3B");
 
 const Support = () => {
+  const { t, language } = useLanguage();
   const form = useRef();
   const [activeFaq, setActiveFaq] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,43 +31,38 @@ const Support = () => {
 
   const faqs = [
     {
-      question: "Nasıl destek alabilirim?",
-      answer: "Destek almak için aşağıdaki formu doldurabilir, info@tugcore.com.tr adresine e-posta gönderebilir veya +90 506 710 0717 numaralı telefondan bize ulaşabilirsiniz."
+      question: language === 'tr' ? "Nasıl destek alabilirim?" : "How can I get support?",
+      answer: language === 'tr' ? "Destek almak için aşağıdaki formu doldurabilir, info@tugcore.com.tr adresine e-posta gönderebilir veya +90 506 710 0717 numaralı telefondan bize ulaşabilirsiniz." : "To get support, you can fill out the form below, send an email to info@tugcore.com.tr or reach us at +90 506 710 0717."
     },
     {
-      question: "Çalışma saatleriniz nedir?",
-      answer: "Hafta içi 09:00 - 18:00 saatleri arasında aktif destek sağlıyoruz. Acil durumlar için e-posta yoluyla 7/24 bize ulaşabilirsiniz."
+      question: language === 'tr' ? "Çalışma saatleriniz nedir?" : "What are your working hours?",
+      answer: language === 'tr' ? "Hafta içi 09:00 - 18:00 saatleri arasında aktif destek sağlıyoruz. Acil durumlar için e-posta yoluyla 7/24 bize ulaşabilirsiniz." : "We provide active support on weekdays from 09:00 to 18:00. For emergencies, you can reach us 24/7 via email."
     },
     {
-      question: "Teknik destek kapsamınız nedir?",
-      answer: "Yazılım geliştirme, web tasarımı, bulut bilişimi ,yapay zeka destekli sistemler vb. alanlarda kapsamlı teknik destek sunuyoruz."
+      question: language === 'tr' ? "Teknik destek kapsamınız nedir?" : "What is the scope of your technical support?",
+      answer: language === 'tr' ? "Yazılım geliştirme, web tasarımı, bulut bilişimi ,yapay zeka destekli sistemler vb. alanlarda kapsamlı teknik destek sunuyoruz." : "We offer comprehensive technical support in fields like software development, web design, cloud computing, AI-powered systems, etc."
     },
     {
-      question: "Projeler ne kadar sürede tamamlanıyor?",
-      answer: "Proje süresi, projenin kapsamına ve karmaşıklığına bağlı olarak değişmektedir. İlk görüşmemizde size özel bir zaman çizelgesi sunuyoruz."
+      question: language === 'tr' ? "Projeler ne kadar sürede tamamlanıyor?" : "How long do projects take to complete?",
+      answer: language === 'tr' ? "Proje süresi, projenin kapsamına ve karmaşıklığına bağlı olarak değişmektedir. İlk görüşmemizde size özel bir zaman çizelgesi sunuyoruz." : "Project duration varies depending on the scope and complexity. We provide a customized timeline during our first meeting."
     }
   ];
 
   const categories = [
     {
       icon: <Cpu className="w-8 h-8" />,
-      title: "Teknik Destek",
-      desc: "Yazılım ve altyapı sorunlarınız için uzman ekibimiz yanınızda."
+      title: language === 'tr' ? "Teknik Destek" : "Technical Support",
+      desc: language === 'tr' ? "Yazılım ve altyapı sorunlarınız için uzman ekibimiz yanınızda." : "Our expert team is with you for your software and infrastructure problems."
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      title: "Dijital Çözümler",
-      desc: "Web siteniz ve dijital varlıklarınız için destek alın."
+      title: language === 'tr' ? "Dijital Çözümler" : "Digital Solutions",
+      desc: language === 'tr' ? "Web siteniz ve dijital varlıklarınız için destek alın." : "Get support for your website and digital assets."
     },
-    // {
-    //   icon: <ShieldCheck className="w-8 h-8" />,
-    //   title: "Güvenlik",
-    //   desc: "Siber güvenlik ve veri koruma konularında danışmanlık."
-    // },
     {
       icon: <Headphones className="w-8 h-8" />,
-      title: "Müşteri İlişkileri",
-      desc: "Genel sorularınız ve önerileriniz için buradayız."
+      title: language === 'tr' ? "Müşteri İlişkileri" : "Customer Relations",
+      desc: language === 'tr' ? "Genel sorularınız ve önerileriniz için buradayız." : "We are here for your general questions and suggestions."
     }
   ];
 
@@ -77,7 +74,7 @@ const Support = () => {
       'service_9v8jft6',
       'template_ogiqw8j',
       form.current,
-      'qHEjnc04CyvVULi3B'
+      'qHEjnc04CyvVUL13B'
     )
       .then(() => {
         setIsSuccess(true);
@@ -85,7 +82,7 @@ const Support = () => {
         setTimeout(() => setIsSuccess(false), 5000);
       }, (error) => {
         console.error('EmailJS Error:', error);
-        alert(`Hata oluştu : ${error.text || error.message || 'Bilinmeyen hata'}`);
+        alert(language === 'tr' ? `Hata oluştu : ${error.text || error.message}` : `Error occurred: ${error.text || error.message}`);
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -102,17 +99,17 @@ const Support = () => {
           <div className="text-center mb-20">
             <Reveal>
               <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6 flex items-center justify-center gap-2 font-heading">
-                <LifeBuoy size={14} /> SUPPORT
+                <LifeBuoy size={14} /> {t.support.badge}
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <h3 className="text-5xl md:text-7xl font-black text-text-main leading-none tracking-tight mb-6 font-heading">
-                Size Nasıl <span className="text-primary">Destek</span> Olabiliriz?
+                {language === 'tr' ? <>Size Nasıl <span className="text-primary">Destek</span> Olabiliriz?</> : <>How Can We <span className="text-primary">Help</span> You?</>}
               </h3>
             </Reveal>
             <Reveal delay={0.4}>
               <p className="text-text-sec text-lg font-medium max-w-2xl mx-auto opacity-70 font-body">
-                Sorularınız, teknik problemleriniz veya yeni projeleriniz için buradayız.
+                {t.support.desc}
               </p>
             </Reveal>
           </div>
@@ -134,34 +131,34 @@ const Support = () => {
         </div>
 
         <div className="flex flex-col gap-24">
-          {/* Contact/Support Form - FULL WIDTH ON MOBILE */}
+          {/* Contact/Support Form */}
           <div className="w-full">
             <div className="max-w-4xl mx-auto px-0 sm:px-6 lg:px-8">
               <Reveal width="100%">
                 <div className="px-5 py-8 md:p-12 rounded-none sm:rounded-[2.5rem] glass border-y sm:border border-border-main relative overflow-hidden group shadow-2xl">
                   <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3 font-heading tracking-tight">
-                    <MessageSquare className="text-primary" size={24} /> Destek Talebi
+                    <MessageSquare className="text-primary" size={24} /> {t.support.form_title}
                   </h4>
 
                   <form ref={form} onSubmit={handleSubmit} className="space-y-6 font-body">
                     <input type="hidden" name="to_email" value="info@tugcore.com.tr" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">İSİM SOYİSİM</label>
+                        <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">{t.support.form_name}</label>
                         <input
                           required
                           type="text"
-                          placeholder="Adınız?"
+                          placeholder={language === 'tr' ? "Adınız?" : "Your Name?"}
                           name="from_name"
                           className="w-full px-6 py-5 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">E-POSTA</label>
+                        <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">{t.support.form_email}</label>
                         <input
                           required
                           type="email"
-                          placeholder="E-posta adresiniz"
+                          placeholder={language === 'tr' ? "E-posta adresiniz" : "Your email address"}
                           name="from_email"
                           className="w-full px-6 py-5 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
                         />
@@ -169,21 +166,21 @@ const Support = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">KONU</label>
+                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">{t.support.form_subject}</label>
                       <select name="subject" className="w-full px-6 py-5 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none text-base">
-                        <option>Teknik Destek</option>
-                        <option>Satış / Yeni Proje</option>
-                        <option>Ödeme İşlemleri</option>
-                        <option>Diğer</option>
+                        <option>{language === 'tr' ? 'Teknik Destek' : 'Technical Support'}</option>
+                        <option>{language === 'tr' ? 'Satış / Yeni Proje' : 'Sales / New Project'}</option>
+                        <option>{language === 'tr' ? 'Ödeme İşlemleri' : 'Payments'}</option>
+                        <option>{language === 'tr' ? 'Diğer' : 'Other'}</option>
                       </select>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">MESAJINIZ</label>
+                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">{t.support.form_message}</label>
                       <textarea
                         required
                         rows="5"
-                        placeholder="Size nasıl yardımcı olabiliriz?"
+                        placeholder={language === 'tr' ? "Size nasıl yardımcı olabiliriz?" : "How can we help you?"}
                         name="message"
                         className="w-full px-6 py-5 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main resize-none text-base"
                       ></textarea>
@@ -200,15 +197,14 @@ const Support = () => {
                         {isSubmitting ? (
                           <Loader2 className="animate-spin" size={24} />
                         ) : isSuccess ? (
-                          <>TAMAMDIR! <CheckCircle2 size={24} /></>
+                          <>{t.support.form_success} <CheckCircle2 size={24} /></>
                         ) : (
-                          <>GÖNDER <Send size={20} /></>
+                          <>{t.support.form_submit} <Send size={20} /></>
                         )}
                       </button>
                     </Magnetic>
                   </form>
 
-                  {/* Status Message */}
                   <AnimatePresence>
                     {isSuccess && (
                       <motion.div
@@ -217,7 +213,7 @@ const Support = () => {
                         exit={{ opacity: 0, y: -10 }}
                         className="mt-6 flex items-center gap-3 text-green-500 font-bold justify-center"
                       >
-                        <Sparkles size={20} /> Mesajın ulaştı , hemen dönüyoruz!
+                        <Sparkles size={20} /> {language === 'tr' ? 'Mesajın ulaştı, hemen dönüyoruz!' : 'Message received, we will get back to you soon!'}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -228,70 +224,70 @@ const Support = () => {
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid grid-cols-2 gap-4 md:gap-6">
-            <Reveal width="100%">
-              <a href="mailto:info@tugcore.com.tr" className="group flex items-center gap-5 md:gap-6 p-6 md:p-8 rounded-[2rem] glass border border-border-main hover:border-primary/30 transition-all duration-700 h-full">
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/20">
-                  <Mail size={22} className="md:w-6 md:h-6" />
-                </div>
-                <div>
-                  <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 mb-1 font-heading">E-POSTA</div>
-                  <div className="text-base md:text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight break-all">info@tugcore.com.tr</div>
-                </div>
-              </a>
-            </Reveal>
-            <Reveal delay={0.1} width="100%">
-              <a href="tel:+905067100717" className="group flex items-center gap-5 md:gap-6 p-6 md:p-8 rounded-[2rem] glass border border-border-main hover:border-primary/30 transition-all duration-700 h-full">
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/20">
-                  <Phone size={22} className="md:w-6 md:h-6" />
-                </div>
-                <div>
-                  <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 mb-1 font-heading">TELEFON</div>
-                  <div className="text-base md:text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight">+90 506 710 0717</div>
-                </div>
-              </a>
-            </Reveal>
-          </div>
-
-          {/* FAQ Section Moved to bottom */}
-          <div className="max-w-4xl mx-auto w-full pt-12">
-            <Reveal>
-              <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3 font-heading tracking-tight">
-                <HelpCircle className="text-primary" size={24} /> Sıkça Sorulan Sorular
-              </h4>
-            </Reveal>
-            <div className="space-y-4">
-              {faqs.map((faq, idx) => (
-                <Reveal key={idx} delay={0.2 + (0.1 * idx)} width="100%">
-                  <div className="rounded-2xl glass border border-border-main overflow-hidden">
-                    <button
-                      onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-primary/5 transition-colors font-heading"
-                    >
-                      <span className="font-bold text-text-main pr-4 text-sm">{faq.question}</span>
-                      <ChevronDown
-                        className={`text-primary transition-transform duration-300 ${activeFaq === idx ? 'rotate-180' : ''}`}
-                        size={18}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {activeFaq === idx && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <div className="p-6 pt-0 text-text-sec text-sm border-t border-border-main/20 leading-relaxed font-body">
-                            {faq.answer}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+              <Reveal width="100%">
+                <a href="mailto:info@tugcore.com.tr" className="group flex items-center gap-5 md:gap-6 p-6 md:p-8 rounded-[2rem] glass border border-border-main hover:border-primary/30 transition-all duration-700 h-full">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/20">
+                    <Mail size={22} className="md:w-6 md:h-6" />
                   </div>
-                </Reveal>
-              ))}
+                  <div>
+                    <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 mb-1 font-heading">E-POSTA</div>
+                    <div className="text-base md:text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight break-all">info@tugcore.com.tr</div>
+                  </div>
+                </a>
+              </Reveal>
+              <Reveal delay={0.1} width="100%">
+                <a href="tel:+905067100717" className="group flex items-center gap-5 md:gap-6 p-6 md:p-8 rounded-[2rem] glass border border-border-main hover:border-primary/30 transition-all duration-700 h-full">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/20">
+                    <Phone size={22} className="md:w-6 md:h-6" />
+                  </div>
+                  <div>
+                    <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 mb-1 font-heading">{language === 'tr' ? 'TELEFON' : 'PHONE'}</div>
+                    <div className="text-base md:text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight">+90 506 710 0717</div>
+                  </div>
+                </a>
+              </Reveal>
             </div>
-          </div>
+
+            {/* FAQ Section */}
+            <div className="max-w-4xl mx-auto w-full pt-12">
+              <Reveal>
+                <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3 font-heading tracking-tight">
+                  <HelpCircle className="text-primary" size={24} /> {t.support.faq_title}
+                </h4>
+              </Reveal>
+              <div className="space-y-4">
+                {faqs.map((faq, idx) => (
+                  <Reveal key={idx} delay={0.2 + (0.1 * idx)} width="100%">
+                    <div className="rounded-2xl glass border border-border-main overflow-hidden">
+                      <button
+                        onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                        className="w-full p-6 text-left flex items-center justify-between hover:bg-primary/5 transition-colors font-heading"
+                      >
+                        <span className="font-bold text-text-main pr-4 text-sm">{faq.question}</span>
+                        <ChevronDown
+                          className={`text-primary transition-transform duration-300 ${activeFaq === idx ? 'rotate-180' : ''}`}
+                          size={18}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {activeFaq === idx && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <div className="p-6 pt-0 text-text-sec text-sm border-t border-border-main/20 leading-relaxed font-body">
+                              {faq.answer}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
