@@ -11,7 +11,7 @@ const Pricing = () => {
     {
       name: t.pricing.starter,
       icon: <Zap className="w-6 h-6" />,
-      price: language === 'tr' ? "4.999" : "249",
+      price: language === 'tr' ? "5000" : "249",
       currency: language === 'tr' ? "₺" : "$",
       features: language === 'tr' ? [
         "Modern Web Tasarımı",
@@ -32,7 +32,7 @@ const Pricing = () => {
     {
       name: t.pricing.pro,
       icon: <Shield className="w-6 h-6" />,
-      price: language === 'tr' ? "12.499" : "599",
+      price: language === 'tr' ? "20.000" : "599",
       currency: language === 'tr' ? "₺" : "$",
       popular: true,
       features: language === 'tr' ? [
@@ -118,7 +118,7 @@ const Pricing = () => {
                 </div>
 
                 <h4 className="text-2xl font-bold text-text-main mb-4 font-heading tracking-tight">{plan.name}</h4>
-                
+
                 <div className="flex items-baseline gap-1 mb-8">
                   <span className="text-4xl font-black text-text-main font-heading">{plan.price}</span>
                   <span className="text-xl font-bold text-text-sec">{plan.currency}</span>
@@ -137,7 +137,7 @@ const Pricing = () => {
                 </ul>
 
                 <Magnetic>
-                  <a 
+                  <a
                     href="tel:+905067100717"
                     className={`w-full py-5 rounded-2xl font-bold text-sm tracking-widest uppercase flex items-center justify-center gap-3 transition-all duration-500 font-heading ${plan.featured ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'bg-bg-sec/50 text-text-main hover:bg-bg-sec border border-border-main'}`}
                   >
