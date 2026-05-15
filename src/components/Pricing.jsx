@@ -32,7 +32,7 @@ const Pricing = () => {
     {
       name: t.pricing.pro,
       icon: <Shield className="w-6 h-6" />,
-      price: language === 'tr' ? "20.000" : "599",
+      price: language === 'tr' ? "30.000" : "599",
       currency: language === 'tr' ? "₺" : "$",
       popular: true,
       features: language === 'tr' ? [
