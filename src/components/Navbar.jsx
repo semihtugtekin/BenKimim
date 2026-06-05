@@ -19,7 +19,10 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
   }, []);
 
   const handleNavClick = (e, href) => {
-    if (href.startsWith('/#')) {
+    if (href === location.pathname) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (href.startsWith('/#')) {
       e.preventDefault();
       const id = href.substring(2);
       if (location.pathname === '/') {
@@ -38,7 +41,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
     { title: t.nav.home, href: '/' },
     { title: t.nav.services, href: '/hizmetler' },
     { title: t.nav.portfolio, href: '/#portfolio' },
-    { title: t.pricing.badge, href: '/#pricing' },
+    // { title: t.pricing.badge, href: '/#pricing' },
     { title: t.nav.contact, href: '/#support' },
   ];
 
@@ -46,7 +49,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
     <div className={`fixed w-full z-50 px-4 sm:px-6 lg:px-8 transition-all duration-500 ${scrolled ? 'top-2 scale-95' : 'top-6'}`}>
       <div className="max-w-7xl mx-auto border-beam-container rounded-[2.5rem] shadow-2xl overflow-hidden">
         <div className="border-beam" />
-        
+
         <nav className="navbar-inner transition-all duration-300 glass border border-white/10 rounded-[2.5rem]">
           <div className="px-6 sm:px-12">
             <div className="flex items-center justify-between h-20">
@@ -69,16 +72,16 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               {/* Center: Logo */}
               <div className="flex-shrink-0 flex items-center absolute left-1/2 transform -translate-x-1/2">
                 <Magnetic>
-                  <Link to="/" className="flex items-center p-2">
-                    <img 
-                      src={isDarkMode ? "img/Logo/TUGcore3.png" : "img/Logo/TUGcore2.png"} 
-                      alt="TUGCore Logo" 
+                  <Link to="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center p-2">
+                    <img
+                      src={isDarkMode ? "img/Logo/TUGcore3.png" : "img/Logo/TUGcore2.png"}
+                      alt="TUGCore Logo"
                       className="h-12 w-auto object-contain transition-all duration-500 hover:scale-110 drop-shadow-2xl"
                     />
                   </Link>
                 </Magnetic>
               </div>
-              
+
               {/* Right: Language, Theme Toggle & Contact Button */}
               <div className="flex items-center gap-3 sm:gap-6 ml-auto">
                 <div className="hidden sm:flex items-center gap-4">
@@ -110,8 +113,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 
                 <div className="hidden lg:block">
                   <Magnetic>
-                    <Link 
-                      to="/#support" 
+                    <Link
+                      to="/#support"
                       onClick={(e) => handleNavClick(e, '/#support')}
                       className="flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 font-heading"
                     >
@@ -135,7 +138,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           {/* Mobile menu */}
           <AnimatePresence>
             {isOpen && (
-              <motion.div 
+              <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -167,8 +170,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                       {item.title}
                     </Link>
                   ))}
-                  <Link 
-                    to="/#support" 
+                  <Link
+                    to="/#support"
                     onClick={(e) => handleNavClick(e, '/#support')}
                     className="w-full text-center bg-primary text-white py-5 rounded-3xl text-xl font-black uppercase tracking-widest font-heading shadow-xl shadow-primary/20"
                   >

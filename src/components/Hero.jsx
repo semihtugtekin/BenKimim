@@ -8,15 +8,15 @@ import { useLanguage } from '../context/LanguageContext';
 const FloatingIcon = ({ icon: Icon, delay, className }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0 }}
-    animate={{ 
-      opacity: 0.4, 
+    animate={{
+      opacity: 0.4,
       scale: 1,
       y: [0, -20, 0],
       rotate: [0, 10, -10, 0]
     }}
-    transition={{ 
-      duration: 5, 
-      delay, 
+    transition={{
+      duration: 5,
+      delay,
       repeat: Infinity,
       ease: "easeInOut"
     }}
@@ -30,7 +30,7 @@ const Hero = ({ isDarkMode }) => {
   const { t, language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const containerRef = useRef(null);
-  
+
   const slides = [
     {
       id: 1,
@@ -50,15 +50,15 @@ const Hero = ({ isDarkMode }) => {
       cta: language === 'tr' ? "Projelerimizi Gör" : "See Our Projects",
       link: "#portfolio"
     },
-    {
-      id: 3,
-      badge: language === 'tr' ? "Hızlı Çözümler" : "Fast Solutions",
-      title: language === 'tr' ? "Hız ve <span class='text-primary'>Performans</span> Odaklı Yaklaşım" : "Speed and <span class='text-primary'>Performance</span> Oriented Approach",
-      description: language === 'tr' ? "En son teknolojileri kullanarak ölçeklenebilir ve yüksek performanslı sistemler inşa ediyoruz." : "We build scalable and high-performance systems using the latest technologies.",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000",
-      cta: language === 'tr' ? "Bizimle Başlayın" : "Start With Us",
-      link: "#pricing"
-    }
+    // {
+    //   id: 3,
+    //   badge: language === 'tr' ? "Hızlı Çözümler" : "Fast Solutions",
+    //   title: language === 'tr' ? "Hız ve <span class='text-primary'>Performans</span> Odaklı Yaklaşım" : "Speed and <span class='text-primary'>Performance</span> Oriented Approach",
+    //   description: language === 'tr' ? "En son teknolojileri kullanarak ölçeklenebilir ve yüksek performanslı sistemler inşa ediyoruz." : "We build scalable and high-performance systems using the latest technologies.",
+    //   image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000",
+    //   cta: language === 'tr' ? "Bizimle Başlayın" : "Start With Us",
+    //   link: "#pricing"
+    // }
   ];
 
   const { scrollYProgress } = useScroll({
@@ -117,7 +117,7 @@ const Hero = ({ isDarkMode }) => {
             exit={{ opacity: 0, y: -100 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-8 md:mb-12 backdrop-blur-md shadow-lg shadow-primary/5"
@@ -125,19 +125,19 @@ const Hero = ({ isDarkMode }) => {
               <Sparkles size={16} className="animate-pulse" />
               <span className="text-[0.6rem] font-bold uppercase tracking-[0.4em] font-heading">{slides[currentSlide].badge}</span>
             </motion.div>
-            
-            <h1 
+
+            <h1
               className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 md:mb-10 tracking-tight text-text-main leading-[1.1] md:leading-[1] select-none font-heading"
               dangerouslySetInnerHTML={{ __html: slides[currentSlide].title }}
             />
-            
+
             <p className="text-base sm:text-lg md:text-2xl text-text-sec mb-12 md:mb-16 max-w-3xl mx-auto font-medium leading-relaxed opacity-80 font-body">
               {slides[currentSlide].description}
             </p>
-            
+
             <div className="flex flex-col md:flex-row justify-center items-center gap-8">
               <Magnetic>
-                <a 
+                <a
                   href={slides[currentSlide].link}
                   className="group relative inline-flex items-center justify-center gap-4 bg-primary text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all shadow-2xl shadow-primary/40 overflow-hidden font-heading"
                 >
@@ -153,7 +153,7 @@ const Hero = ({ isDarkMode }) => {
         </AnimatePresence>
       </div>
 
-    <motion.div 
+      <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 hidden md:block"

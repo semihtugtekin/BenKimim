@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Code2, Github, Instagram, Linkedin, Twitter, Mail, Phone } from 'lucide-react';
+import { Code2, Github, Instagram, Linkedin, Twitter, Mail, Phone, Facebook } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
   const { t, language } = useLanguage();
-  
+
   return (
     <footer className="bg-bg-main border-t border-border-main pt-20 pb-10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,12 +58,15 @@ const Footer = () => {
               </li>
             </ul>
             <div className="flex space-x-6 mt-10 sm:mt-12">
-              <a href="#" className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl glass flex items-center justify-center text-text-sec hover:text-primary transition-all duration-300">
+              <a href="https://www.instagram.com/tugcore.ly?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl glass flex items-center justify-center text-text-sec hover:text-primary transition-all duration-300">
                 <Instagram size={24} className="sm:w-8 sm:h-8" />
               </a>
-              <a href="#" className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl glass flex items-center justify-center text-text-sec hover:text-primary transition-all duration-300">
-                <Linkedin size={24} className="sm:w-8 sm:h-8" />
+              <a href="" className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl glass flex items-center justify-center text-text-sec hover:text-primary transition-all duration-300">
+                <Facebook size={24} className="sm:w-8 sm:h-8" />
               </a>
+              {/* <a href="#" className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl glass flex items-center justify-center text-text-sec hover:text-primary transition-all duration-300">
+                <Linkedin size={24} className="sm:w-8 sm:h-8" />
+              </a> */}
             </div>
           </div>
         </div>

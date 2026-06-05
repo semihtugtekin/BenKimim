@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -9,20 +9,35 @@ import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
 import ServicesPage from './pages/ServicesPage';
 
-const ScrollToHash = () => {
-  const { hash } = useLocation();
+const ScrollToHash = ({ loading }) => {
+  const { pathname, hash } = useLocation();
+  const prevPathnameRef = useRef(pathname);
 
   useEffect(() => {
+    if (loading) return;
+
     if (hash) {
       const id = hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
+      let attempts = 0;
+      const tryScroll = () => {
+        const element = document.getElementById(id);
+        if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
+        } else if (attempts < 20) {
+          attempts++;
+          setTimeout(tryScroll, 100);
+        }
+      };
+      setTimeout(tryScroll, 100);
+    } else {
+      if (prevPathnameRef.current !== pathname) {
+        window.scrollTo(0, 0);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
-  }, [hash]);
+    prevPathnameRef.current = pathname;
+  }, [pathname, hash, loading]);
 
   return null;
 };
@@ -45,6 +60,7 @@ const AnimatedRoutes = ({ isDarkMode, toggleTheme }) => {
       {!loading && <CustomCursor />}
 
       <div className={`min-h-screen bg-bg-main text-text-main transition-colors duration-300 selection:bg-primary selection:text-white ${loading ? 'overflow-hidden max-h-screen' : ''}`}>
+        <ScrollToHash loading={loading} />
         <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
@@ -73,7 +89,6 @@ function App() {
 
   return (
     <Router>
-      <ScrollToHash />
       <AnimatedRoutes isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
     </Router>
   );

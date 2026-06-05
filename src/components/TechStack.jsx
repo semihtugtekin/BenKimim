@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Cpu, Globe, Zap, Database, Shield, Smartphone, Layout, Search, Sparkles } from 'lucide-react';
+import { Cpu, Globe, Zap, Database, Shield, Smartphone, Layout, Search, Sparkles, Code2, Server, HardDrive } from 'lucide-react';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -14,6 +14,30 @@ const TechStack = () => {
       size: "large",
       color: "bg-blue-500/10 text-blue-500",
       desc: language === 'tr' ? "Modern ve hızlı web arayüzleri." : "Modern and fast web interfaces."
+    },
+    {
+      icon: <Code2 className="w-8 h-8" />,
+      name: "C# / ASP.NET",
+      category: "Backend",
+      size: "large",
+      color: "bg-violet-500/10 text-violet-500",
+      desc: language === 'tr' ? "Güçlü ve ölçeklenebilir backend geliştirme." : "Powerful and scalable backend development."
+    },
+    {
+      icon: <Server className="w-8 h-8" />,
+      name: "ASP.NET Core MVC",
+      category: "Framework",
+      size: "medium",
+      color: "bg-indigo-500/10 text-indigo-500",
+      desc: language === 'tr' ? "Kurumsal düzeyde web uygulamaları." : "Enterprise-level web applications."
+    },
+    {
+      icon: <HardDrive className="w-8 h-8" />,
+      name: "MSSQL",
+      category: "Database",
+      size: "medium",
+      color: "bg-orange-500/10 text-orange-500",
+      desc: language === 'tr' ? "Güvenilir ve yüksek performanslı veritabanı." : "Reliable and high-performance database."
     },
     {
       icon: <Database className="w-6 h-6" />,
