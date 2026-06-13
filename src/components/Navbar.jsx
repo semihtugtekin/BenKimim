@@ -50,11 +50,27 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
       <div className="max-w-7xl mx-auto border-beam-container rounded-[2.5rem] shadow-2xl overflow-hidden">
         <div className="border-beam" />
 
-        <nav className="navbar-inner transition-all duration-300 glass border border-white/10 rounded-[2.5rem]">
+        <nav className="navbar-inner transition-all duration-300 glass border border-border-main rounded-[2.5rem]">
           <div className="px-6 sm:px-12">
-            <div className="flex items-center justify-between h-20">
-              {/* Left: Menu Items (Desktop) */}
-              <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
+            <div className="flex items-center justify-between h-20 relative">
+              {/* Left: Logo & Slogan */}
+              <div className="flex items-center gap-3 z-10">
+                <Magnetic>
+                  <Link to="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center p-2">
+                    <img
+                      src={isDarkMode ? "img/Logo/TUGcore3.png" : "img/Logo/TUGcore2.png"}
+                      alt="TUGCore Logo"
+                      className="h-12 w-auto object-contain transition-all duration-500 hover:scale-110 drop-shadow-2xl"
+                    />
+                  </Link>
+                </Magnetic>
+                <span className="hidden lg:block text-[0.65rem] font-bold text-text-sec/60 border-l border-border-main pl-3 py-1 font-heading uppercase tracking-widest max-w-[160px] leading-tight">
+                  Dijitalin en samimi ve hızlı başlangıcı
+                </span>
+              </div>
+
+              {/* Center: Menu Items (Desktop) */}
+              <div className="hidden md:flex items-center space-x-8 lg:space-x-10 absolute left-1/2 transform -translate-x-1/2">
                 {menuItems.map((item) => (
                   <Magnetic key={item.title}>
                     <Link
@@ -69,21 +85,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 ))}
               </div>
 
-              {/* Center: Logo */}
-              <div className="flex-shrink-0 flex items-center absolute left-1/2 transform -translate-x-1/2">
-                <Magnetic>
-                  <Link to="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center p-2">
-                    <img
-                      src={isDarkMode ? "img/Logo/TUGcore3.png" : "img/Logo/TUGcore2.png"}
-                      alt="TUGCore Logo"
-                      className="h-12 w-auto object-contain transition-all duration-500 hover:scale-110 drop-shadow-2xl"
-                    />
-                  </Link>
-                </Magnetic>
-              </div>
-
               {/* Right: Language, Theme Toggle & Contact Button */}
-              <div className="flex items-center gap-3 sm:gap-6 ml-auto">
+              <div className="flex items-center gap-3 sm:gap-6 ml-auto z-10">
                 <div className="hidden sm:flex items-center gap-4">
                   <Magnetic>
                     <button

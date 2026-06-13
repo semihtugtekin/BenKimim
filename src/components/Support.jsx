@@ -144,30 +144,30 @@ const Support = () => {
                     <input type="hidden" name="to_email" value="info@tugcore.com.tr" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">{t.support.form_name}</label>
+                        <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/80 ml-2 font-heading">{t.support.form_name}</label>
                         <input
                           required
                           type="text"
                           placeholder={language === 'tr' ? "Adınız?" : "Your Name?"}
                           name="from_name"
-                          className="w-full px-6 py-5 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
+                          className="w-full px-6 py-5 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">{t.support.form_email}</label>
+                        <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/80 ml-2 font-heading">{t.support.form_email}</label>
                         <input
                           required
                           type="email"
                           placeholder={language === 'tr' ? "E-posta adresiniz" : "Your email address"}
                           name="from_email"
-                          className="w-full px-6 py-5 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
+                          className="w-full px-6 py-5 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">{t.support.form_subject}</label>
-                      <select name="subject" className="w-full px-6 py-5 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none text-base">
+                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/80 ml-2 font-heading">{t.support.form_subject}</label>
+                      <select name="subject" className="w-full px-6 py-5 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none text-base">
                         <option>{language === 'tr' ? 'Teknik Destek' : 'Technical Support'}</option>
                         <option>{language === 'tr' ? 'Satış / Yeni Proje' : 'Sales / New Project'}</option>
                         <option>{language === 'tr' ? 'Ödeme İşlemleri' : 'Payments'}</option>
@@ -176,13 +176,13 @@ const Support = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 ml-2 font-heading">{t.support.form_message}</label>
+                      <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/80 ml-2 font-heading">{t.support.form_message}</label>
                       <textarea
                         required
                         rows="5"
                         placeholder={language === 'tr' ? "Size nasıl yardımcı olabiliriz?" : "How can we help you?"}
                         name="message"
-                        className="w-full px-6 py-5 rounded-2xl bg-bg-main/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main resize-none text-base"
+                        className="w-full px-6 py-5 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main resize-none text-base"
                       ></textarea>
                     </div>
 

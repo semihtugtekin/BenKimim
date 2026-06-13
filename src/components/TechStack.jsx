@@ -92,9 +92,9 @@ const TechStack = () => {
   };
 
   return (
-    <section className="py-32 bg-bg-main relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-bg-main relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div className="text-center mb-10 md:mb-20">
           <Reveal>
             <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6 flex items-center justify-center gap-2 font-heading">
               <Cpu size={14} /> TECH STACK
@@ -107,30 +107,37 @@ const TechStack = () => {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[180px] gap-6">
-          {technologies.map((tech, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              className={`${gridStyles[tech.size]} group relative p-8 rounded-[2rem] glass border border-border-main hover:border-primary/30 transition-all duration-500 overflow-hidden flex flex-col justify-between`}
-            >
-              <div className={`w-12 h-12 rounded-2xl ${tech.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500`}>
-                {tech.icon}
-              </div>
-              
-              <div>
-                <div className="text-[0.6rem] font-bold uppercase tracking-widest opacity-50 mb-1">{tech.category}</div>
-                <h4 className="text-xl font-bold text-text-main font-heading">{tech.name}</h4>
-                {tech.desc && <p className="text-xs text-text-sec mt-2 opacity-70 line-clamp-2">{tech.desc}</p>}
-              </div>
+        {/* Infinite Horizontal Marquee (Responsive: Compact on Mobile, Large on Desktop) */}
+        <div className="relative w-full overflow-hidden py-4">
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              ease: "linear",
+              duration: 25,
+              repeat: Infinity,
+            }}
+            className="flex gap-2 md:gap-6 w-max"
+          >
+            {[...technologies, ...technologies].map((tech, idx) => (
+              <div
+                key={idx}
+                className="w-[calc((100vw-48px)/3)] md:w-[330px] h-[90px] md:h-[180px] flex-shrink-0 relative rounded-2xl md:rounded-[2rem] glass border border-border-main hover:border-primary/30 transition-all duration-500 flex flex-col justify-center md:justify-between items-center md:items-start gap-1.5 md:gap-0 p-3 md:p-8 overflow-hidden text-center md:text-left group"
+              >
+                <div className={`w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl ${tech.color} flex items-center justify-center [&>svg]:w-5 [&>svg]:h-5 md:[&>svg]:w-8 md:[&>svg]:h-8 md:mb-4 group-hover:scale-110 transition-transform duration-500`}>
+                  {tech.icon}
+                </div>
+                
+                <div>
+                  <div className="hidden md:block text-[0.6rem] font-bold uppercase tracking-widest opacity-50 mb-1">{tech.category}</div>
+                  <h4 className="text-[0.6rem] md:text-xl font-black md:font-bold text-text-main font-heading truncate md:normal-case w-full md:w-auto px-1 md:px-0">{tech.name}</h4>
+                  {tech.desc && <p className="hidden md:block text-xs text-text-sec mt-2 opacity-70 line-clamp-2">{tech.desc}</p>}
+                </div>
 
-              {/* Decorative background element */}
-              <div className={`absolute -right-4 -bottom-4 w-24 h-24 rounded-full ${tech.color} opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-500`} />
-            </motion.div>
-          ))}
+                {/* Decorative background element */}
+                <div className={`absolute -right-4 -bottom-4 w-12 h-12 md:w-24 md:h-24 rounded-full ${tech.color} opacity-5 md:opacity-0 md:group-hover:opacity-10 blur-xl md:blur-2xl transition-opacity duration-500`} />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
