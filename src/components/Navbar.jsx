@@ -40,6 +40,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
   const menuItems = [
     { title: t.nav.home, href: '/' },
     { title: t.nav.services, href: '/hizmetler' },
+    { title: t.nav.about, href: '/biz-kimiz' },
     { title: t.nav.portfolio, href: '/#portfolio' },
     // { title: t.pricing.badge, href: '/#pricing' },
     { title: t.nav.contact, href: '/#support' },
@@ -52,7 +53,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 
         <nav className="navbar-inner transition-all duration-300 glass border border-border-main rounded-[2.5rem]">
           <div className="px-6 sm:px-12">
-            <div className="flex items-center justify-between h-20 relative">
+            <div className="flex items-center justify-between h-20">
               {/* Left: Logo & Slogan */}
               <div className="flex items-center gap-3 z-10">
                 <Magnetic>
@@ -64,13 +65,13 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                     />
                   </Link>
                 </Magnetic>
-                <span className="hidden lg:block text-[0.65rem] font-bold text-text-sec/60 border-l border-border-main pl-3 py-1 font-heading uppercase tracking-widest max-w-[160px] leading-tight">
+                <span className="hidden xl:block text-[0.65rem] font-bold text-text-sec/60 border-l border-border-main pl-3 py-1 font-heading uppercase tracking-widest max-w-[160px] leading-tight">
                   Dijitalin en samimi ve hızlı başlangıcı
                 </span>
               </div>
 
               {/* Center: Menu Items (Desktop) */}
-              <div className="hidden md:flex items-center space-x-8 lg:space-x-10 absolute left-1/2 transform -translate-x-1/2">
+              <div className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8 z-10">
                 {menuItems.map((item) => (
                   <Magnetic key={item.title}>
                     <Link
@@ -86,12 +87,12 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               </div>
 
               {/* Right: Language, Theme Toggle & Contact Button */}
-              <div className="flex items-center gap-3 sm:gap-6 ml-auto z-10">
-                <div className="hidden sm:flex items-center gap-4">
+              <div className="flex items-center gap-2 sm:gap-3 z-10">
+                <div className="hidden sm:flex items-center gap-2 lg:gap-3">
                   <Magnetic>
                     <button
                       onClick={toggleLanguage}
-                      className="flex items-center gap-2 px-3 py-2 rounded-full bg-bg-sec/50 hover:bg-primary/20 text-text-main transition-all duration-300 border border-border-main glass text-[0.6rem] font-bold uppercase tracking-widest font-heading"
+                      className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-bg-sec/50 hover:bg-primary/20 text-text-main transition-all duration-300 border border-border-main glass text-[0.6rem] font-bold uppercase tracking-widest font-heading cursor-pointer"
                     >
                       <Languages size={14} className="text-primary" />
                       {language === 'tr' ? 'EN' : 'TR'}
@@ -101,25 +102,25 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                   <Magnetic>
                     <button
                       onClick={toggleTheme}
-                      className="p-3 rounded-full bg-bg-sec/50 hover:bg-primary/20 text-text-main transition-all duration-300 border border-border-main group glass"
+                      className="p-2.5 rounded-full bg-bg-sec/50 hover:bg-primary/20 text-text-main transition-all duration-300 border border-border-main group glass cursor-pointer"
                       aria-label="Toggle Theme"
                     >
                       <motion.div
                         animate={{ rotate: isDarkMode ? 180 : 0 }}
                         transition={{ type: "spring", stiffness: 200, damping: 10 }}
                       >
-                        {isDarkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-primary" />}
+                        {isDarkMode ? <Sun size={18} className="text-yellow-400" /> : <Moon size={18} className="text-primary" />}
                       </motion.div>
                     </button>
                   </Magnetic>
                 </div>
 
-                <div className="hidden lg:block">
+                <div className="hidden xl:block">
                   <Magnetic>
                     <Link
                       to="/#support"
                       onClick={(e) => handleNavClick(e, '/#support')}
-                      className="flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 font-heading"
+                      className="flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 font-heading"
                     >
                       {language === 'tr' ? 'Hadi Başlayalım' : "Let's Start"} <ArrowRight size={14} />
                     </Link>
@@ -129,7 +130,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 <div className="md:hidden">
                   <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="p-2 text-text-sec hover:text-primary focus:outline-none transition-colors"
+                    className="p-2 text-text-sec hover:text-primary focus:outline-none transition-colors cursor-pointer"
                   >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                   </button>

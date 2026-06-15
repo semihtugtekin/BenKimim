@@ -101,7 +101,9 @@ export const projects = [
     tags: ['HTML', 'CSS', 'JavaScript', 'next.js'],
     demoUrl: 'https://masatakipdemo.netlify.app/admin',
     repoUrl: '#',
-    description: 'İşletmeler için masa takip sistemi. Yönetici paneli üzerinden masaların durumunu görebilir, siparişleri takip edebilir ve menüleri güncelleyebilirsiniz.Bar ,Mutfak ,Garson,Admin ve Ödeme sayfaları mevcuttur .\n Giriş bilgileri ; \n E-Mail : admin@kafe.com \n Şifre : admin123',
+    description: 'İşletmeler için masa takip sistemi. Yönetici paneli üzerinden masaların durumunu görebilir, siparişleri takip edebilir ve menüleri güncelleyebilirsiniz. Bar, Mutfak, Garson, Admin ve Ödeme sayfaları mevcuttur.',
+    loginEmail: 'admin@kafe.com',
+    loginPassword: 'admin123',
     problem: 'İşletmelerin sipariş ve masa takibinde yaşadığı zorluklar ve bu sorunların müşteri memnuniyetine olan etkisi.',
     solution: 'QR menü ve masa takip sistemi ile işletmelerin sipariş ve masa takibinde yaşadığı zorluklar ve bu sorunların müşteri memnuniyetine olan etkisi.',
     features: [

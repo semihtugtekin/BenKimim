@@ -8,6 +8,7 @@ import CustomCursor from './components/CustomCursor';
 import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
 import ServicesPage from './pages/ServicesPage';
+import AboutPage from './pages/AboutPage';
 
 const ScrollToHash = ({ loading }) => {
   const { pathname, hash } = useLocation();
@@ -66,6 +67,7 @@ const AnimatedRoutes = ({ isDarkMode, toggleTheme }) => {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageTransition><Home isDarkMode={isDarkMode} /></PageTransition>} />
             <Route path="/hizmetler" element={<PageTransition><ServicesPage /></PageTransition>} />
+            <Route path="/biz-kimiz" element={<PageTransition><AboutPage /></PageTransition>} />
           </Routes>
         </AnimatePresence>
         <Footer />
@@ -75,7 +77,10 @@ const AnimatedRoutes = ({ isDarkMode, toggleTheme }) => {
 };
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('app_theme');
+    return savedTheme ? savedTheme === 'dark' : false; // Default to false (light theme)
+  });
 
   useEffect(() => {
     if (isDarkMode) {
@@ -85,7 +90,13 @@ function App() {
     }
   }, [isDarkMode]);
 
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+  const toggleTheme = () => {
+    setIsDarkMode(prev => {
+      const next = !prev;
+      localStorage.setItem('app_theme', next ? 'dark' : 'light');
+      return next;
+    });
+  };
 
   return (
     <Router>
