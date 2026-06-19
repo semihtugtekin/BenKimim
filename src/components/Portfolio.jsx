@@ -9,20 +9,20 @@ const Portfolio = () => {
   const { t, language } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const categories = [t.portfolio.categories.all, t.portfolio.categories.web, t.portfolio.categories.mobile, t.portfolio.categories.design];
-  const [activeCategory, setActiveCategory] = useState(t.portfolio.categories.all);
+  const categoryKeys = ['all', 'web', 'mobile', 'design'];
+  const [activeCategoryKey, setActiveCategoryKey] = useState('all');
 
   const targetRef = useRef(null);
   
-  const filteredProjects = activeCategory === t.portfolio.categories.all
+  const filteredProjects = activeCategoryKey === 'all'
     ? projects
     : projects.filter(p => {
         const catMap = {
-          [t.portfolio.categories.web]: 'Web Geliştirme',
-          [t.portfolio.categories.mobile]: 'Mobil Uygulama',
-          [t.portfolio.categories.design]: 'UI/UX Tasarım'
+          web: 'Web Geliştirme',
+          mobile: 'Mobil Uygulama',
+          design: 'UI/UX Tasarım'
         };
-        return p.category === catMap[activeCategory];
+        return p.category === catMap[activeCategoryKey];
       });
 
   const openModal = (project) => {
@@ -49,35 +49,46 @@ const Portfolio = () => {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div className="flex flex-col items-center text-center mb-16 gap-8">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="max-w-3xl flex flex-col items-center"
           >
-            <h2 className="text-[0.6rem] font-bold uppercase tracking-[0.4em] text-primary mb-3 flex items-center gap-2 font-heading">
+            <span className="text-[0.6rem] font-bold uppercase tracking-[0.4em] text-primary mb-3 flex items-center gap-2 font-heading justify-center">
               <Layers size={12} /> {t.portfolio.badge}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-text-main/95 mb-6 font-heading leading-relaxed max-w-2xl mx-auto">
+              {t.portfolio.description_top}
             </h2>
             <h3 className="text-4xl md:text-5xl font-black text-text-main leading-none tracking-tight font-heading">
               <span className="text-primary">{t.portfolio.title}</span>
             </h3>
+            <p className="text-xs md:text-sm text-text-sec/70 mt-3.5 font-body italic flex items-center gap-2 justify-center">
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              {t.portfolio.note}
+            </p>
           </motion.div>
 
           {/* Category Filter */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-4 md:pb-0 no-scrollbar glass p-2 rounded-3xl border border-border-main scroll-smooth">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`whitespace-nowrap px-6 py-2.5 rounded-2xl text-[0.6rem] font-bold transition-all uppercase tracking-widest font-heading ${activeCategory === cat
-                    ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
-                    : 'text-text-sec hover:text-primary hover:bg-bg-main/50'
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 md:pb-0 no-scrollbar glass p-2 rounded-3xl border border-border-main scroll-smooth">
+            {categoryKeys.map((key) => {
+              const label = t.portfolio.categories[key];
+              return (
+                <button
+                  key={key}
+                  onClick={() => setActiveCategoryKey(key)}
+                  className={`whitespace-nowrap px-6 py-2.5 rounded-2xl text-[0.6rem] font-bold transition-all uppercase tracking-widest font-heading ${activeCategoryKey === key
+                      ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
+                      : 'text-text-sec hover:text-primary hover:bg-bg-main/50'
+                    }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
