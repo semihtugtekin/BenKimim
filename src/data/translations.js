@@ -67,7 +67,7 @@ export const translations = {
       step4Desc: "Projenizi hayata geçiriyor ve her zaman yanınızda oluyoruz."
     },
     footer: {
-      description: "Dijital dünyada iz bırakmak için yanınızdayız. Modern teknolojiler ve kullanıcı odaklı tasarımlarla geleceği inşa ediyoruz. Bir kez öde ömür boyu kullan",
+      description: "Dijital dünyada iz bırakmak için yanınızdayız. Modern teknolojiler ve kullanıcı odaklı tasarımlarla geleceği inşa ediyoruz. ",
       rights: "Tüm hakları saklıdır.",
     }
   },
