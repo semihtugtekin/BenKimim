@@ -1,9 +1,9 @@
 export const projects = [
   {
     id: 1,
-    title: 'Nergiz Güzellik Salonu Randevu Sistemi',
+    title: 'Güzellik Salonu CRM & ERP Sistemi',
     category: 'Web Geliştirme',
-    image: 'img/NergizGuzellikSalonu.png',
+    image: 'projects/NergizGuzellikSalonu.png',
     tags: ['PostgreSQL', 'Tailwind CSS', 'Appointment System'],
     demoUrl: 'https://www.xn--nergizgzelliksalonu-cbc.com/',
     repoUrl: '#',
@@ -12,10 +12,14 @@ export const projects = [
     solution: 'Hızlı, kolay ve her cihazdan erişilebilir, anlık müsaitlik takibi sunan dijital bir randevu yönetim sistemi kurgulandı.',
     features: [
       'Hızlı ve Kolay Randevu Yönetimi',
-      'Uzman Ekip (Nergiz, Melek, Ela) Seçimi',
+      'Uzman Ekip yönetimi ve seçimi',
       'Mobil Uygulama Entegrasyonu',
       'Anlık Bilgilendirme ve Hatırlatmalar',
-      'Gelişmiş Hizmet Kategorileri'
+      'Gelişmiş Hizmet Kategorileri',
+      'Müşteri Yönetimi',
+      'SMS Bildirimleri',
+      'Personel Yönetimi',
+      'Mali işlemler',
     ]
   },
   // {
@@ -79,12 +83,12 @@ export const projects = [
     id: 5,
     title: 'QR menü ve online sipariş sistemi',
     category: 'Web Geliştirme',
-    image: 'img/KaleburgerOrtam.png',
+    image: 'projects/tugcore_siparis.png',
     tags: ['HTML', 'CSS', 'JavaScript', 'next.js'],
     demoUrl: 'https://magical-paletas-4e0ef3.netlify.app/',
     repoUrl: '#',
-    description: 'KaleBurger için hazırlanan tanıtım ve işletme sayfası projesi. Canlı önizleme butonuyla proje sayfasına yönlendirir.',
-    problem: 'Ürün/hizmetlerin hızlı ve etkileyici şekilde sergilenmesi gerekiyordu.Ek olarak siparişlerin daha kontrollü ve profesyonel olarak tekip-gönderiminin izlenmesi adına kullanıcı dostu bir arayüzle desteklendi .',
+    description: '  Canlı önizleme butonuyla proje sayfasına yönlendirir.',
+    problem: 'Büyük ve bilindik şirketlerin yüksek komisyon alması , ödemelerin gecikmesi .Ek olarak siparişlerin daha kontrollü ve profesyonel olarak tekip-gönderiminin izlenmesi adına kullanıcı dostu bir arayüzle desteklenmesi amaçlanmıştır .',
     solution: 'Hızlı açılan, mobil uyumlu ve modern animasyonlara sahip online sipariş sistemi tasarlandı.Her yıl menülere ve online sipariş platformları için ayrılan bütçe %50 azaldı.',
     features: [
       'Mobil Uyumlu Tasarım',
@@ -97,7 +101,7 @@ export const projects = [
     id: 6,
     title: 'QR menü & Masa takip sistemi ',
     category: 'Web Geliştirme',
-    image: 'img/KafeTakipSis.png',
+    image: 'projects/tugcore_masatakip.png',
     tags: ['HTML', 'CSS', 'JavaScript', 'next.js'],
     demoUrl: 'https://masatakipdemo.netlify.app/admin',
     repoUrl: '#',
@@ -111,14 +115,15 @@ export const projects = [
       'Modern UI Bileşenleri',
       'Masa Takip Sistemi',
       'Sipariş Takip Sistemi',
-      'Menü Yönetimi'
+      'Menü Yönetimi',
+      'Masadan sipariş (müşeteri için)'
     ]
   },
   {
     id: 7,
     title: 'Taksi Çağırma ve araç takip sistemi',
     category: 'Web Geliştirme',
-    image: 'img/TaksiTakip.png',
+    image: 'projects/tugcore_taksi.png',
     tags: ['HTML', 'CSS', 'JavaScript', 'next.js'],
     demoUrl: 'https://hastahanetaksi.netlify.app/',
     repoUrl: '#',
