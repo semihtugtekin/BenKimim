@@ -19,8 +19,8 @@ export const translations = {
     portfolio: {
       badge: "PORTFOLYO",
       title: "Projelerimiz",
-      description_top: "Teknoloji odaklı AR-GE süreçlerimize ortak olun. Geleceği şekillendiren projelerimizi satın alarak inovasyona katkıda bulunabilir veya yeni iş birlikleri için doğrudan bizimle iletişime geçebilirsiniz. ",
-      note: "merak etmeyin işletmeniz bizimle sonsuza dek güvende",
+      description_top: "Teknoloji odaklı AR-GE süreçlerimize ortak olun.Alışkanlıları değiştiren  projelerimizi satın alarak inovasyona katkıda bulunabilir veya yeni iş birlikleri için doğrudan bizimle iletişime geçebilirsiniz. ",
+      note: "Güvenli bölge",
       categories: {
         all: "Tümü",
         web: "Web Geliştirme",

@@ -32,9 +32,9 @@ const Preloader = ({ isDarkMode }) => {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <img 
-            src={isDarkMode ? "/img/Logo/TUGcore3.png" : "/img/Logo/TUGcore2.png"} 
-            alt="TUGCore Logo" 
+          <img
+            src={isDarkMode ? "/img/Logo/logo_full.png" : "/img/Logo/logo_full.png"}
+            alt="TUGCore Logo"
             className="h-20 w-auto object-contain filter drop-shadow-2xl"
           />
         </motion.div>
@@ -47,10 +47,10 @@ const Preloader = ({ isDarkMode }) => {
             className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary to-secondary"
           />
         </div>
-        
+
         {/* Progress Text */}
         <div className="flex flex-col items-center mt-6">
-          <motion.span 
+          <motion.span
             className="text-text-main font-bold tracking-[0.3em] text-[0.6rem] uppercase font-heading"
           >
             Sistem Hazırlanıyor {progress}%

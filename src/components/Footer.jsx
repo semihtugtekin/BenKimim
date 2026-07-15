@@ -1,33 +1,9 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Code2, Github, Instagram, Linkedin, Twitter, Mail, Phone, Facebook } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Code2, Instagram, Mail, Phone, Facebook } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
   const { t, language } = useLanguage();
-  const [isMobile, setIsMobile] = useState(false);
-  const [isAtBottom, setIsAtBottom] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = window.innerHeight;
-      const scrolled = window.scrollY;
-      // Trigger bottom state when within 120px of the absolute bottom
-      setIsAtBottom(scrollHeight - clientHeight - scrolled < 120);
-    };
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <footer className="bg-bg-main border-t border-border-main pt-20 pb-10 transition-colors duration-300">
@@ -104,43 +80,21 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Video landing section at the very bottom of the page */}
-        <div className="border-t border-border-main/30 mt-8 pt-8 flex items-center justify-center w-full h-[100px] sm:h-[180px]">
+        {/* Logo landing section at the very bottom of the page */}
+        <div className="border-t border-border-main/30 mt-8 pt-8 flex items-center justify-center w-full">
           <div className="flex items-center gap-4">
-            {isAtBottom && (
-              <motion.a
-                layoutId="hero-video-shared"
-                href="tel:+905067100717"
-                style={{
-                  width: isMobile ? "100px" : "180px",
-                  height: isMobile ? "100px" : "180px",
-                  borderRadius: "16px",
-                }}
-                className="overflow-hidden shadow-2xl border border-border-main/50 bg-black block cursor-pointer flex-shrink-0"
-              >
-                <video
-                  src="/hero.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              </motion.a>
-            )}
-
-            {isAtBottom && (
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                className="pointer-events-none select-none"
-              >
-                <span className="text-3xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-heading tracking-tighter">
-                  TUGCore
-                </span>
-              </motion.div>
-            )}
+            <a href="tel:+905067100717" className="cursor-pointer">
+              <img
+                src="/img/Logo/logo_full.png"
+                alt="TUGCore Logo"
+                className="w-16 h-16 sm:w-24 sm:h-24 object-contain"
+              />
+            </a>
+            <div className="select-none">
+              <span className="text-3xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-heading tracking-tighter">
+                TUGCore
+              </span>
+            </div>
           </div>
         </div>
       </div>

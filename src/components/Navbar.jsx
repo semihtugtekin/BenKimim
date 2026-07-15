@@ -59,7 +59,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                 <Magnetic>
                   <Link to="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center p-2">
                     <img
-                      src={isDarkMode ? "img/Logo/TUGcore3.png" : "img/Logo/TUGcore2.png"}
+                      src={isDarkMode ? "img/Logo/logo_full.png" : "img/Logo/logo_full.png"}
                       alt="TUGCore Logo"
                       className="h-12 w-auto object-contain transition-all duration-500 hover:scale-110 drop-shadow-2xl"
                     />
