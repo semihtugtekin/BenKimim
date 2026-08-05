@@ -5,8 +5,10 @@ import emailjs from '@emailjs/browser';
 import Magnetic from './Magnetic';
 import Reveal from './Reveal';
 
+import { EMAILJS_CONFIG } from '../config/emailjs';
+
 // Initialize EmailJS
-emailjs.init("qHEjnc04CyvVULi3B");
+emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
 
 const Contact = () => {
   const form = useRef();
@@ -18,10 +20,10 @@ const Contact = () => {
     setIsSubmitting(true);
 
     emailjs.sendForm(
-      'service_9v8jft6',
-      'template_ogiqw8j',
+      EMAILJS_CONFIG.SERVICE_ID,
+      EMAILJS_CONFIG.TEMPLATE_ID,
       form.current,
-      'qHEjnc04CyvVULi3B'
+      EMAILJS_CONFIG.PUBLIC_KEY
     )
     .then((result) => {
         setIsSuccess(true);

@@ -19,8 +19,9 @@ import emailjs from '@emailjs/browser';
 import Reveal from './Reveal';
 import Magnetic from './Magnetic';
 import { useLanguage } from '../context/LanguageContext';
+import { EMAILJS_CONFIG } from '../config/emailjs';
 
-emailjs.init("qHEjnc04CyvVULi3B");
+emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
 
 const Support = () => {
   const { t, language } = useLanguage();
@@ -71,10 +72,10 @@ const Support = () => {
     setIsSubmitting(true);
 
     emailjs.sendForm(
-      'service_9v8jft6',
-      'template_ogiqw8j',
+      EMAILJS_CONFIG.SERVICE_ID,
+      EMAILJS_CONFIG.TEMPLATE_ID,
       form.current,
-      'qHEjnc04CyvVUL13B'
+      EMAILJS_CONFIG.PUBLIC_KEY
     )
       .then(() => {
         setIsSuccess(true);
