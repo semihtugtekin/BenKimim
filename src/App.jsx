@@ -77,9 +77,10 @@ const AnimatedRoutes = ({ isDarkMode, toggleTheme }) => {
 };
 
 function App() {
+  // İlk açılışta her zaman aydınlık tema ile başla
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem('app_theme');
-    return savedTheme ? savedTheme === 'dark' : false; // Default to false (light theme)
+    localStorage.removeItem('app_theme');
+    return false;
   });
 
   useEffect(() => {
@@ -91,11 +92,7 @@ function App() {
   }, [isDarkMode]);
 
   const toggleTheme = () => {
-    setIsDarkMode(prev => {
-      const next = !prev;
-      localStorage.setItem('app_theme', next ? 'dark' : 'light');
-      return next;
-    });
+    setIsDarkMode(prev => !prev);
   };
 
   return (

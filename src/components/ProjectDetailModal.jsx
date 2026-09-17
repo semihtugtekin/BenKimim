@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, ExternalLink, CheckCircle2, Target, Lightbulb, Phone, 
   Globe, Laptop, RotateCw, Maximize2, Lock, ArrowRight, Sparkles,
-  Key, Copy, Check 
+  Key, Copy, Check, Users, Layers, Zap
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -13,6 +13,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
   const [iframeLoading, setIframeLoading] = useState(true);
   const [iframeKey, setIframeKey] = useState(0);
   const [copiedField, setCopiedField] = useState(null); // 'email' or 'password' or null
+  const [activeModuleTab, setActiveModuleTab] = useState(0);
 
   const handleCopy = (text, field) => {
     navigator.clipboard.writeText(text);
@@ -25,6 +26,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
     setPreviewMode('image');
     setIframeLoading(true);
     setIframeKey(prev => prev + 1);
+    setActiveModuleTab(0);
   }, [project]);
 
   if (!project) return null;
@@ -33,8 +35,10 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
     about: language === 'tr' ? 'Proje Hakkında' : 'About Project',
     problem: language === 'tr' ? 'Müşteri Problemi' : 'Client Challenge',
     solution: language === 'tr' ? 'Geliştirilen Çözüm' : 'Developed Solution',
+    modules: language === 'tr' ? 'Modüller & Yetenekler' : 'Modules & Capabilities',
     features: language === 'tr' ? 'Öne Çıkan Özellikler' : 'Key Features',
     technologies: language === 'tr' ? 'Kullanılan Teknolojiler' : 'Technologies Used',
+    targetAudience: language === 'tr' ? 'Kimler İçin İdeal?' : 'Target Audience',
     liveDemo: language === 'tr' ? 'Projeyi Canlı İncele' : 'View Live Project',
   };
 
@@ -196,52 +200,76 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
               {/* Close Button (Floating Top Right) */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 z-50 p-2.5 bg-bg-sec/90 hover:bg-red-500 hover:text-white text-text-main rounded-full border border-border-main shadow-md transition-all duration-300 backdrop-blur-sm cursor-pointer scale-90 md:scale-100"
+                className="absolute top-4 right-4 z-50 p-2.5 bg-bg-sec hover:bg-red-500 hover:text-white text-text-main rounded-xl border border-border-main shadow-md transition-all cursor-pointer"
               >
-                <X size={18} />
+                <X size={16} />
               </button>
 
               {/* Scrollable details panel */}
-              <div className="flex-1 overflow-y-auto custom-scrollbar px-6 py-6 md:p-8 pt-14 md:pt-16 space-y-8">
+              <div className="flex-1 overflow-y-auto custom-scrollbar px-6 py-6 md:p-8 pt-14 md:pt-16 space-y-6">
                 
                 {/* Meta details header */}
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="px-2.5 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-[0.6rem] md:text-xs font-bold rounded-lg uppercase tracking-widest">
+                    <span className="px-2.5 py-1 bg-primary text-white text-[10px] font-bold rounded-md uppercase tracking-wider">
                       {project.category}
                     </span>
-                    <span className="flex items-center gap-1.5 px-2 py-0.5 border border-border-main bg-bg-sec text-text-sec text-[8px] md:text-[10px] font-bold rounded-lg uppercase">
+                    <span className="flex items-center gap-1.5 px-2.5 py-1 border border-border-main bg-bg-sec text-text-sec text-[10px] font-bold rounded-md uppercase">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                       {language === 'tr' ? 'Çalışıyor' : 'Live'}
                     </span>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-text-main font-heading tracking-tight leading-tight mb-4">
+                  <h2 className="text-2xl md:text-3xl font-extrabold text-text-main font-heading tracking-tight leading-tight mb-2">
                     {project.title}
                   </h2>
+                  {project.subtitle && (
+                    <p className="text-xs md:text-sm text-text-sec font-medium font-body leading-relaxed">
+                      {project.subtitle}
+                    </p>
+                  )}
                 </div>
+
+                {/* Metrics Highlight Bento Bar */}
+                {project.metrics && project.metrics.length > 0 && (
+                  <div className="grid grid-cols-3 gap-2.5">
+                    {project.metrics.map((metric, mIdx) => (
+                      <div 
+                        key={mIdx} 
+                        className="p-3 bg-bg-sec border border-border-main rounded-xl flex flex-col items-center text-center hover:border-primary/40 transition-colors shadow-sm"
+                      >
+                        <span className="text-xs sm:text-sm font-black text-primary font-heading tracking-tight">
+                          {metric.value}
+                        </span>
+                        <span className="text-[9px] sm:text-[10px] text-text-sec font-bold uppercase tracking-wider mt-0.5">
+                          {metric.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 {/* About Project */}
                 <div className="space-y-2">
-                  <h3 className="text-xs font-extrabold text-text-sec uppercase tracking-widest flex items-center gap-2">
+                  <h3 className="text-xs font-extrabold text-text-sec uppercase tracking-wider flex items-center gap-2">
                     <Sparkles size={12} className="text-primary" />
                     {labels.about}
                   </h3>
-                  <p className="text-text-sec/90 text-sm leading-relaxed font-body whitespace-pre-line">
+                  <p className="text-text-sec text-xs md:text-sm leading-relaxed font-body">
                     {getLocalizedContent('description') || (language === 'tr' ? 'Bu proje için detaylı bir açıklama bulunmamaktadır.' : 'No description available for this project.')}
                   </p>
 
                   {/* Demo Credentials Alert Box */}
                   {(project.loginEmail || project.loginPassword) && (
-                    <div className="bg-blue-500/[0.03] dark:bg-blue-500/[0.01] border border-blue-500/50 dark:border-blue-500/30 p-4 rounded-2xl flex flex-col gap-3 mt-4">
-                      <h4 className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-extrabold text-xs tracking-wider uppercase">
-                        <Key size={14} className="text-blue-500 animate-pulse" />
-                        {language === 'tr' ? 'Giriş Bilgileri' : 'Demo Credentials'}
+                    <div className="bg-bg-sec border border-primary/30 p-4 rounded-xl flex flex-col gap-3 mt-3 shadow-sm">
+                      <h4 className="flex items-center gap-2 text-primary font-extrabold text-xs tracking-wider uppercase">
+                        <Key size={14} />
+                        {language === 'tr' ? 'Demo Giriş Bilgileri' : 'Demo Credentials'}
                       </h4>
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                         {project.loginEmail && (
-                          <div className="flex flex-col gap-1.5 p-3 bg-bg-sec/50 border border-border-main/50 rounded-xl">
-                            <h4 className="text-text-sec/60 font-semibold uppercase tracking-wider text-[9px]">
+                          <div className="flex flex-col gap-1.5 p-2.5 bg-bg-main border border-border-main rounded-lg">
+                            <h4 className="text-text-sec font-semibold uppercase tracking-wider text-[9px]">
                               E-Mail
                             </h4>
                             <div className="flex items-center justify-between gap-2 font-mono text-text-main">
@@ -258,8 +286,8 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
                         )}
                         
                         {project.loginPassword && (
-                          <div className="flex flex-col gap-1.5 p-3 bg-bg-sec/50 border border-border-main/50 rounded-xl">
-                            <h4 className="text-text-sec/60 font-semibold uppercase tracking-wider text-[9px]">
+                          <div className="flex flex-col gap-1.5 p-2.5 bg-bg-main border border-border-main rounded-lg">
+                            <h4 className="text-text-sec font-semibold uppercase tracking-wider text-[9px]">
                               {language === 'tr' ? 'Şifre' : 'Password'}
                             </h4>
                             <div className="flex items-center justify-between gap-2 font-mono text-text-main">
@@ -280,13 +308,11 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
                 </div>
 
                 {/* Bento Challenge & Solution Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {/* Challenge */}
-                  <div className="bg-red-500/[0.02] dark:bg-red-500/[0.01] border border-red-500/10 p-4 rounded-2xl flex flex-col gap-3 transition-colors hover:bg-red-500/[0.04]">
+                  <div className="bg-bg-sec border border-red-500/20 p-3.5 rounded-xl flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-red-500 font-bold text-xs tracking-wider uppercase">
-                      <div className="p-1.5 bg-red-500/10 rounded-lg text-red-500">
-                        <Target size={14} />
-                      </div>
+                      <Target size={13} />
                       {labels.problem}
                     </div>
                     <p className="text-text-sec text-xs leading-relaxed font-medium">
@@ -295,11 +321,9 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
                   </div>
 
                   {/* Solution */}
-                  <div className="bg-emerald-500/[0.02] dark:bg-emerald-500/[0.01] border border-emerald-500/10 p-4 rounded-2xl flex flex-col gap-3 transition-colors hover:bg-emerald-500/[0.04]">
+                  <div className="bg-bg-sec border border-emerald-500/20 p-3.5 rounded-xl flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-emerald-500 font-bold text-xs tracking-wider uppercase">
-                      <div className="p-1.5 bg-emerald-500/10 rounded-lg text-emerald-500">
-                        <Lightbulb size={14} />
-                      </div>
+                      <Lightbulb size={13} />
                       {labels.solution}
                     </div>
                     <p className="text-text-sec text-xs leading-relaxed font-medium">
@@ -308,23 +332,99 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
                   </div>
                 </div>
 
-                {/* Key Features List */}
-                {project.features && project.features.length > 0 && (
+                {/* Modules & Capabilities (Interactive Tabbed Bento) */}
+                {project.modules && project.modules.length > 0 ? (
                   <div className="space-y-3">
-                    <h3 className="text-xs font-extrabold text-text-sec uppercase tracking-widest">
-                      {labels.features}
-                    </h3>
-                    <div className="grid grid-cols-1 gap-2">
-                      {(language === 'tr' ? project.features : project.featuresEn || project.features).map((feature, index) => (
-                        <div 
-                          key={index} 
-                          className="flex items-center gap-3 p-3 bg-bg-sec/40 border border-border-main/50 rounded-xl hover:border-primary/20 transition-all duration-300"
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-xs font-extrabold text-text-sec uppercase tracking-wider flex items-center gap-2">
+                        <Layers size={13} className="text-primary" />
+                        {labels.modules}
+                      </h3>
+                      <span className="text-[10px] text-text-sec font-semibold">
+                        {project.modules.length} {language === 'tr' ? 'Modül' : 'Modules'}
+                      </span>
+                    </div>
+
+                    {/* Module Tabs Navigation */}
+                    <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar p-1 bg-bg-sec rounded-xl border border-border-main">
+                      {project.modules.map((mod, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveModuleTab(idx)}
+                          className={`px-3.5 py-1.5 rounded-lg text-[10px] font-bold whitespace-nowrap transition-all uppercase tracking-wider font-heading cursor-pointer ${
+                            activeModuleTab === idx
+                              ? 'bg-primary text-white shadow-sm'
+                              : 'text-text-sec hover:text-text-main hover:bg-bg-card'
+                          }`}
                         >
-                          <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 flex-shrink-0">
-                            <CheckCircle2 size={12} />
+                          {mod.name}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Active Module Items */}
+                    <div className="grid grid-cols-1 gap-2">
+                      {project.modules[activeModuleTab]?.items.map((item, itemIdx) => (
+                        <div 
+                          key={itemIdx}
+                          className="p-3 bg-bg-sec border border-border-main rounded-xl hover:border-primary/40 transition-all"
+                        >
+                          <div className="flex items-start gap-2.5">
+                            <div className="w-5 h-5 rounded-md bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <CheckCircle2 size={13} />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="text-xs font-bold text-text-main font-heading">
+                                {item.title}
+                              </h4>
+                              <p className="text-[11px] text-text-sec mt-0.5 leading-relaxed font-body">
+                                {item.desc}
+                              </p>
+                            </div>
                           </div>
-                          <span className="text-text-sec text-xs md:text-sm font-medium">{feature}</span>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  /* Fallback to simple features list */
+                  project.features && project.features.length > 0 && (
+                    <div className="space-y-3">
+                      <h3 className="text-xs font-extrabold text-text-sec uppercase tracking-wider">
+                        {labels.features}
+                      </h3>
+                      <div className="grid grid-cols-1 gap-2">
+                        {(language === 'tr' ? project.features : project.featuresEn || project.features).map((feature, index) => (
+                          <div 
+                            key={index} 
+                            className="flex items-center gap-2.5 p-2.5 bg-bg-sec border border-border-main rounded-xl"
+                          >
+                            <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 flex-shrink-0">
+                              <CheckCircle2 size={12} />
+                            </div>
+                            <span className="text-text-sec text-xs font-medium">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                )}
+
+                {/* Target Audience (Kimler İçin İdeal?) */}
+                {project.targetAudience && project.targetAudience.length > 0 && (
+                  <div className="space-y-2">
+                    <h3 className="text-xs font-extrabold text-text-sec uppercase tracking-wider flex items-center gap-2">
+                      <Users size={12} className="text-primary" />
+                      {labels.targetAudience}
+                    </h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.targetAudience.map((aud, aIdx) => (
+                        <span
+                          key={aIdx}
+                          className="px-2.5 py-1 bg-bg-sec text-text-main border border-border-main text-[10px] md:text-xs font-medium rounded-lg"
+                        >
+                          ✓ {aud}
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -332,15 +432,15 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
 
                 {/* Tech Chips */}
                 {project.tags && project.tags.length > 0 && (
-                  <div className="space-y-3">
-                    <h3 className="text-xs font-extrabold text-text-sec uppercase tracking-widest">
+                  <div className="space-y-2">
+                    <h3 className="text-xs font-extrabold text-text-sec uppercase tracking-wider">
                       {labels.technologies}
                     </h3>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {project.tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1.5 bg-bg-sec hover:bg-primary/5 hover:text-primary hover:border-primary/20 text-text-sec text-[10px] md:text-xs font-semibold rounded-xl border border-border-main transition-all duration-300"
+                          className="px-2.5 py-1 bg-bg-sec hover:border-primary/40 text-text-sec text-[10px] font-semibold rounded-lg border border-border-main transition-colors"
                         >
                           {tag}
                         </span>
@@ -351,24 +451,24 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
 
               </div>
 
-              {/* Action Buttons Footer */}
-              <div className="p-6 md:p-8 bg-bg-main border-t border-border-main flex flex-col sm:flex-row gap-3 z-10">
+              {/* Action Buttons Footer - Solid, Crisp, High-Contrast */}
+              <div className="p-5 md:p-6 bg-bg-sec border-t border-border-main flex flex-col sm:flex-row gap-2.5 z-10">
                 {project.demoUrl !== '#' && (
                   <a
                     href={project.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-primary hover:bg-primary/90 text-white rounded-2xl font-bold transition-all transform hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-primary/20 text-xs md:text-sm tracking-wide font-heading cursor-pointer"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold transition-all shadow-md text-xs md:text-sm tracking-wide font-heading cursor-pointer"
                   >
-                    <ExternalLink size={16} />
+                    <ExternalLink size={15} />
                     {labels.liveDemo}
                   </a>
                 )}
                 <a
                   href="tel:+905067100717"
-                  className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-bg-sec hover:bg-bg-sec/80 text-text-main border border-border-main rounded-2xl font-bold transition-all transform hover:scale-[1.01] active:scale-[0.99] text-xs md:text-sm tracking-wide font-heading cursor-pointer"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-bg-card hover:bg-bg-main text-text-main border border-border-main rounded-xl font-bold transition-all text-xs md:text-sm tracking-wide font-heading cursor-pointer"
                 >
-                  <Phone size={16} />
+                  <Phone size={15} />
                   {t.portfolio.demo_request}
                 </a>
               </div>

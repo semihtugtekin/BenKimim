@@ -17,7 +17,7 @@ const Process = () => {
       icon: <PenTool className="w-8 h-8" />,
       title: t.process.step2,
       desc: t.process.step2Desc,
-      color: "from-purple-500 to-pink-400"
+      color: "from-orange-500 to-amber-400"
     },
     {
       icon: <Code2 className="w-8 h-8" />,

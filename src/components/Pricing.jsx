@@ -74,8 +74,8 @@ const Pricing = () => {
         "Unlimited Pages/Features",
         "Priority Support Line"
       ],
-      color: "bg-purple-500/10 text-purple-500",
-      border: "border-purple-500/20"
+      color: "bg-orange-500/10 text-orange-500",
+      border: "border-orange-500/20"
     }
   ];
 

@@ -1,5 +1,4 @@
 import Hero from '../components/Hero';
-import TechStack from '../components/TechStack';
 import Process from '../components/Process';
 import Portfolio from '../components/Portfolio';
 // import Pricing from '../components/Pricing';
@@ -13,7 +12,6 @@ const Home = ({ isDarkMode }) => {
   return (
     <main>
       <Hero isDarkMode={isDarkMode} />
-      <TechStack />
       <Process />
       <Portfolio />
       {/* <Pricing /> */}
