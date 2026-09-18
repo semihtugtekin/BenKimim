@@ -2,7 +2,7 @@ import Hero from '../components/Hero';
 import Process from '../components/Process';
 import Portfolio from '../components/Portfolio';
 // import Pricing from '../components/Pricing';
-import Testimonials from '../components/Testimonials';
+// import Testimonials from '../components/Testimonials';
 import Support from '../components/Support';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -15,7 +15,7 @@ const Home = ({ isDarkMode }) => {
       <Process />
       <Portfolio />
       {/* <Pricing /> */}
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Support />
 
       {/* Final CTA Strip */}

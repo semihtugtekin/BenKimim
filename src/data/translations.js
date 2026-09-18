@@ -10,8 +10,8 @@ export const translations = {
     },
     hero: {
       badge: "DİJİTAL DÖNÜŞÜM ORTAĞINIZ",
-      title: "Geleceği ",
-      titleAccent: "Kodluyoruz",
+      title: "Yenilikçi ",
+      titleAccent: "Çözümler",
       description: "TUGCore olarak, işinizi dijital dünyaya taşıyor, modern ve ölçeklenebilir çözümler üretiyoruz. Fikirlerinizi gerçeğe dönüştürmek için buradayız.",
       cta_primary: "Projeleri İncele",
       cta_secondary: "İletişime Geç",
@@ -67,7 +67,7 @@ export const translations = {
       step4Desc: "Projenizi hayata geçiriyor ve her zaman yanınızda oluyoruz."
     },
     footer: {
-      description: "Dijital dünyada iz bırakmak için yanınızdayız. Modern teknolojiler ve kullanıcı odaklı tasarımlarla geleceği inşa ediyoruz. ",
+      description: "Dijital dünyada iz bırakmak için yanınızdayız. Modern teknolojiler ve kullanıcı odaklı tasarımlarla yenilikçi projeler inşa ediyoruz. ",
       rights: "Tüm hakları saklıdır.",
     }
   },

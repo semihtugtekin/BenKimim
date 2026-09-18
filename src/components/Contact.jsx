@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2, Sparkles, MessageSqua
 import emailjs from '@emailjs/browser';
 import Magnetic from './Magnetic';
 import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
 
 import { EMAILJS_CONFIG } from '../config/emailjs';
 
@@ -11,6 +12,7 @@ import { EMAILJS_CONFIG } from '../config/emailjs';
 emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
 
 const Contact = () => {
+  const { language } = useLanguage();
   const form = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -75,7 +77,7 @@ const Contact = () => {
                     <Mail size={28} />
                   </div>
                   <div>
-                    <h4 className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-1">E-POSTA GÖNDER</h4>
+                    <h4 className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-1">{language === 'tr' ? 'E-POSTA GÖNDER' : 'SEND EMAIL'}</h4>
                     <p className="text-lg font-bold text-text-main group-hover:text-primary transition-colors">info@tugcore.com.tr</p>
                   </div>
                 </a>
@@ -92,8 +94,8 @@ const Contact = () => {
                     <Phone size={28} />
                   </div>
                   <div>
-                    <h4 className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-1">BİZİ ARAYIN</h4>
-                    <p className="text-lg font-bold text-text-main group-hover:text-primary transition-colors">+90 506 710 0717 </p>
+                    <h4 className="text-xs font-black uppercase tracking-widest text-text-sec/50 mb-1">{language === 'tr' ? 'BİZİ ARAYIN' : 'CALL US'}</h4>
+                    <p className="text-lg font-bold text-text-main group-hover:text-primary transition-colors">{language === 'tr' ? 'Hemen Arayın' : 'Call Now'}</p>
                   </div>
                 </a>
               </motion.div>

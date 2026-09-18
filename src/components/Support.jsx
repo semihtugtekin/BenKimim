@@ -33,7 +33,7 @@ const Support = () => {
   const faqs = [
     {
       question: language === 'tr' ? "Nasıl destek alabilirim?" : "How can I get support?",
-      answer: language === 'tr' ? "Destek almak için aşağıdaki formu doldurabilir, info@tugcore.com.tr adresine e-posta gönderebilir veya +90 506 710 0717 numaralı telefondan bize ulaşabilirsiniz." : "To get support, you can fill out the form below, send an email to info@tugcore.com.tr or reach us at +90 506 710 0717."
+      answer: language === 'tr' ? "Destek almak için aşağıdaki formu doldurabilir, info@tugcore.com.tr adresine e-posta gönderebilir veya iletişim butonlarımız üzerinden doğrudan bize telefonla ulaşabilirsiniz." : "To get support, you can fill out the form below, send an email to info@tugcore.com.tr or reach us directly by phone via our contact buttons."
     },
     {
       question: language === 'tr' ? "Çalışma saatleriniz nedir?" : "What are your working hours?",
@@ -243,7 +243,7 @@ const Support = () => {
                   </div>
                   <div>
                     <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 mb-1 font-heading">{language === 'tr' ? 'TELEFON' : 'PHONE'}</div>
-                    <div className="text-base md:text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight">+90 506 710 0717</div>
+                    <div className="text-base md:text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight">{language === 'tr' ? 'Hemen Arayın' : 'Call Now'}</div>
                   </div>
                 </a>
               </Reveal>
