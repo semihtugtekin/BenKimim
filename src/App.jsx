@@ -9,6 +9,7 @@ import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
+import WhatsAppButton from './components/WhatsAppButton';
 
 const ScrollToHash = ({ loading }) => {
   const { pathname, hash } = useLocation();
@@ -71,6 +72,7 @@ const AnimatedRoutes = ({ isDarkMode, toggleTheme }) => {
           </Routes>
         </AnimatePresence>
         <Footer />
+        <WhatsAppButton />
       </div>
     </>
   );
