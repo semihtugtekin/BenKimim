@@ -116,7 +116,7 @@ const Support = () => {
           </div>
 
           {/* Support Categories */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 md:mb-20">
             {categories.map((cat, idx) => (
               <Reveal key={idx} delay={0.1 * idx} width="100%">
                 <div className="p-8 rounded-3xl glass border border-border-main hover:border-primary/20 transition-all duration-700 group h-full flex flex-col items-center text-center">
@@ -129,21 +129,20 @@ const Support = () => {
               </Reveal>
             ))}
           </div>
-        </div>
 
-        <div className="flex flex-col gap-24">
-          {/* Contact/Support Form */}
-          <div className="w-full">
-            <div className="max-w-4xl mx-auto px-0 sm:px-6 lg:px-8">
+          {/* Side-by-side: Support Request Form & FAQ */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            {/* Left: Support Request Form (7 cols) */}
+            <div className="lg:col-span-7">
               <Reveal width="100%">
-                <div className="px-5 py-8 md:p-12 rounded-none sm:rounded-[2.5rem] glass border-y sm:border border-border-main relative overflow-hidden group shadow-2xl">
+                <div className="p-6 sm:p-8 md:p-10 rounded-3xl sm:rounded-[2.5rem] glass border border-border-main relative overflow-hidden group shadow-2xl">
                   <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3 font-heading tracking-tight">
                     <MessageSquare className="text-primary" size={24} /> {t.support.form_title}
                   </h4>
 
                   <form ref={form} onSubmit={handleSubmit} className="space-y-6 font-body">
                     <input type="hidden" name="to_email" value="info@tugcore.com.tr" />
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/80 ml-2 font-heading">{t.support.form_name}</label>
                         <input
@@ -151,7 +150,7 @@ const Support = () => {
                           type="text"
                           placeholder={language === 'tr' ? "Adınız?" : "Your Name?"}
                           name="from_name"
-                          className="w-full px-6 py-5 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
+                          className="w-full px-5 py-4 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
                         />
                       </div>
                       <div className="space-y-2">
@@ -161,14 +160,14 @@ const Support = () => {
                           type="email"
                           placeholder={language === 'tr' ? "E-posta adresiniz" : "Your email address"}
                           name="from_email"
-                          className="w-full px-6 py-5 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
+                          className="w-full px-5 py-4 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main text-base"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/80 ml-2 font-heading">{t.support.form_subject}</label>
-                      <select name="subject" className="w-full px-6 py-5 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none text-base">
+                      <select name="subject" className="w-full px-5 py-4 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main appearance-none text-base">
                         <option>{language === 'tr' ? 'Teknik Destek' : 'Technical Support'}</option>
                         <option>{language === 'tr' ? 'Satış / Yeni Proje' : 'Sales / New Project'}</option>
                         <option>{language === 'tr' ? 'Ödeme İşlemleri' : 'Payments'}</option>
@@ -180,17 +179,17 @@ const Support = () => {
                       <label className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/80 ml-2 font-heading">{t.support.form_message}</label>
                       <textarea
                         required
-                        rows="5"
+                        rows="4"
                         placeholder={language === 'tr' ? "Size nasıl yardımcı olabiliriz?" : "How can we help you?"}
                         name="message"
-                        className="w-full px-6 py-5 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main resize-none text-base"
+                        className="w-full px-5 py-4 rounded-2xl bg-bg-sec/50 border border-border-main focus:border-primary outline-none transition-all duration-300 text-text-main resize-none text-base"
                       ></textarea>
                     </div>
 
                     <Magnetic>
                       <button
                         disabled={isSubmitting || isSuccess}
-                        className={`w-full py-5 rounded-2xl font-bold text-sm tracking-widest uppercase flex items-center justify-center gap-3 transition-all duration-500 font-heading ${isSuccess
+                        className={`w-full py-4 sm:py-5 rounded-2xl font-bold text-sm tracking-widest uppercase flex items-center justify-center gap-3 transition-all duration-500 font-heading ${isSuccess
                           ? 'bg-green-500 text-white'
                           : 'bg-primary text-white hover:opacity-90 shadow-xl shadow-primary/20'
                           }`}
@@ -221,72 +220,84 @@ const Support = () => {
                 </div>
               </Reveal>
             </div>
-          </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div className="grid grid-cols-2 gap-4 md:gap-6">
+            {/* Right: FAQ & Contact (5 cols) */}
+            <div className="lg:col-span-5 flex flex-col gap-6">
               <Reveal width="100%">
-                <a href="mailto:info@tugcore.com.tr" className="group flex items-center gap-5 md:gap-6 p-6 md:p-8 rounded-[2rem] glass border border-border-main hover:border-primary/30 transition-all duration-700 h-full">
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/20">
-                    <Mail size={22} className="md:w-6 md:h-6" />
-                  </div>
-                  <div>
-                    <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 mb-1 font-heading">E-POSTA</div>
-                    <div className="text-base md:text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight break-all">info@tugcore.com.tr</div>
-                  </div>
-                </a>
-              </Reveal>
-              <Reveal delay={0.1} width="100%">
-                <a href="tel:+905067100717" className="group flex items-center gap-5 md:gap-6 p-6 md:p-8 rounded-[2rem] glass border border-border-main hover:border-primary/30 transition-all duration-700 h-full">
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-primary/20">
-                    <Phone size={22} className="md:w-6 md:h-6" />
-                  </div>
-                  <div>
-                    <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/50 mb-1 font-heading">{language === 'tr' ? 'TELEFON' : 'PHONE'}</div>
-                    <div className="text-base md:text-lg font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight">{language === 'tr' ? 'Hemen Arayın' : 'Call Now'}</div>
-                  </div>
-                </a>
-              </Reveal>
-            </div>
+                <div className="p-6 sm:p-8 rounded-3xl sm:rounded-[2.5rem] glass border border-border-main relative overflow-hidden group shadow-xl">
+                  <h4 className="text-2xl font-bold text-text-main mb-6 flex items-center gap-3 font-heading tracking-tight">
+                    <HelpCircle className="text-primary" size={24} /> {t.support.faq_title}
+                  </h4>
 
-            {/* FAQ Section */}
-            <div className="max-w-4xl mx-auto w-full pt-12">
-              <Reveal>
-                <h4 className="text-2xl font-bold text-text-main mb-8 flex items-center gap-3 font-heading tracking-tight">
-                  <HelpCircle className="text-primary" size={24} /> {t.support.faq_title}
-                </h4>
-              </Reveal>
-              <div className="space-y-4">
-                {faqs.map((faq, idx) => (
-                  <Reveal key={idx} delay={0.2 + (0.1 * idx)} width="100%">
-                    <div className="rounded-2xl glass border border-border-main overflow-hidden">
-                      <button
-                        onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                        className="w-full p-6 text-left flex items-center justify-between hover:bg-primary/5 transition-colors font-heading"
+                  <div className="space-y-3">
+                    {faqs.map((faq, idx) => (
+                      <div
+                        key={idx}
+                        className={`rounded-2xl glass border transition-all duration-300 overflow-hidden ${
+                          activeFaq === idx ? 'border-primary/40 bg-primary/5' : 'border-border-main/70 hover:border-border-main'
+                        }`}
                       >
-                        <span className="font-bold text-text-main pr-4 text-sm">{faq.question}</span>
-                        <ChevronDown
-                          className={`text-primary transition-transform duration-300 ${activeFaq === idx ? 'rotate-180' : ''}`}
-                          size={18}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {activeFaq === idx && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <div className="p-6 pt-0 text-text-sec text-sm border-t border-border-main/20 leading-relaxed font-body">
-                              {faq.answer}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                        <button
+                          onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                          className="w-full p-4 sm:p-5 text-left flex items-center justify-between hover:bg-primary/5 transition-colors font-heading gap-3"
+                        >
+                          <span className="font-bold text-text-main text-sm leading-snug">{faq.question}</span>
+                          <ChevronDown
+                            className={`text-primary transition-transform duration-300 shrink-0 ${activeFaq === idx ? 'rotate-180' : ''}`}
+                            size={18}
+                          />
+                        </button>
+                        <AnimatePresence>
+                          {activeFaq === idx && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <div className="p-4 sm:p-5 pt-0 text-text-sec text-xs sm:text-sm border-t border-border-main/20 leading-relaxed font-body">
+                                {faq.answer}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Direct Contact Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
+                <Reveal width="100%">
+                  <a
+                    href="mailto:info@tugcore.com.tr"
+                    className="group flex items-center gap-4 p-4 sm:p-5 rounded-2xl glass border border-border-main hover:border-primary/30 transition-all duration-500 h-full shadow-lg hover:shadow-primary/10"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shrink-0 shadow-md">
+                      <Mail size={20} />
                     </div>
-                  </Reveal>
-                ))}
+                    <div className="min-w-0">
+                      <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/60 mb-0.5 font-heading">E-POSTA</div>
+                      <div className="text-sm font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight break-all">info@tugcore.com.tr</div>
+                    </div>
+                  </a>
+                </Reveal>
+
+                <Reveal delay={0.1} width="100%">
+                  <a
+                    href="tel:+905067100717"
+                    className="group flex items-center gap-4 p-4 sm:p-5 rounded-2xl glass border border-border-main hover:border-primary/30 transition-all duration-500 h-full shadow-lg hover:shadow-primary/10"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shrink-0 shadow-md">
+                      <Phone size={20} />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[0.6rem] font-bold uppercase tracking-widest text-text-sec/60 mb-0.5 font-heading">{language === 'tr' ? 'TELEFON' : 'PHONE'}</div>
+                      <div className="text-sm font-bold text-text-main group-hover:text-primary transition-colors font-heading tracking-tight">{language === 'tr' ? 'Hemen Arayın' : 'Call Now'}</div>
+                    </div>
+                  </a>
+                </Reveal>
               </div>
             </div>
           </div>
